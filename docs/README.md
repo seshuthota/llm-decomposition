@@ -11,6 +11,7 @@ This repo now keeps planning and experiment notes in one place instead of spread
 - [roadmap/qwen3_1p7b_modal_plan.md](roadmap/qwen3_1p7b_modal_plan.md): next scale-up path on Modal for `Qwen/Qwen3-1.7B-Base`
 - [roadmap/qwen3_1p7b_gptq_plan.md](roadmap/qwen3_1p7b_gptq_plan.md): GPTQ transfer path on Modal for `Qwen/Qwen3-1.7B-Base`
 - [roadmap/next_steps.md](roadmap/next_steps.md): current restart plan and blocker summary
+- [roadmap/kaggle_plan.md](roadmap/kaggle_plan.md): fresh Kaggle notebook setup and execution plan
 - [experiments/phase1_results.md](experiments/phase1_results.md): consolidated Phase 1 results and project decision
 - [experiments/experiment_journal.md](experiments/experiment_journal.md): detailed run-by-run log
 - [experiments/phase2_working_summary.md](experiments/phase2_working_summary.md): live Phase 2 comparison sheet

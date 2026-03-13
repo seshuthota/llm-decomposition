@@ -15,3 +15,4 @@ Current stop-point:
 - `RTN` results are complete through the `1.7B` transfer study
 - `GPTQ` is paused at baseline bring-up
 - restart from [docs/roadmap/next_steps.md](docs/roadmap/next_steps.md)
+- Kaggle notebook bring-up plan is in [docs/roadmap/kaggle_plan.md](docs/roadmap/kaggle_plan.md)
