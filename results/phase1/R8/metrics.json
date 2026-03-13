@@ -1,0 +1,16 @@
+{
+  "bit_width": 4,
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "evaluated_tokens": 300979.0,
+  "latency_ms_per_token": 0.6855246653753161,
+  "memory_metadata_bytes": 9312256,
+  "memory_total_bytes": 307304448,
+  "method": "mixed_precision_budget_match",
+  "model_name": "Qwen/Qwen3-0.6B-Base",
+  "perplexity": 30.516916135923783,
+  "run_id": "R8",
+  "status": "completed",
+  "target_memory_match_run_id": "R4",
+  "upgraded_layers": []
+}

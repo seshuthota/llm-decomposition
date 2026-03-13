@@ -1,0 +1,20 @@
+{
+  "layer_errors": [
+    {
+      "activation_mse": 0.0,
+      "activation_relative_l2": 0.0,
+      "fro_error": 73.1642142448058,
+      "layer_name": "lm_head",
+      "metadata_bytes": 4861952,
+      "num_batches": 8.0,
+      "quantized_weight_bytes": 155582464,
+      "relative_fro_error": 0.11721377862732993,
+      "repair_factor_bytes": 0,
+      "repair_rank": 0,
+      "total_effective_bytes": 160444416,
+      "total_quantized_bytes": 160444416
+    }
+  ],
+  "run_id": "R3_Q17B",
+  "status": "completed"
+}

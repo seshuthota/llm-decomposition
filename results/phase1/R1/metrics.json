@@ -1,0 +1,14 @@
+{
+  "bit_width": null,
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "evaluated_tokens": 297913.0,
+  "latency_ms_per_token": 0.6852036503778915,
+  "memory_metadata_bytes": 0,
+  "memory_total_bytes": 1192099840,
+  "method": "full_precision",
+  "model_name": "Qwen/Qwen3-0.6B-Base",
+  "perplexity": 16.844704810407233,
+  "run_id": "R1",
+  "status": "completed"
+}

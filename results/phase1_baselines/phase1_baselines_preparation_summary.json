@@ -1,0 +1,12 @@
+{
+  "description": "Initial baseline runs for Qwen/Qwen3-0.6B-Base covering full precision, RTN-4bit, and GPTQ-4bit.",
+  "phase": "phase1_baselines",
+  "prepared_runs": [
+    {
+      "bit_width": 4,
+      "method": "gptq",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/phase1/R3",
+      "run_id": "R3"
+    }
+  ]
+}

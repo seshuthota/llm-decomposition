@@ -1,0 +1,10 @@
+{
+  "phase": "qwen3_1p7b_transfer",
+  "description": "Matched frontier transfer runs for Qwen/Qwen3-1.7B-Base after the RTN baseline and candidate pool are available.",
+  "runs": [
+    "configs/scaleup_1p7b/p2b02_qwen3_1p7b_bits_activation_1p0pct.json",
+    "configs/scaleup_1p7b/p2r02_qwen3_1p7b_rank_activation_1p0pct.json",
+    "configs/scaleup_1p7b/p2b03_qwen3_1p7b_bits_activation_2p0pct.json",
+    "configs/scaleup_1p7b/p2r03_qwen3_1p7b_rank_activation_2p0pct.json"
+  ]
+}

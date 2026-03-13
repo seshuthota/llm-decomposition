@@ -1,0 +1,16 @@
+Repo root: /home/seshu/Documents/Python/llm-decomposition
+Conda env: rl
+Log file: /home/seshu/Documents/Python/llm-decomposition/results/logs/phase1_20260311_144834.log
+Started at: Wed Mar 11 14:48:34 IST 2026
+Command: python scripts/run_manifest.py --manifest configs/phase1/phase1_repair_manifest.json --dry-run
+Prepared 8 runs from manifest /home/seshu/Documents/Python/llm-decomposition/configs/phase1/phase1_repair_manifest.json.
+Summary written to /home/seshu/Documents/Python/llm-decomposition/results/phase1_repair/phase1_repair_preparation_summary.json
+- R4: status=dry_run method=uniform_svd_repair missing=none
+- R5: status=dry_run method=uniform_svd_repair missing=none
+- R6: status=dry_run method=uniform_svd_repair missing=none
+- R7: status=dry_run method=uniform_svd_repair missing=none
+- R8: status=dry_run method=mixed_precision_budget_match missing=none
+- R9: status=dry_run method=mixed_precision_budget_match missing=none
+- R10: status=dry_run method=mixed_precision_budget_match missing=none
+- R11: status=dry_run method=mixed_precision_budget_match missing=none
+Finished at: Wed Mar 11 14:48:34 IST 2026

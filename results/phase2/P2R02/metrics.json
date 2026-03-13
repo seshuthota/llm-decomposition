@@ -1,0 +1,10 @@
+{
+  "bit_width": null,
+  "latency_ms_per_token": null,
+  "memory_total_bytes": null,
+  "method": "targeted_svd_rank",
+  "model_name": "Qwen/Qwen3-0.6B-Base",
+  "perplexity": null,
+  "run_id": "P2R02",
+  "status": "pending"
+}

@@ -1,0 +1,7 @@
+{
+  "phase": "qwen3_1p7b_gptq_smoke",
+  "description": "Small GPTQ smoke bring-up for Qwen/Qwen3-1.7B-Base before full baseline retries.",
+  "runs": [
+    "configs/scaleup_1p7b_gptq/r3_qwen3_1p7b_gptq_4bit_smoke.json"
+  ]
+}

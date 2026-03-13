@@ -1,0 +1,22 @@
+Repo root: /home/seshu/Documents/Python/llm-decomposition
+Conda env: rl
+Log file: /home/seshu/Documents/Python/llm-decomposition/results/logs/phase1_20260311_134453.log
+Started at: Wed Mar 11 01:44:54 PM IST 2026
+Command: python scripts/run_phase1.py 
+Skipping import of cpp extensions due to incompatible torch version 2.6.0+cu124 for torchao version 0.15.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-03-11 13:45:01.025167: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1773216901.071242  821209 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1773216901.084676  821209 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-03-11 13:45:01.184507: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Prepared 3 phase-1 runs.
+- R1: method=full_precision bits=n/a results_dir=/home/seshu/Documents/Python/llm-decomposition/results/phase1/R1
+- R2: method=rtn bits=4 results_dir=/home/seshu/Documents/Python/llm-decomposition/results/phase1/R2
+- R3: method=gptq bits=4 results_dir=/home/seshu/Documents/Python/llm-decomposition/results/phase1/R3
+Summary written to /home/seshu/Documents/Python/llm-decomposition/results/phase1_baselines/phase1_baselines_preparation_summary.json
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 4358/4358 [00:00<00:00, 244244.59 examples/s]
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 36718/36718 [00:00<00:00, 1340655.45 examples/s]
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3760/3760 [00:00<00:00, 1133758.67 examples/s]
+Token indices sequence length is longer than the specified maximum sequence length for this model (298938 > 131072). Running this sequence through the model will result in indexing errors

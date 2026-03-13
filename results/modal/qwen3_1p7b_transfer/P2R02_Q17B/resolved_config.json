@@ -1,0 +1,67 @@
+{
+  "calibration": {
+    "dataset": "wikitext",
+    "num_sequences": 128,
+    "sampling": "seeded_shuffle",
+    "seed": 42,
+    "sequence_length": 512,
+    "split": "train",
+    "subset": "wikitext-2-raw-v1"
+  },
+  "description": "Qwen/Qwen3-1.7B-Base targeted-rank allocator using activation-space sensitivity at +1.0% of R2_Q17B memory.",
+  "evaluation": {
+    "dataset": "wikitext",
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token",
+      "memory_total_bytes",
+      "allocation_actions"
+    ],
+    "sequence_length": 512,
+    "split": "test",
+    "stride": 512,
+    "subset": "wikitext-2-raw-v1"
+  },
+  "method": {
+    "allocator": "greedy_activation",
+    "base_bit_width": 4,
+    "base_method": "rtn",
+    "base_run_id": "R2_Q17B",
+    "budget_percent_of_base": 1.0,
+    "budget_reference_metric": "memory_total_bytes",
+    "candidate_pool_path": "configs/scaleup_1p7b/qwen3_1p7b_r2_top12_candidate_pool.json",
+    "candidate_ranks": [
+      4,
+      8,
+      16,
+      32
+    ],
+    "factor_dtype_bytes": 2,
+    "name": "targeted_svd_rank",
+    "proxy_family": "activation",
+    "target_granularity": "matrix"
+  },
+  "model": {
+    "dtype_preference": [
+      "bfloat16",
+      "float16"
+    ],
+    "name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/qwen3-1.7b-base",
+    "tokenizer_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/qwen3-1.7b-base"
+  },
+  "outputs": {
+    "layer_summary_file": "layer_errors.json",
+    "metrics_file": "metrics.json",
+    "residual_profile_file": "residual_profiles.json",
+    "results_dir": "results/modal/qwen3_1p7b_transfer/P2R02_Q17B"
+  },
+  "phase": "qwen3_1p7b_transfer",
+  "profiling": {
+    "layerwise_activation_error": true,
+    "layerwise_weight_error": true,
+    "profile_num_sequences": 8,
+    "profile_sequence_length": 128,
+    "residual_svd_profile": false
+  },
+  "run_id": "P2R02_Q17B"
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": "phase2-v1",
+  "required_fields": [
+    "action_id",
+    "action_type",
+    "target_granularity",
+    "target_name",
+    "base_run_id",
+    "byte_cost",
+    "proxy_family",
+    "proxy_score"
+  ],
+  "optional_fields": [
+    "predicted_gain_per_byte",
+    "bit_from",
+    "bit_to",
+    "rank",
+    "metadata",
+    "selected",
+    "selection_order",
+    "cumulative_budget_bytes",
+    "realized_perplexity",
+    "realized_gain",
+    "status"
+  ],
+  "allowed_action_types": [
+    "bit_upgrade",
+    "rank_repair"
+  ],
+  "allowed_target_granularities": [
+    "matrix",
+    "group",
+    "block"
+  ],
+  "allowed_proxy_families": [
+    "weight",
+    "activation",
+    "measured"
+  ],
+  "allowed_status_values": [
+    "pending",
+    "evaluated",
+    "selected",
+    "skipped",
+    "rejected"
+  ]
+}

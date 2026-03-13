@@ -1,0 +1,92 @@
+{
+  "runs": [
+    {
+      "run_id": "R1",
+      "method": "full_precision",
+      "status": "completed",
+      "memory_total_bytes": 1192099840,
+      "perplexity": 16.844704810407233,
+      "latency_ms_per_token": 0.6852036503778915
+    },
+    {
+      "run_id": "R2",
+      "method": "rtn",
+      "status": "completed",
+      "memory_total_bytes": 307304448,
+      "perplexity": 30.516916135923783,
+      "latency_ms_per_token": 0.6853402444656435
+    },
+    {
+      "run_id": "R3",
+      "method": "gptq",
+      "status": "pending",
+      "memory_total_bytes": null,
+      "perplexity": null,
+      "latency_ms_per_token": null
+    },
+    {
+      "run_id": "R4",
+      "method": "uniform_svd_repair",
+      "status": "completed",
+      "memory_total_bytes": 307550208,
+      "perplexity": 30.557722980280193,
+      "latency_ms_per_token": 0.6853179166752205
+    },
+    {
+      "run_id": "R5",
+      "method": "uniform_svd_repair",
+      "status": "completed",
+      "memory_total_bytes": 307795968,
+      "perplexity": 30.46538282428384,
+      "latency_ms_per_token": 0.6852693627330594
+    },
+    {
+      "run_id": "R6",
+      "method": "uniform_svd_repair",
+      "status": "completed",
+      "memory_total_bytes": 308287488,
+      "perplexity": 30.315506091916657,
+      "latency_ms_per_token": 0.6852944902933895
+    },
+    {
+      "run_id": "R7",
+      "method": "uniform_svd_repair",
+      "status": "completed",
+      "memory_total_bytes": 309270528,
+      "perplexity": 29.984764915103966,
+      "latency_ms_per_token": 0.6853686295159577
+    },
+    {
+      "run_id": "R8",
+      "method": "mixed_precision_budget_match",
+      "status": "completed",
+      "memory_total_bytes": 307304448,
+      "perplexity": 30.516916135923783,
+      "latency_ms_per_token": 0.6855246653753161
+    },
+    {
+      "run_id": "R9",
+      "method": "mixed_precision_budget_match",
+      "status": "pending",
+      "memory_total_bytes": null,
+      "perplexity": null,
+      "latency_ms_per_token": null
+    },
+    {
+      "run_id": "R10",
+      "method": "mixed_precision_budget_match",
+      "status": "completed",
+      "memory_total_bytes": 307304448,
+      "perplexity": 30.516916135923783,
+      "latency_ms_per_token": 0.685410345815119
+    },
+    {
+      "run_id": "R11",
+      "method": "mixed_precision_budget_match",
+      "status": "completed",
+      "memory_total_bytes": 308877312,
+      "perplexity": 28.861768021353583,
+      "latency_ms_per_token": 0.6849496552052786
+    }
+  ]
+}

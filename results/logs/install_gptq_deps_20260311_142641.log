@@ -1,0 +1,1192 @@
+Repo root: /home/seshu/Documents/Python/llm-decomposition
+Conda env: rl
+Log file: /home/seshu/Documents/Python/llm-decomposition/results/logs/install_gptq_deps_20260311_142641.log
+Started at: Wed Mar 11 02:26:41 PM IST 2026
+
+Installing GPTQ-related dependencies into env 'rl'...
+Requirement already satisfied: pip in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (25.0)
+Collecting pip
+  Using cached pip-26.0.1-py3-none-any.whl.metadata (4.7 kB)
+Requirement already satisfied: setuptools in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (75.8.0)
+Collecting setuptools
+  Downloading setuptools-82.0.1-py3-none-any.whl.metadata (6.5 kB)
+Requirement already satisfied: wheel in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (0.45.1)
+Collecting wheel
+  Using cached wheel-0.46.3-py3-none-any.whl.metadata (2.4 kB)
+Requirement already satisfied: packaging>=24.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from wheel) (24.2)
+Using cached pip-26.0.1-py3-none-any.whl (1.8 MB)
+Downloading setuptools-82.0.1-py3-none-any.whl (1.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 20.9 MB/s eta 0:00:00
+Using cached wheel-0.46.3-py3-none-any.whl (30 kB)
+Installing collected packages: wheel, setuptools, pip
+  Attempting uninstall: wheel
+    Found existing installation: wheel 0.45.1
+    Uninstalling wheel-0.45.1:
+      Successfully uninstalled wheel-0.45.1
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 75.8.0
+    Uninstalling setuptools-75.8.0:
+      Successfully uninstalled setuptools-75.8.0
+  Attempting uninstall: pip
+    Found existing installation: pip 25.0
+    Uninstalling pip-25.0:
+      Successfully uninstalled pip-25.0
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+tensorflow 2.18.0 requires numpy<2.1.0,>=1.26.0, but you have numpy 2.2.2 which is incompatible.
+Successfully installed pip-26.0.1 setuptools-82.0.1 wheel-0.46.3
+Requirement already satisfied: accelerate in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (1.4.0)
+Collecting accelerate
+  Downloading accelerate-1.13.0-py3-none-any.whl.metadata (19 kB)
+Collecting optimum
+  Downloading optimum-2.1.0-py3-none-any.whl.metadata (14 kB)
+Requirement already satisfied: transformers in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (4.56.2)
+Collecting transformers
+  Downloading transformers-5.3.0-py3-none-any.whl.metadata (32 kB)
+Requirement already satisfied: numpy>=1.17 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from accelerate) (2.2.2)
+Requirement already satisfied: packaging>=20.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from accelerate) (24.2)
+Requirement already satisfied: psutil in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from accelerate) (7.0.0)
+Requirement already satisfied: pyyaml in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from accelerate) (6.0.2)
+Requirement already satisfied: torch>=2.0.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from accelerate) (2.6.0)
+Requirement already satisfied: huggingface_hub>=0.21.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from accelerate) (0.36.2)
+Requirement already satisfied: safetensors>=0.4.3 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from accelerate) (0.5.2)
+Collecting huggingface_hub>=0.21.0 (from accelerate)
+  Using cached huggingface_hub-1.6.0-py3-none-any.whl.metadata (13 kB)
+Requirement already satisfied: regex!=2019.12.17 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from transformers) (2024.11.6)
+Requirement already satisfied: tokenizers<=0.23.0,>=0.22.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from transformers) (0.22.2)
+Collecting typer (from transformers)
+  Using cached typer-0.24.1-py3-none-any.whl.metadata (16 kB)
+Requirement already satisfied: tqdm>=4.27 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from transformers) (4.67.1)
+Requirement already satisfied: filelock>=3.10.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from huggingface_hub>=0.21.0->accelerate) (3.17.0)
+Requirement already satisfied: fsspec>=2023.5.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from huggingface_hub>=0.21.0->accelerate) (2024.12.0)
+Collecting hf-xet<2.0.0,>=1.3.2 (from huggingface_hub>=0.21.0->accelerate)
+  Using cached hf_xet-1.3.2-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+Requirement already satisfied: httpx<1,>=0.23.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from huggingface_hub>=0.21.0->accelerate) (0.28.1)
+Requirement already satisfied: typing-extensions>=4.1.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from huggingface_hub>=0.21.0->accelerate) (4.15.0)
+Requirement already satisfied: anyio in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from httpx<1,>=0.23.0->huggingface_hub>=0.21.0->accelerate) (4.12.1)
+Requirement already satisfied: certifi in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from httpx<1,>=0.23.0->huggingface_hub>=0.21.0->accelerate) (2025.1.31)
+Requirement already satisfied: httpcore==1.* in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from httpx<1,>=0.23.0->huggingface_hub>=0.21.0->accelerate) (1.0.9)
+Requirement already satisfied: idna in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from httpx<1,>=0.23.0->huggingface_hub>=0.21.0->accelerate) (3.10)
+Requirement already satisfied: h11>=0.16 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from httpcore==1.*->httpx<1,>=0.23.0->huggingface_hub>=0.21.0->accelerate) (0.16.0)
+Requirement already satisfied: networkx in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (3.4.2)
+Requirement already satisfied: jinja2 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (3.1.5)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.4.127 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (12.4.127)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.4.127 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (12.4.127)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.4.127 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (12.4.127)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.4.5.8 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (12.4.5.8)
+Requirement already satisfied: nvidia-cufft-cu12==11.2.1.3 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (11.2.1.3)
+Requirement already satisfied: nvidia-curand-cu12==10.3.5.147 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (10.3.5.147)
+Requirement already satisfied: nvidia-cusolver-cu12==11.6.1.9 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (11.6.1.9)
+Requirement already satisfied: nvidia-cusparse-cu12==12.3.1.170 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (12.3.1.170)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.2 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (0.6.2)
+Requirement already satisfied: nvidia-nccl-cu12==2.21.5 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (2.21.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.4.127 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (12.4.127)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.4.127 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (12.4.127)
+Requirement already satisfied: triton==3.2.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (3.2.0)
+Requirement already satisfied: sympy==1.13.1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.0.0->accelerate) (1.13.1)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from sympy==1.13.1->torch>=2.0.0->accelerate) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from jinja2->torch>=2.0.0->accelerate) (3.0.2)
+Collecting click>=8.2.1 (from typer->transformers)
+  Using cached click-8.3.1-py3-none-any.whl.metadata (2.6 kB)
+Collecting shellingham>=1.3.0 (from typer->transformers)
+  Using cached shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+Requirement already satisfied: rich>=12.3.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from typer->transformers) (13.9.4)
+Collecting annotated-doc>=0.0.2 (from typer->transformers)
+  Using cached annotated_doc-0.0.4-py3-none-any.whl.metadata (6.6 kB)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from rich>=12.3.0->typer->transformers) (3.0.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from rich>=12.3.0->typer->transformers) (2.19.2)
+Requirement already satisfied: mdurl~=0.1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from markdown-it-py>=2.2.0->rich>=12.3.0->typer->transformers) (0.1.2)
+Downloading accelerate-1.13.0-py3-none-any.whl (383 kB)
+Downloading optimum-2.1.0-py3-none-any.whl (161 kB)
+Downloading transformers-5.3.0-py3-none-any.whl (10.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.7/10.7 MB 14.3 MB/s  0:00:00
+Using cached huggingface_hub-1.6.0-py3-none-any.whl (612 kB)
+Using cached hf_xet-1.3.2-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.2 MB)
+Using cached typer-0.24.1-py3-none-any.whl (56 kB)
+Using cached annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+Using cached click-8.3.1-py3-none-any.whl (108 kB)
+Using cached shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Installing collected packages: shellingham, hf-xet, click, annotated-doc, typer, huggingface_hub, accelerate, transformers, optimum
+  Attempting uninstall: hf-xet
+    Found existing installation: hf-xet 1.2.0
+    Uninstalling hf-xet-1.2.0:
+      Successfully uninstalled hf-xet-1.2.0
+  Attempting uninstall: click
+    Found existing installation: click 8.1.8
+    Uninstalling click-8.1.8:
+      Successfully uninstalled click-8.1.8
+  Attempting uninstall: huggingface_hub
+    Found existing installation: huggingface_hub 0.36.2
+    Uninstalling huggingface_hub-0.36.2:
+      Successfully uninstalled huggingface_hub-0.36.2
+  Attempting uninstall: accelerate
+    Found existing installation: accelerate 1.4.0
+    Uninstalling accelerate-1.4.0:
+      Successfully uninstalled accelerate-1.4.0
+  Attempting uninstall: transformers
+    Found existing installation: transformers 4.56.2
+    Uninstalling transformers-4.56.2:
+      Successfully uninstalled transformers-4.56.2
+
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+unsloth-zoo 2025.10.9 requires transformers!=4.52.0,!=4.52.1,!=4.52.2,!=4.52.3,!=4.53.0,!=4.54.0,!=4.55.0,!=4.55.1,<=4.56.2,>=4.51.3, but you have transformers 5.3.0 which is incompatible.
+Successfully installed accelerate-1.13.0 annotated-doc-0.0.4 click-8.3.1 hf-xet-1.3.2 huggingface_hub-1.6.0 optimum-2.1.0 shellingham-1.5.4 transformers-5.3.0 typer-0.24.1
+Collecting gptqmodel
+  Downloading gptqmodel-5.7.0.tar.gz (668 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━ 668.4/668.4 kB 13.8 MB/s  0:00:00
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: accelerate>=1.10.1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from gptqmodel) (1.13.0)
+Collecting numpy==2.2.6 (from gptqmodel)
+  Downloading numpy-2.2.6-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+Collecting torch>=2.8.0 (from gptqmodel)
+  Using cached torch-2.10.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (31 kB)
+Collecting safetensors>=0.6.2 (from gptqmodel)
+  Downloading safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+Requirement already satisfied: transformers>=4.57.1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from gptqmodel) (5.3.0)
+Collecting threadpoolctl>=3.6.0 (from gptqmodel)
+  Using cached threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+Requirement already satisfied: packaging>=24.2 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from gptqmodel) (24.2)
+Collecting device-smi>=0.5.3 (from gptqmodel)
+  Downloading device_smi-0.5.3.tar.gz (18 kB)
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting protobuf>=6.32.0 (from gptqmodel)
+  Using cached protobuf-7.34.0-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+Collecting pillow>=11.3.0 (from gptqmodel)
+  Downloading pillow-12.1.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+Requirement already satisfied: hf_transfer>=0.1.9 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from gptqmodel) (0.1.9)
+Requirement already satisfied: huggingface_hub>=0.34.4 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from gptqmodel) (1.6.0)
+Collecting tokenicer>=0.0.6 (from gptqmodel)
+  Downloading tokenicer-0.0.8.tar.gz (9.6 kB)
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting logbar>=0.2.1 (from gptqmodel)
+  Downloading logbar-0.2.2.tar.gz (35 kB)
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting maturin>=1.9.4 (from gptqmodel)
+  Downloading maturin-1.12.6-py3-none-manylinux_2_12_x86_64.manylinux2010_x86_64.musllinux_1_1_x86_64.whl.metadata (16 kB)
+Requirement already satisfied: datasets>=3.6.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from gptqmodel) (4.5.0)
+Requirement already satisfied: pyarrow>=21.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from gptqmodel) (23.0.0)
+Requirement already satisfied: dill>=0.3.8 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from gptqmodel) (0.3.8)
+Collecting pypcre>=0.2.9 (from gptqmodel)
+  Downloading pypcre-0.2.13.tar.gz (119 kB)
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: torchao>=0.14.1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from gptqmodel) (0.15.0)
+Collecting kernels>=0.11.1 (from gptqmodel)
+  Downloading kernels-0.12.2-py3-none-any.whl.metadata (2.3 kB)
+Requirement already satisfied: psutil in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from accelerate>=1.10.1->gptqmodel) (7.0.0)
+Requirement already satisfied: pyyaml in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from accelerate>=1.10.1->gptqmodel) (6.0.2)
+Requirement already satisfied: filelock in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from datasets>=3.6.0->gptqmodel) (3.17.0)
+Requirement already satisfied: pandas in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from datasets>=3.6.0->gptqmodel) (2.2.3)
+Requirement already satisfied: requests>=2.32.2 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from datasets>=3.6.0->gptqmodel) (2.32.3)
+Requirement already satisfied: httpx<1.0.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from datasets>=3.6.0->gptqmodel) (0.28.1)
+Requirement already satisfied: tqdm>=4.66.3 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from datasets>=3.6.0->gptqmodel) (4.67.1)
+Requirement already satisfied: xxhash in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from datasets>=3.6.0->gptqmodel) (3.5.0)
+Requirement already satisfied: multiprocess<0.70.19 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from datasets>=3.6.0->gptqmodel) (0.70.16)
+Requirement already satisfied: fsspec<=2025.10.0,>=2023.1.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from fsspec[http]<=2025.10.0,>=2023.1.0->datasets>=3.6.0->gptqmodel) (2024.12.0)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from fsspec[http]<=2025.10.0,>=2023.1.0->datasets>=3.6.0->gptqmodel) (3.11.12)
+Requirement already satisfied: anyio in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from httpx<1.0.0->datasets>=3.6.0->gptqmodel) (4.12.1)
+Requirement already satisfied: certifi in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from httpx<1.0.0->datasets>=3.6.0->gptqmodel) (2025.1.31)
+Requirement already satisfied: httpcore==1.* in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from httpx<1.0.0->datasets>=3.6.0->gptqmodel) (1.0.9)
+Requirement already satisfied: idna in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from httpx<1.0.0->datasets>=3.6.0->gptqmodel) (3.10)
+Requirement already satisfied: h11>=0.16 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from httpcore==1.*->httpx<1.0.0->datasets>=3.6.0->gptqmodel) (0.16.0)
+Requirement already satisfied: hf-xet<2.0.0,>=1.3.2 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from huggingface_hub>=0.34.4->gptqmodel) (1.3.2)
+Requirement already satisfied: typer in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from huggingface_hub>=0.34.4->gptqmodel) (0.24.1)
+Requirement already satisfied: typing-extensions>=4.1.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from huggingface_hub>=0.34.4->gptqmodel) (4.15.0)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.10.0,>=2023.1.0->datasets>=3.6.0->gptqmodel) (2.4.6)
+Requirement already satisfied: aiosignal>=1.1.2 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.10.0,>=2023.1.0->datasets>=3.6.0->gptqmodel) (1.3.2)
+Requirement already satisfied: attrs>=17.3.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.10.0,>=2023.1.0->datasets>=3.6.0->gptqmodel) (25.1.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.10.0,>=2023.1.0->datasets>=3.6.0->gptqmodel) (1.5.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.10.0,>=2023.1.0->datasets>=3.6.0->gptqmodel) (6.1.0)
+Requirement already satisfied: propcache>=0.2.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.10.0,>=2023.1.0->datasets>=3.6.0->gptqmodel) (0.3.0)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.10.0,>=2023.1.0->datasets>=3.6.0->gptqmodel) (1.18.3)
+Requirement already satisfied: charset-normalizer<4,>=2 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from requests>=2.32.2->datasets>=3.6.0->gptqmodel) (3.4.1)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from requests>=2.32.2->datasets>=3.6.0->gptqmodel) (2.3.0)
+Collecting sympy>=1.13.3 (from torch>=2.8.0->gptqmodel)
+  Using cached sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Requirement already satisfied: networkx>=2.5.1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.8.0->gptqmodel) (3.4.2)
+Requirement already satisfied: jinja2 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from torch>=2.8.0->gptqmodel) (3.1.5)
+Collecting cuda-bindings==12.9.4 (from torch>=2.8.0->gptqmodel)
+  Using cached cuda_bindings-12.9.4-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (2.6 kB)
+Collecting nvidia-cuda-nvrtc-cu12==12.8.93 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cuda-runtime-cu12==12.8.90 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cuda-cupti-cu12==12.8.90 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cudnn-cu12==9.10.2.21 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cublas-cu12==12.8.4.1 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cufft-cu12==11.3.3.83 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-curand-cu12==10.3.9.90 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cusolver-cu12==11.7.3.90 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cusparse-cu12==12.5.8.93 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cusparselt-cu12==0.7.1 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl.metadata (7.0 kB)
+Collecting nvidia-nccl-cu12==2.27.5 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.0 kB)
+Collecting nvidia-nvshmem-cu12==3.4.5 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.1 kB)
+Collecting nvidia-nvtx-cu12==12.8.90 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-nvjitlink-cu12==12.8.93 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cufile-cu12==1.13.1.3 (from torch>=2.8.0->gptqmodel)
+  Using cached nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting triton==3.6.0 (from torch>=2.8.0->gptqmodel)
+  Using cached triton-3.6.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (1.7 kB)
+Collecting cuda-pathfinder~=1.1 (from cuda-bindings==12.9.4->torch>=2.8.0->gptqmodel)
+  Downloading cuda_pathfinder-1.4.2-py3-none-any.whl.metadata (1.9 kB)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from sympy>=1.13.3->torch>=2.8.0->gptqmodel) (1.3.0)
+Requirement already satisfied: regex!=2019.12.17 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from transformers>=4.57.1->gptqmodel) (2024.11.6)
+Requirement already satisfied: tokenizers<=0.23.0,>=0.22.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from transformers>=4.57.1->gptqmodel) (0.22.2)
+Requirement already satisfied: MarkupSafe>=2.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from jinja2->torch>=2.8.0->gptqmodel) (3.0.2)
+Requirement already satisfied: python-dateutil>=2.8.2 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from pandas->datasets>=3.6.0->gptqmodel) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from pandas->datasets>=3.6.0->gptqmodel) (2025.1)
+Requirement already satisfied: tzdata>=2022.7 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from pandas->datasets>=3.6.0->gptqmodel) (2025.1)
+Requirement already satisfied: six>=1.5 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from python-dateutil>=2.8.2->pandas->datasets>=3.6.0->gptqmodel) (1.17.0)
+Requirement already satisfied: click>=8.2.1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from typer->huggingface_hub>=0.34.4->gptqmodel) (8.3.1)
+Requirement already satisfied: shellingham>=1.3.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from typer->huggingface_hub>=0.34.4->gptqmodel) (1.5.4)
+Requirement already satisfied: rich>=12.3.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from typer->huggingface_hub>=0.34.4->gptqmodel) (13.9.4)
+Requirement already satisfied: annotated-doc>=0.0.2 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from typer->huggingface_hub>=0.34.4->gptqmodel) (0.0.4)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from rich>=12.3.0->typer->huggingface_hub>=0.34.4->gptqmodel) (3.0.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from rich>=12.3.0->typer->huggingface_hub>=0.34.4->gptqmodel) (2.19.2)
+Requirement already satisfied: mdurl~=0.1 in /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages (from markdown-it-py>=2.2.0->rich>=12.3.0->typer->huggingface_hub>=0.34.4->gptqmodel) (0.1.2)
+Downloading numpy-2.2.6-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.8/16.8 MB 13.2 MB/s  0:00:01
+Downloading kernels-0.12.2-py3-none-any.whl (55 kB)
+Downloading maturin-1.12.6-py3-none-manylinux_2_12_x86_64.manylinux2010_x86_64.musllinux_1_1_x86_64.whl (10.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 13.0 MB/s  0:00:00
+Downloading pillow-12.1.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.0/7.0 MB 12.9 MB/s  0:00:00
+Downloading protobuf-7.34.0-cp310-abi3-manylinux2014_x86_64.whl (324 kB)
+Downloading safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (507 kB)
+Using cached threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+Downloading torch-2.10.0-cp311-cp311-manylinux_2_28_x86_64.whl (915.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━ 915.6/915.6 MB 12.3 MB/s  0:01:12
+Downloading cuda_bindings-12.9.4-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.2/12.2 MB 14.0 MB/s  0:00:00
+Downloading nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl (594.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━ 594.3/594.3 MB 12.5 MB/s  0:00:46
+Downloading nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (10.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 14.0 MB/s  0:00:00
+Downloading nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (88.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 88.0/88.0 MB 12.7 MB/s  0:00:06
+Downloading nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (954 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━ 954.8/954.8 kB 36.7 MB/s  0:00:00
+Downloading nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl (706.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━ 706.8/706.8 MB 12.3 MB/s  0:00:55
+Downloading nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (193.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━ 193.1/193.1 MB 12.8 MB/s  0:00:15
+Downloading nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 33.3 MB/s  0:00:00
+Downloading nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl (63.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.6/63.6 MB 12.8 MB/s  0:00:04
+Downloading nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl (267.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━ 267.5/267.5 MB 12.7 MB/s  0:00:21
+Downloading nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (288.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━ 288.2/288.2 MB 12.6 MB/s  0:00:22
+Downloading nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl (287.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━ 287.2/287.2 MB 12.7 MB/s  0:00:22
+Downloading nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (322.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━ 322.3/322.3 MB 12.5 MB/s  0:00:25
+Downloading nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (39.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 39.3/39.3 MB 13.1 MB/s  0:00:02
+Downloading nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (139.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━ 139.1/139.1 MB 12.7 MB/s  0:00:10
+Downloading nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (89 kB)
+Downloading triton-3.6.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (188.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━ 188.2/188.2 MB 12.7 MB/s  0:00:14
+Downloading cuda_pathfinder-1.4.2-py3-none-any.whl (44 kB)
+Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+Building wheels for collected packages: gptqmodel, device-smi, logbar, pypcre, tokenicer
+  Building wheel for gptqmodel (pyproject.toml): started
+  Building wheel for gptqmodel (pyproject.toml): still running...
+  Building wheel for gptqmodel (pyproject.toml): still running...
+  Building wheel for gptqmodel (pyproject.toml): finished with status 'error'
+  error: subprocess-exited-with-error
+  
+  × Building wheel for gptqmodel (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [847 lines of output]
+      CUDA_ARCH_LIST: 7.5
+      TORCH_CUDA_ARCH_LIST: 7.5
+      MAX_JOBS not set; defaulting to 10 concurrent CUDA compilations.
+      Using MAX_JOBS=10 to cap concurrent CUDA compilations.
+      Using NVCC_THREADS=2 for per-invocation NVCC concurrency.
+      CUDA 7.5
+      HAS_CUDA_V8 False
+      HAS_CUDA_V9 False
+      SETUP_KWARGS {'ext_modules': [<setuptools.extension.Extension('gptqmodel_awq_kernels') at 0x7ca844f10e50>, <setuptools.extension.Extension('gptqmodel_awq_v2_kernels') at 0x7ca928e3f990>, <setuptools.extension.Extension('gptqmodel_exllamav2_awq_kernels') at 0x7ca843e2d3d0>], 'cmdclass': {'build_ext': <class 'torch.utils.cpp_extension.BuildExtension'>}}
+      gptqmodel_version=5.7.0
+      running bdist_wheel
+      /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/utils/cpp_extension.py:529: UserWarning: Attempted to use ninja as the BuildExtension backend but we could not find ninja.. Falling back to using the slow distutils backend.
+        warnings.warn(msg.format('we could not find ninja.'))
+      Resolved wheel URL: https://github.com/ModelCloud/GPTQModel/releases/download/v5.7.0/gptqmodel-5.7.0+cu120torch2.6-cp311-cp311-linux_x86_64.whl
+      wheel name=gptqmodel-5.7.0+cu120torch2.6-cp311-cp311-linux_x86_64.whl
+      Unable to match and download a precompiled wheel; entering slow manual build mode. Wheel match params: python=cp311, torch=2.6.0, cuda=12.0. Fallback source build triggered for https://github.com/ModelCloud/GPTQModel/releases/download/v5.7.0/gptqmodel-5.7.0+cu120torch2.6-cp311-cp311-linux_x86_64.whl
+      running build
+      running build_py
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel
+      copying gptqmodel/version.py -> build/lib.linux-x86_64-cpython-311/gptqmodel
+      copying gptqmodel/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext
+      copying gptqmodel_ext/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/adapter
+      copying gptqmodel/adapter/adapter.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/adapter
+      copying gptqmodel/adapter/remote.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/adapter
+      copying gptqmodel/adapter/peft.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/adapter
+      copying gptqmodel/adapter/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/adapter
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules
+      copying gptqmodel/nn_modules/converter.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules
+      copying gptqmodel/nn_modules/hooked_linear.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules
+      copying gptqmodel/nn_modules/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/quantization
+      copying gptqmodel/quantization/failsafe_smooth.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization
+      copying gptqmodel/quantization/qqq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization
+      copying gptqmodel/quantization/gptq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization
+      copying gptqmodel/quantization/gar.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization
+      copying gptqmodel/quantization/gptaq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization
+      copying gptqmodel/quantization/quantizer.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization
+      copying gptqmodel/quantization/dtype.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization
+      copying gptqmodel/quantization/gar_ref.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization
+      copying gptqmodel/quantization/config.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization
+      copying gptqmodel/quantization/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/linalg_warmup.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/safe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/data.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/mmlupro.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/random_str.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/audio.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/threads.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/cuda_activation_buffer.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/mlx.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/pause_resume.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/openai_server.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/image.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/calibration.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/marlin.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/vllm.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/torch.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/structure.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/offload.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/ctx.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/marlin_scalar_type.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/cpp.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/logger.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/memory.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/env.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/eval.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/device.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/backend.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/bitblas.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/model.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/perplexity.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/python.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/modelscope.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/evalplus.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/machete.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/safetensor.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/colors.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/attn_mask.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/failsafe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/nogil_patcher.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/exllama.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/rocm.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/tensor.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/hf.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/disk.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/terminal.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/stream.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/inspect.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/sglang.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/gemv.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/exllamav2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/looper_helpers.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/_extension_loader.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/vram.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/threadx.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/module_locks.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/model_dequant.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      copying gptqmodel/utils/importer.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/utils
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/hf_minimax_m2
+      copying gptqmodel/hf_minimax_m2/test_minimax_m2_hf.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/hf_minimax_m2
+      copying gptqmodel/hf_minimax_m2/configuration_minimax_m2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/hf_minimax_m2
+      copying gptqmodel/hf_minimax_m2/modeling_minimax_m2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/hf_minimax_m2
+      copying gptqmodel/hf_minimax_m2/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/hf_minimax_m2
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/eora
+      copying gptqmodel/eora/eora.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/eora
+      copying gptqmodel/eora/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/eora
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/models
+      copying gptqmodel/models/moe_lifecycle.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models
+      copying gptqmodel/models/_const.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models
+      copying gptqmodel/models/writer.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models
+      copying gptqmodel/models/base.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models
+      copying gptqmodel/models/loader.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models
+      copying gptqmodel/models/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models
+      copying gptqmodel/models/auto.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/eora_processor.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/input_cache.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/stage_subset.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/tensorparallel_weight_processor.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/named_module.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/qqq_processor.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/linear_mode.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/stage_inputs_capture.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/loop_processor.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/native_processor.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/gptq_processor.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/stage_layer.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/module_looper.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/dequantize_processor.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      copying gptqmodel/looper/awq_processor.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/looper
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/cli
+      copying gptqmodel/cli/env.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/cli
+      copying gptqmodel/cli/gptqmodel.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/cli
+      copying gptqmodel/cli/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/cli
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/triton_utils
+      copying gptqmodel/nn_modules/triton_utils/kernels.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/triton_utils
+      copying gptqmodel/nn_modules/triton_utils/mixin.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/triton_utils
+      copying gptqmodel/nn_modules/triton_utils/custom_autotune.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/triton_utils
+      copying gptqmodel/nn_modules/triton_utils/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/triton_utils
+      copying gptqmodel/nn_modules/triton_utils/dequant.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/triton_utils
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/gemv_awq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/gemm_hf_kernel.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/qqq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/marlin.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/torch.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/torch_fused_awq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/lookahead.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/bitblas.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/gemv_fast_awq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/machete.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/machete_awq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/exllama_awq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/exllama.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/torch_awq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/gemm_awq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/exllama_eora.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/exllamav2_awq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/exllamav2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/utils.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/torch_fused.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/gemm_awq_triton.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/bitblas_target_detector.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/pack_block_ext.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/tritonv2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      copying gptqmodel/nn_modules/qlinear/marlin_awq.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/nn_modules/qlinear
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/rotation
+      copying gptqmodel/quantization/rotation/hadamard_utils.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/rotation
+      copying gptqmodel/quantization/rotation/rotation.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/rotation
+      copying gptqmodel/quantization/rotation/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/rotation
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq
+      copying gptqmodel/quantization/awq/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/quantize
+      copying gptqmodel/quantization/awq/quantize/scale.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/quantize
+      copying gptqmodel/quantization/awq/quantize/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/quantize
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/utils
+      copying gptqmodel/quantization/awq/utils/packing_utils.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/utils
+      copying gptqmodel/quantization/awq/utils/module.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/utils
+      copying gptqmodel/quantization/awq/utils/calib_data.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/utils
+      copying gptqmodel/quantization/awq/utils/utils.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/utils
+      copying gptqmodel/quantization/awq/utils/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/utils
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/modules
+      copying gptqmodel/quantization/awq/modules/act.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/modules
+      copying gptqmodel/quantization/awq/modules/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/modules
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/modules/triton
+      copying gptqmodel/quantization/awq/modules/triton/gemm.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/modules/triton
+      copying gptqmodel/quantization/awq/modules/triton/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/quantization/awq/modules/triton
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/gpt_oss.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/glm.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/mistral3.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/phi3.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/mobilellm.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/bailing_moe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/telechat2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/ernie4_5_moe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/pangu_alpha.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/dbrx.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/minimax_m2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/dots1.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/glm4v.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/codegen.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/decilm.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/hymba.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/qwen3_omni_moe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/minicpm.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/dream.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/phi.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/qwen3.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/bloom.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/longcat_flash.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/deepseek_v3.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/mpt.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/qwen2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/qwen2_vl.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/llava_qwen2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/gpt_neox.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/apertus.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/brumby.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/nemotron_h.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/qwen2_moe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/ernie4_5.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/internlm2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/starcoder2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/exaone4.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/gpt_neo.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/granitemoehybrid.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/minicpm3.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/base_qwen3_vl.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/internlm.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/xverse.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/rw.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/qwen3_moe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/gemma2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/afmoe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/mixtral.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/glm4_moe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/qwen2_5_omni.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/llama4.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/moss.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/klear.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/gemma3.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/ovis2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/falcon_h1.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/olmoe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/base_qwen2_vl.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/phi4.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/lfm2_moe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/gpt_bigcode.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/grinmoe.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/exaone.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/deepseek_v2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/dbrx_converted.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/ovis.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/qwen3_vl.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/gptj.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/base_qwen2_5_omni.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/instella.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/voxtral.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/qwen.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/qwen2_5_vl.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/baichuan.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/chatglm.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/qwen3_next.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/mllama.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/mimo.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/llama.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/opt.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      copying gptqmodel/models/definitions/gpt2.py -> build/lib.linux-x86_64-cpython-311/gptqmodel/models/definitions
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions
+      copying gptqmodel_ext/cutlass_extensions/vllm_cutlass_library_extension.py -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions
+      copying gptqmodel_ext/cutlass_extensions/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora
+      copying gptqmodel_ext/exllama_eora/test_eora_sweep.py -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora
+      copying gptqmodel_ext/exllama_eora/setup.py -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora
+      copying gptqmodel_ext/exllama_eora/benchmark.py -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora
+      copying gptqmodel_ext/exllama_eora/test_eora.py -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora
+      copying gptqmodel_ext/exllama_eora/test_actual_value.py -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/generate_kernels.py -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete
+      copying gptqmodel_ext/machete/generate.py -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      copying gptqmodel_ext/exllama_eora/eora/__init__.py -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      running egg_info
+      writing GPTQModel.egg-info/PKG-INFO
+      writing dependency_links to GPTQModel.egg-info/dependency_links.txt
+      writing entry points to GPTQModel.egg-info/entry_points.txt
+      writing requirements to GPTQModel.egg-info/requires.txt
+      writing top-level names to GPTQModel.egg-info/top_level.txt
+      reading manifest file 'GPTQModel.egg-info/SOURCES.txt'
+      reading manifest template 'MANIFEST.in'
+      warning: no files found matching '*.cpp' under directory 'gptqmodel_ext/exllama_eora/eora'
+      warning: no files found matching '*.cpp' under directory 'gptqmodel_ext/machete'
+      warning: no files found matching '*.h' under directory 'gptqmodel_ext/cutlass_extensions'
+      warning: no files found matching '*.cu' under directory 'gptqmodel_ext/cutlass_extensions'
+      warning: no files found matching '*.cuh' under directory 'gptqmodel_ext/qqq'
+      warning: no previously-included files matching '__pycache__' found under directory 'gptqmodel_ext'
+      warning: no previously-included files matching '*.pyc' found under directory 'gptqmodel_ext'
+      no previously-included directories found matching 'tests'
+      no previously-included directories found matching 'format'
+      adding license file 'LICENSE'
+      writing manifest file 'GPTQModel.egg-info/SOURCES.txt'
+      copying gptqmodel_ext/pack_block_cpu.cpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext
+      copying gptqmodel_ext/cutlass_extensions/common.cpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions
+      copying gptqmodel_ext/cutlass_extensions/common.hpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions
+      copying gptqmodel_ext/cutlass_extensions/cute_utils.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions
+      copying gptqmodel_ext/cutlass_extensions/torch_utils.hpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions
+      copying gptqmodel_ext/cutlass_extensions/vllm_collective_builder.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions
+      copying gptqmodel_ext/cutlass_extensions/vllm_custom_types.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions
+      copying gptqmodel_ext/cutlass_extensions/vllm_numeric_conversion.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions
+      copying gptqmodel_ext/cutlass_extensions/vllm_type_utils.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2
+      copying gptqmodel_ext/exllamav2/config.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2
+      copying gptqmodel_ext/exllamav2/ext.cpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2
+      copying gptqmodel_ext/exllamav2/ext_awq.cpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2
+      copying gptqmodel_ext/exllamav2/ext_common.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2
+      copying gptqmodel_ext/exllamav2/ext_gptq.cpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq
+      copying gptqmodel_ext/awq/pybind_awq.cpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq
+      copying gptqmodel_ext/awq/pybind_awq_v2.cpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/qqq
+      copying gptqmodel_ext/qqq/qqq.cpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/qqq
+      copying gptqmodel_ext/qqq/qqq_gemm.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/qqq
+      copying gptqmodel_ext/qqq/qqq_gemm.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/qqq
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama
+      copying gptqmodel_ext/exllama/cu_compat.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama
+      copying gptqmodel_ext/exllama/cuda_buffers.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama
+      copying gptqmodel_ext/exllama/cuda_buffers.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama
+      copying gptqmodel_ext/exllama/exllama_ext.cpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama
+      copying gptqmodel_ext/exllama/hip_compat.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama
+      copying gptqmodel_ext/exllama/matrix.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama
+      copying gptqmodel_ext/exllama/tuning.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama
+      copying gptqmodel_ext/exllama/util.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama
+      copying gptqmodel_ext/marlin/awq_marlin_repack.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/awq_marlin_repack.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/dequant.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/gptq_marlin.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/gptq_marlin.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/gptq_marlin_repack.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/gptq_marlin_repack.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/kernel.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/kernel_bf16_kfe2m1f.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/kernel_bf16_kfe4m3fn.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/kernel_bf16_ku4.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/kernel_bf16_ku4b8.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/kernel_bf16_ku8b128.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/kernel_fp16_kfe2m1f.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/kernel_fp16_kfe4m3fn.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/kernel_fp16_ku4.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/kernel_fp16_ku4b8.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/kernel_fp16_ku8b128.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/marlin.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/marlin_cuda.cpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/marlin_dtypes.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/marlin/marlin_template.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin
+      copying gptqmodel_ext/machete/machete_collective_builder.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete
+      copying gptqmodel_ext/machete/machete_interleaving_utils.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete
+      copying gptqmodel_ext/machete/machete_mainloop.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete
+      copying gptqmodel_ext/machete/machete_mm_kernel.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete
+      copying gptqmodel_ext/machete/machete_mm_launcher.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete
+      copying gptqmodel_ext/machete/machete_prepack_kernel.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete
+      copying gptqmodel_ext/machete/machete_prepack_launcher.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete
+      copying gptqmodel_ext/machete/machete_prepacked_layout.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete
+      copying gptqmodel_ext/machete/machete_pytorch.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/compat.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/compat_gemm.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/matrix_view.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/q_gemm.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/q_gemm.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/q_gemm_awq.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/q_gemm_kernel.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/q_gemm_kernel_awq.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/q_gemm_kernel_gptq.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/q_matrix.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/q_matrix.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/q_matrix_awq.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      copying gptqmodel_ext/exllamav2/cuda/util.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cpp
+      copying gptqmodel_ext/exllamav2/cpp/util.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cpp
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda/quant
+      copying gptqmodel_ext/exllamav2/cuda/quant/qdq_2.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda/quant
+      copying gptqmodel_ext/exllamav2/cuda/quant/qdq_3.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda/quant
+      copying gptqmodel_ext/exllamav2/cuda/quant/qdq_4.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda/quant
+      copying gptqmodel_ext/exllamav2/cuda/quant/qdq_5.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda/quant
+      copying gptqmodel_ext/exllamav2/cuda/quant/qdq_6.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda/quant
+      copying gptqmodel_ext/exllamav2/cuda/quant/qdq_8.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda/quant
+      copying gptqmodel_ext/exllamav2/cuda/quant/qdq_util.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllamav2/cuda/quant
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization
+      copying gptqmodel_ext/awq/quantization/dequantize.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization
+      copying gptqmodel_ext/awq/quantization/gemm_cuda.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization
+      copying gptqmodel_ext/awq/quantization/gemm_cuda_gen.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization
+      copying gptqmodel_ext/awq/quantization/gemv_cuda.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization
+      copying gptqmodel_ext/awq/quantization/gemv_cuda.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new
+      copying gptqmodel_ext/awq/quantization_new/dequantize.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new/gemv
+      copying gptqmodel_ext/awq/quantization_new/gemv/gemv_cuda.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new/gemv
+      copying gptqmodel_ext/awq/quantization_new/gemv/gemv_cuda.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new/gemv
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new/gemm
+      copying gptqmodel_ext/awq/quantization_new/gemm/gemm_cuda.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new/gemm
+      copying gptqmodel_ext/awq/quantization_new/gemm/gemm_cuda.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new/gemm
+      copying gptqmodel_ext/awq/quantization_new/gemm/semaphore.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new/gemm
+      copying gptqmodel_ext/exllama_eora/eora/compat.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      copying gptqmodel_ext/exllama_eora/eora/matrix_view.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      copying gptqmodel_ext/exllama_eora/eora/ops.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      copying gptqmodel_ext/exllama_eora/eora/pybind.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      copying gptqmodel_ext/exllama_eora/eora/q_gemm.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      copying gptqmodel_ext/exllama_eora/eora/q_gemm_original.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      copying gptqmodel_ext/exllama_eora/eora/qdq_2.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      copying gptqmodel_ext/exllama_eora/eora/qdq_3.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      copying gptqmodel_ext/exllama_eora/eora/qdq_4.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      copying gptqmodel_ext/exllama_eora/eora/qdq_8.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      copying gptqmodel_ext/exllama_eora/eora/qdq_util.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama_eora/eora
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama/cuda_func
+      copying gptqmodel_ext/exllama/cuda_func/column_remap.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama/cuda_func
+      copying gptqmodel_ext/exllama/cuda_func/column_remap.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama/cuda_func
+      copying gptqmodel_ext/exllama/cuda_func/q4_matmul.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama/cuda_func
+      copying gptqmodel_ext/exllama/cuda_func/q4_matmul.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama/cuda_func
+      copying gptqmodel_ext/exllama/cuda_func/q4_matrix.cu -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama/cuda_func
+      copying gptqmodel_ext/exllama/cuda_func/q4_matrix.cuh -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/exllama/cuda_func
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions/epilogue
+      copying gptqmodel_ext/cutlass_extensions/epilogue/broadcast_load_epilogue_array_c3x.hpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions/epilogue
+      copying gptqmodel_ext/cutlass_extensions/epilogue/broadcast_load_epilogue_c2x.hpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions/epilogue
+      copying gptqmodel_ext/cutlass_extensions/epilogue/broadcast_load_epilogue_c3x.hpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions/epilogue
+      copying gptqmodel_ext/cutlass_extensions/epilogue/scaled_mm_epilogues_c2x.hpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions/epilogue
+      copying gptqmodel_ext/cutlass_extensions/epilogue/scaled_mm_epilogues_c3x.hpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/cutlass_extensions/epilogue
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin/core
+      copying gptqmodel_ext/marlin/core/registration.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin/core
+      copying gptqmodel_ext/marlin/core/scalar_type.hpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/marlin/core
+      creating build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete/core
+      copying gptqmodel_ext/machete/core/registration.h -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete/core
+      copying gptqmodel_ext/machete/core/scalar_type.hpp -> build/lib.linux-x86_64-cpython-311/gptqmodel_ext/machete/core
+      running build_ext
+      /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/utils/cpp_extension.py:448: UserWarning: The detected CUDA version (12.0) has a minor version mismatch with the version that was used to compile PyTorch (12.4). Most likely this shouldn't be a problem.
+        warnings.warn(CUDA_MISMATCH_WARN.format(cuda_str_version, torch.version.cuda))
+      /home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/utils/cpp_extension.py:458: UserWarning: There are no g++ version bounds defined for CUDA version 12.0
+        warnings.warn(f'There are no {compiler_name} version bounds defined for CUDA version {cuda_str_version}')
+      building 'gptqmodel_awq_kernels' extension
+      creating build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq
+      creating build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization
+      g++ -pthread -B /home/seshu/anaconda3/envs/rl/compiler_compat -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /home/seshu/anaconda3/envs/rl/include -fPIC -O2 -isystem /home/seshu/anaconda3/envs/rl/include -fPIC -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/TH -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/THC -Igptqmodel_ext -I/home/seshu/anaconda3/envs/rl/include/python3.11 -c gptqmodel_ext/awq/pybind_awq.cpp -o build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq/pybind_awq.o -O3 -std=c++17 -DENABLE_BF16 -D_GLIBCXX_USE_CXX11_ABI=1 -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -DTORCH_EXTENSION_NAME=gptqmodel_awq_kernels -D_GLIBCXX_USE_CXX11_ABI=0
+      <command-line>: warning: "_GLIBCXX_USE_CXX11_ABI" redefined
+      <command-line>: note: this is the location of the previous definition
+      /usr/bin/nvcc -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/TH -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/THC -Igptqmodel_ext -I/home/seshu/anaconda3/envs/rl/include/python3.11 -c gptqmodel_ext/awq/quantization/gemm_cuda_gen.cu -o build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization/gemm_cuda_gen.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options '-fPIC' -O3 -std=c++17 -DENABLE_BF16 -U__CUDA_NO_HALF_OPERATORS__ -U__CUDA_NO_HALF_CONVERSIONS__ -U__CUDA_NO_BFLOAT16_OPERATORS__ -U__CUDA_NO_BFLOAT16_CONVERSIONS__ -U__CUDA_NO_BFLOAT162_OPERATORS__ -U__CUDA_NO_BFLOAT162_CONVERSIONS__ -D_GLIBCXX_USE_CXX11_ABI=1 --threads 2 --optimize=3 -Xptxas -v,-O3,-dlcm=ca -lineinfo -Xfatbin -compress-all -diag-suppress=179,39,177 -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -DTORCH_EXTENSION_NAME=gptqmodel_awq_kernels -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_75,code=sm_75
+      <command-line>: warning: "_GLIBCXX_USE_CXX11_ABI" redefined
+      <command-line>: note: this is the location of the previous definition
+      <command-line>: warning: "_GLIBCXX_USE_CXX11_ABI" redefined
+      <command-line>: note: this is the location of the previous definition
+      ptxas info    : 113 bytes gmem
+      ptxas info    : Compiling entry function '_Z35gemmv2_forward_4bit_cuda_m128n64k32ILi64EEviP6__halfPiS1_S2_iiiS1_' for 'sm_75'
+      ptxas info    : Function properties for _Z35gemmv2_forward_4bit_cuda_m128n64k32ILi64EEviP6__halfPiS1_S2_iiiS1_
+          0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+      ptxas info    : Used 135 registers, 15360 bytes smem, 416 bytes cmem[0]
+      ptxas info    : Compiling entry function '_Z35gemmv2_forward_4bit_cuda_m128n64k32ILi128EEviP6__halfPiS1_S2_iiiS1_' for 'sm_75'
+      ptxas info    : Function properties for _Z35gemmv2_forward_4bit_cuda_m128n64k32ILi128EEviP6__halfPiS1_S2_iiiS1_
+          0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+      ptxas info    : Used 135 registers, 15360 bytes smem, 416 bytes cmem[0]
+      ptxas info    : Compiling entry function '_Z37group_gemm_forward_4bit_cuda_m16nXk32ILi64EEviiP6__halfPiS1_S2_PKfPKiS6_S6_iiiiiiiS1_' for 'sm_75'
+      ptxas info    : Function properties for _Z37group_gemm_forward_4bit_cuda_m16nXk32ILi64EEviiP6__halfPiS1_S2_PKfPKiS6_S6_iiiiiiiS1_
+          0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+      ptxas info    : Used 79 registers, 5888 bytes smem, 464 bytes cmem[0], 4 bytes cmem[2]
+      ptxas info    : Compiling entry function '_Z37group_gemm_forward_4bit_cuda_m16nXk32ILi128EEviiP6__halfPiS1_S2_PKfPKiS6_S6_iiiiiiiS1_' for 'sm_75'
+      ptxas info    : Function properties for _Z37group_gemm_forward_4bit_cuda_m16nXk32ILi128EEviiP6__halfPiS1_S2_PKfPKiS6_S6_iiiiiiiS1_
+          0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+      ptxas info    : Used 100 registers, 9984 bytes smem, 464 bytes cmem[0], 4 bytes cmem[2]
+      ptxas info    : Compiling entry function '_Z18dequantize_weightsPiP6__halfS_S1_iii' for 'sm_75'
+      ptxas info    : Function properties for _Z18dequantize_weightsPiP6__halfS_S1_iii
+          0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+      ptxas info    : Used 20 registers, 396 bytes cmem[0], 4 bytes cmem[2]
+      ptxas info    : Compiling entry function '_Z32gemm_forward_4bit_cuda_m16n64k32iiP6__halfPiS0_S1_iiiS0_' for 'sm_75'
+      ptxas info    : Function properties for _Z32gemm_forward_4bit_cuda_m16n64k32iiP6__halfPiS0_S1_iiiS0_
+          0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+      ptxas info    : Used 79 registers, 5888 bytes smem, 416 bytes cmem[0], 4 bytes cmem[2]
+      ptxas info    : Compiling entry function '_Z33gemm_forward_4bit_cuda_m16n128k32iiP6__halfPiS0_S1_iiiS0_' for 'sm_75'
+      ptxas info    : Function properties for _Z33gemm_forward_4bit_cuda_m16n128k32iiP6__halfPiS0_S1_iiiS0_
+          0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+      ptxas info    : Used 95 registers, 9984 bytes smem, 416 bytes cmem[0], 4 bytes cmem[2]
+      /usr/bin/nvcc -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/TH -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/THC -Igptqmodel_ext -I/home/seshu/anaconda3/envs/rl/include/python3.11 -c gptqmodel_ext/awq/quantization/gemv_cuda.cu -o build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization/gemv_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options '-fPIC' -O3 -std=c++17 -DENABLE_BF16 -U__CUDA_NO_HALF_OPERATORS__ -U__CUDA_NO_HALF_CONVERSIONS__ -U__CUDA_NO_BFLOAT16_OPERATORS__ -U__CUDA_NO_BFLOAT16_CONVERSIONS__ -U__CUDA_NO_BFLOAT162_OPERATORS__ -U__CUDA_NO_BFLOAT162_CONVERSIONS__ -D_GLIBCXX_USE_CXX11_ABI=1 --threads 2 --optimize=3 -Xptxas -v,-O3,-dlcm=ca -lineinfo -Xfatbin -compress-all -diag-suppress=179,39,177 -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -DTORCH_EXTENSION_NAME=gptqmodel_awq_kernels -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_75,code=sm_75
+      <command-line>: warning: "_GLIBCXX_USE_CXX11_ABI" redefined
+      <command-line>: note: this is the location of the previous definition
+      <command-line>: warning: "_GLIBCXX_USE_CXX11_ABI" redefined
+      <command-line>: note: this is the location of the previous definition
+      ptxas info    : 1 bytes gmem
+      ptxas info    : Compiling entry function '_Z16gemv_kernel_g128PK6float4PKjS3_PK6__halfPS4_ii' for 'sm_75'
+      ptxas info    : Function properties for _Z16gemv_kernel_g128PK6float4PKjS3_PK6__halfPS4_ii
+          0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+      ptxas info    : Used 39 registers, 400 bytes cmem[0]
+      ptxas info    : Compiling entry function '_Z15gemv_kernel_g64PK6float4PKjS3_PK6__halfPS4_ii' for 'sm_75'
+      ptxas info    : Function properties for _Z15gemv_kernel_g64PK6float4PKjS3_PK6__halfPS4_ii
+          0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+      ptxas info    : Used 39 registers, 400 bytes cmem[0]
+      g++ -pthread -B /home/seshu/anaconda3/envs/rl/compiler_compat -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /home/seshu/anaconda3/envs/rl/include -fPIC -O2 -isystem /home/seshu/anaconda3/envs/rl/include -shared build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq/pybind_awq.o build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization/gemm_cuda_gen.o build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization/gemv_cuda.o -L/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/lib -L/usr/lib64 -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda -o build/lib.linux-x86_64-cpython-311/gptqmodel_awq_kernels.cpython-311-x86_64-linux-gnu.so
+      building 'gptqmodel_awq_v2_kernels' extension
+      creating build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new/gemm
+      creating build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new/gemv
+      g++ -pthread -B /home/seshu/anaconda3/envs/rl/compiler_compat -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /home/seshu/anaconda3/envs/rl/include -fPIC -O2 -isystem /home/seshu/anaconda3/envs/rl/include -fPIC -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/TH -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/THC -Igptqmodel_ext -I/home/seshu/anaconda3/envs/rl/include/python3.11 -c gptqmodel_ext/awq/pybind_awq_v2.cpp -o build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq/pybind_awq_v2.o -O3 -std=c++17 -DENABLE_BF16 -D_GLIBCXX_USE_CXX11_ABI=1 -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -DTORCH_EXTENSION_NAME=gptqmodel_awq_v2_kernels -D_GLIBCXX_USE_CXX11_ABI=0
+      <command-line>: warning: "_GLIBCXX_USE_CXX11_ABI" redefined
+      <command-line>: note: this is the location of the previous definition
+      /usr/bin/nvcc -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/torch/csrc/api/include -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/TH -I/home/seshu/anaconda3/envs/rl/lib/python3.11/site-packages/torch/include/THC -Igptqmodel_ext -I/home/seshu/anaconda3/envs/rl/include/python3.11 -c gptqmodel_ext/awq/quantization_new/gemm/gemm_cuda.cu -o build/temp.linux-x86_64-cpython-311/gptqmodel_ext/awq/quantization_new/gemm/gemm_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options '-fPIC' -O3 -std=c++17 -DENABLE_BF16 -U__CUDA_NO_HALF_OPERATORS__ -U__CUDA_NO_HALF_CONVERSIONS__ -U__CUDA_NO_BFLOAT16_OPERATORS__ -U__CUDA_NO_BFLOAT16_CONVERSIONS__ -U__CUDA_NO_BFLOAT162_OPERATORS__ -U__CUDA_NO_BFLOAT162_CONVERSIONS__ -D_GLIBCXX_USE_CXX11_ABI=1 --threads 2 --optimize=3 -Xptxas -v,-O3,-dlcm=ca -lineinfo -Xfatbin -compress-all -diag-suppress=179,39,177 -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -DTORCH_EXTENSION_NAME=gptqmodel_awq_v2_kernels -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_75,code=sm_75
+      <command-line>: warning: "_GLIBCXX_USE_CXX11_ABI" redefined
+      <command-line>: note: this is the location of the previous definition
+      <command-line>: warning: "_GLIBCXX_USE_CXX11_ABI" redefined
+      <command-line>: note: this is the location of the previous definition
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 169; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 190; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 223; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 260; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 271; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 284; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 302; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 320; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 352; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 361; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 374; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 387; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 400; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 432; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 441; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1094; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1099; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1103; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1107; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1142; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1171; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1460; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1464; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1468; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1472; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1493; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1510; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1814; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1818; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1822; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1826; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1847; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1864; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1888; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1908; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1951; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 1962; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 2346; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 2350; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 2354; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 2358; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3070; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3091; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3124; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3161; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3172; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3185; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3203; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3221; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3253; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3262; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3937; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3942; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3946; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3950; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 3982; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4011; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4308; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4312; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4316; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4320; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4341; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4358; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4671; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4675; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4679; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4683; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4704; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4721; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4745; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4765; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4808; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 4819; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 5215; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 5219; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 5223; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 5227; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 5913; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 5944; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 5965; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 5995; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6032; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6043; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6060; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6077; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6095; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6113; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6145; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6154; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6167; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6180; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6193; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6206; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6238; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6247; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6914; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6919; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6923; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6927; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6931; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6935; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6939; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6943; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 6977; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7000; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7310; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7314; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7318; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7322; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7326; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7330; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7334; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7338; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7364; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7384; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7714; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7718; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7722; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7726; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7730; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7734; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7738; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7742; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7765; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7786; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7811; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7834; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7879; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 7890; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 8287; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 8291; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 8295; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 8299; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 8303; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 8307; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 8311; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 8315; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9388; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9415; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9442; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9469; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9490; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9520; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9557; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9568; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9585; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9602; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9619; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9636; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9654; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9672; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9696; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9705; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9718; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9731; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9744; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9757; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9770; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9783; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9815; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 9824; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10585; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10590; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10594; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10598; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10602; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10606; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10610; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10614; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10618; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10622; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10626; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10630; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10634; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10638; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10642; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10646; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10679; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 10708; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11071; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11075; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11079; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11083; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11087; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11091; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11095; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11099; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11103; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11107; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11111; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11115; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11119; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11123; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11127; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11131; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11149; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11168; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11512; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11516; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11520; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11524; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11528; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11532; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11536; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11540; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11544; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11548; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11552; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11556; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11560; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11564; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11568; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11572; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11593; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11613; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11641; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11663; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11712; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 11723; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12161; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12165; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12169; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12173; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12177; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12181; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12185; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12189; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12193; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12197; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12201; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12205; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12209; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12213; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12217; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 12221; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14083; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14110; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14137; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14164; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14185; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14215; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14244; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14255; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14272; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14287; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14302; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14317; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14334; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14351; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14361; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14370; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14387; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14402; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14417; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14432; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14445; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14458; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14481; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 14490; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15264; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15269; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15273; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15277; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15281; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15285; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15289; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15293; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15297; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15301; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15305; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15309; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15313; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15317; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15321; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15325; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15351; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15372; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15723; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15727; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15731; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15735; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15739; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15743; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15747; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15751; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15755; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15759; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15763; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15767; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15771; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15775; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15779; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15783; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15801; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 15820; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16206; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16210; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16214; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16218; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16222; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16226; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16230; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16234; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16238; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16242; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16246; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16250; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16254; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16258; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16262; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16266; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16285; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16305; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16319; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16331; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16349; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16360; error   : Feature 'cp.async' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16780; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16784; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16788; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16792; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16796; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16800; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16804; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16808; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16812; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16816; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16820; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16824; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16828; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16832; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16836; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas /tmp/tmpxft_000e7452_00000000-6_gemm_cuda.ptx, line 16840; error   : Feature '.m16n8k16' requires .target sm_80 or higher
+      ptxas fatal   : Ptx assembly aborted due to errors
+      error: command '/usr/bin/nvcc' failed with exit code 255
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for gptqmodel
+  Building wheel for device-smi (pyproject.toml): started
+  Building wheel for device-smi (pyproject.toml): finished with status 'done'
+  Created wheel for device-smi: filename=device_smi-0.5.3-py3-none-any.whl size=19983 sha256=4f7286a881d25650f5f9bdf426946f107090ebb2a70105b44b4fd6a3405fc00e
+  Stored in directory: /home/seshu/.cache/pip/wheels/0b/89/1a/1438333a92cf189cb742f942864f5a557f3e06b284516d5b03
+  Building wheel for logbar (pyproject.toml): started
+  Building wheel for logbar (pyproject.toml): finished with status 'done'
+  Created wheel for logbar: filename=logbar-0.2.2-py3-none-any.whl size=31310 sha256=ddfbbdcd28f12a31fd5b803ff4eee37d0b86c2ff6110881f78c9dd18d1e11e8a
+  Stored in directory: /home/seshu/.cache/pip/wheels/bd/3f/12/d848a5c0c77a761674a790e8b118aadd0eaeb2a3c8609fd5f7
+  Building wheel for pypcre (pyproject.toml): started
+  Building wheel for pypcre (pyproject.toml): finished with status 'done'
+  Created wheel for pypcre: filename=pypcre-0.2.13-cp311-cp311-linux_x86_64.whl size=92122 sha256=8ac8f421a21316912e89d833dbf158909b35555605885e680324fbf31ab3a97e
+  Stored in directory: /home/seshu/.cache/pip/wheels/d5/14/4f/a08372bf8d06bd7d1a922e1214001886cb0acc2e278a791c33
+  Building wheel for tokenicer (pyproject.toml): started
+  Building wheel for tokenicer (pyproject.toml): finished with status 'done'
+  Created wheel for tokenicer: filename=tokenicer-0.0.8-py3-none-any.whl size=11710 sha256=35a5e20fcb306c307f7929c975ddf62ac0392fcecaf48c04fcc830edffc1e128
+  Stored in directory: /home/seshu/.cache/pip/wheels/23/f9/b6/f9a7b0c8a2e3864822f08d224c410c21e891de7843b83192e9
+Successfully built device-smi logbar pypcre tokenicer
+Failed to build gptqmodel
+error: failed-wheel-build-for-install
+
+× Failed to build installable wheels for some pyproject.toml based projects
+╰─> gptqmodel

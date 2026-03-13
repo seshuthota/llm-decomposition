@@ -1,0 +1,15 @@
+{
+  "bit_width": null,
+  "dry_run": false,
+  "message": "Mixed-precision budget-matched evaluation completed successfully.",
+  "method": "mixed_precision_budget_match",
+  "metrics_summary": {
+    "latency_ms_per_token": 0.6849496552052786,
+    "memory_total_bytes": 308877312,
+    "perplexity": 28.861768021353583
+  },
+  "missing_dependencies": [],
+  "model_name": "Qwen/Qwen3-0.6B-Base",
+  "run_id": "R11",
+  "status": "completed"
+}

@@ -1,0 +1,49 @@
+{
+  "run_id": "R1",
+  "phase": "phase1_baselines",
+  "description": "Full-precision baseline for Qwen/Qwen3-0.6B-Base.",
+  "model": {
+    "name": "Qwen/Qwen3-0.6B-Base",
+    "tokenizer_name": "Qwen/Qwen3-0.6B-Base",
+    "dtype_preference": [
+      "bfloat16",
+      "float16"
+    ]
+  },
+  "method": {
+    "name": "full_precision",
+    "quantizer": null,
+    "bit_width": null
+  },
+  "calibration": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "train",
+    "num_sequences": 128,
+    "sequence_length": 512,
+    "sampling": "seeded_shuffle",
+    "seed": 42
+  },
+  "evaluation": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "test",
+    "sequence_length": 512,
+    "stride": 512,
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token"
+    ]
+  },
+  "profiling": {
+    "layerwise_weight_error": false,
+    "layerwise_activation_error": false,
+    "residual_svd_profile": false
+  },
+  "outputs": {
+    "results_dir": "results/phase1/R1",
+    "metrics_file": "metrics.json",
+    "layer_summary_file": "layer_errors.json",
+    "residual_profile_file": "residual_profiles.json"
+  }
+}

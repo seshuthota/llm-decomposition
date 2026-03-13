@@ -1,0 +1,67 @@
+{
+  "calibration": {
+    "dataset": "wikitext",
+    "num_sequences": 128,
+    "sampling": "seeded_shuffle",
+    "seed": 42,
+    "sequence_length": 512,
+    "split": "train",
+    "subset": "wikitext-2-raw-v1"
+  },
+  "description": "Equal-budget bits-only baseline matched to R5 by upgrading selected RTN layers from 4-bit to 8-bit.",
+  "evaluation": {
+    "dataset": "wikitext",
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token",
+      "memory_total_bytes",
+      "layerwise_weight_error",
+      "layerwise_activation_error"
+    ],
+    "sequence_length": 512,
+    "split": "test",
+    "stride": 512,
+    "subset": "wikitext-2-raw-v1"
+  },
+  "method": {
+    "base_bit_width": 4,
+    "base_method": "rtn",
+    "base_run_id": "R2",
+    "factor_dtype_bytes": 2,
+    "memory_match_run_id": "R5",
+    "name": "mixed_precision_budget_match",
+    "selected_layers_source": "results/phase1/R2/layer_errors.json",
+    "selected_layers_top_k": 8,
+    "target_bit_width": 8
+  },
+  "model": {
+    "dtype_preference": [
+      "bfloat16",
+      "float16"
+    ],
+    "name": "Qwen/Qwen3-0.6B-Base",
+    "tokenizer_name": "Qwen/Qwen3-0.6B-Base"
+  },
+  "outputs": {
+    "layer_summary_file": "layer_errors.json",
+    "metrics_file": "metrics.json",
+    "residual_profile_file": "residual_profiles.json",
+    "results_dir": "results/phase1/R9"
+  },
+  "phase": "phase1_repair",
+  "profiling": {
+    "candidate_ranks": [
+      4,
+      8,
+      16,
+      32
+    ],
+    "layerwise_activation_error": true,
+    "layerwise_weight_error": true,
+    "profile_num_sequences": 8,
+    "profile_sequence_length": 128,
+    "residual_svd_profile": false,
+    "residual_top_k_layers": 8
+  },
+  "run_id": "R9"
+}

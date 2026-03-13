@@ -1,0 +1,30 @@
+{
+  "description": "Phase-2 first pass: matrix-level targeted bits and targeted rank on a shared top-12 candidate pool for Qwen/Qwen3-0.6B-Base.",
+  "phase": "phase2",
+  "prepared_runs": [
+    {
+      "bit_width": null,
+      "method": "targeted_mixed_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/phase2/P2B01",
+      "run_id": "P2B01"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_mixed_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/phase2/P2B02",
+      "run_id": "P2B02"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_svd_rank",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/phase2/P2R01",
+      "run_id": "P2R01"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_svd_rank",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/phase2/P2R02",
+      "run_id": "P2R02"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "run_id": "R4",
+  "phase": "phase1_repair",
+  "description": "RTN 4-bit baseline with uniform SVD residual repair at rank 4 on the top 8 R2 layers.",
+  "model": {
+    "name": "Qwen/Qwen3-0.6B-Base",
+    "tokenizer_name": "Qwen/Qwen3-0.6B-Base",
+    "dtype_preference": [
+      "bfloat16",
+      "float16"
+    ]
+  },
+  "method": {
+    "name": "uniform_svd_repair",
+    "base_run_id": "R2",
+    "base_method": "rtn",
+    "bit_width": 4,
+    "group_size": 128,
+    "symmetric": true,
+    "selected_layers_source": "results/phase1/R2/layer_errors.json",
+    "selected_layers_top_k": 8,
+    "rank": 4,
+    "factor_dtype_bytes": 2
+  },
+  "calibration": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "train",
+    "num_sequences": 128,
+    "sequence_length": 512,
+    "sampling": "seeded_shuffle",
+    "seed": 42
+  },
+  "evaluation": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "test",
+    "sequence_length": 512,
+    "stride": 512,
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token",
+      "memory_total_bytes",
+      "layerwise_weight_error",
+      "layerwise_activation_error"
+    ]
+  },
+  "profiling": {
+    "layerwise_weight_error": true,
+    "layerwise_activation_error": true,
+    "residual_svd_profile": true,
+    "profile_sequence_length": 128,
+    "profile_num_sequences": 8,
+    "residual_top_k_layers": 8,
+    "candidate_ranks": [
+      4,
+      8,
+      16,
+      32
+    ]
+  },
+  "outputs": {
+    "results_dir": "results/phase1/R4",
+    "metrics_file": "metrics.json",
+    "layer_summary_file": "layer_errors.json",
+    "residual_profile_file": "residual_profiles.json"
+  }
+}

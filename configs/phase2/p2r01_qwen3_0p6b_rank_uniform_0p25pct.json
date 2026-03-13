@@ -1,0 +1,67 @@
+{
+  "run_id": "P2R01",
+  "phase": "phase2",
+  "description": "Phase-2 first-pass matrix-level targeted-rank baseline with a uniform rank policy at +0.25% of R2 memory.",
+  "model": {
+    "name": "Qwen/Qwen3-0.6B-Base",
+    "tokenizer_name": "Qwen/Qwen3-0.6B-Base",
+    "dtype_preference": [
+      "bfloat16",
+      "float16"
+    ]
+  },
+  "method": {
+    "name": "targeted_svd_rank",
+    "base_run_id": "R2",
+    "base_method": "rtn",
+    "base_bit_width": 4,
+    "target_granularity": "matrix",
+    "allocator": "uniform_rank",
+    "proxy_family": "activation",
+    "candidate_pool_path": "configs/phase2/qwen3_0p6b_r2_top12_candidate_pool.json",
+    "budget_percent_of_base": 0.25,
+    "budget_reference_metric": "memory_total_bytes",
+    "candidate_ranks": [
+      4,
+      8,
+      16,
+      32
+    ],
+    "factor_dtype_bytes": 2
+  },
+  "calibration": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "train",
+    "num_sequences": 128,
+    "sequence_length": 512,
+    "sampling": "seeded_shuffle",
+    "seed": 42
+  },
+  "evaluation": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "test",
+    "sequence_length": 512,
+    "stride": 512,
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token",
+      "memory_total_bytes",
+      "allocation_actions"
+    ]
+  },
+  "profiling": {
+    "layerwise_weight_error": true,
+    "layerwise_activation_error": true,
+    "residual_svd_profile": true,
+    "profile_sequence_length": 128,
+    "profile_num_sequences": 8
+  },
+  "outputs": {
+    "results_dir": "results/phase2/P2R01",
+    "metrics_file": "metrics.json",
+    "layer_summary_file": "layer_errors.json",
+    "residual_profile_file": "residual_profiles.json"
+  }
+}

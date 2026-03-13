@@ -1,0 +1,18 @@
+Repo root: /home/seshu/Documents/Python/llm-decomposition
+Conda env: rl
+Log file: /home/seshu/Documents/Python/llm-decomposition/results/logs/phase1_20260311_173457.log
+Started at: Wed Mar 11 05:34:58 PM IST 2026
+Command: python scripts/run_manifest.py --manifest configs/phase1/phase1_repair_manifest.json --run-id R10
+`torch_dtype` is deprecated! Use `dtype` instead!
+Skipping import of cpp extensions due to incompatible torch version 2.6.0+cu124 for torchao version 0.15.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+Prepared 1 runs from manifest /home/seshu/Documents/Python/llm-decomposition/configs/phase1/phase1_repair_manifest.json.
+Summary written to /home/seshu/Documents/Python/llm-decomposition/results/phase1_repair/phase1_repair_preparation_summary.json
+[R10] loading full-precision model
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 5284.39it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[R10] building mixed-precision model to match R6 target memory 308287488 bytes
+[R10] loading evaluation split
+[R10] evaluating mixed-precision model on 589 sequences
+[R10] profiling mixed-precision model
+- R10: status=completed method=mixed_precision_budget_match missing=none
+Finished at: Wed Mar 11 05:58:49 PM IST 2026

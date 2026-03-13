@@ -1,0 +1,9 @@
+{
+  "phase": "phase1_baselines",
+  "description": "Initial baseline runs for Qwen/Qwen3-0.6B-Base covering full precision, RTN-4bit, and GPTQ-4bit.",
+  "runs": [
+    "configs/phase1/r1_qwen3_0p6b_full_precision.json",
+    "configs/phase1/r2_qwen3_0p6b_rtn_4bit.json",
+    "configs/phase1/r3_qwen3_0p6b_gptq_4bit.json"
+  ]
+}

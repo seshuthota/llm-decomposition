@@ -1,0 +1,12 @@
+{
+  "description": "Baseline bring-up for Qwen/Qwen3-1.7B-Base before matched allocator transfer runs.",
+  "phase": "qwen3_1p7b_baselines",
+  "prepared_runs": [
+    {
+      "bit_width": 4,
+      "method": "rtn",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/qwen3_1p7b/R2",
+      "run_id": "R2_Q17B"
+    }
+  ]
+}

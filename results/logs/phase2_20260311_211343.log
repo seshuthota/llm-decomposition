@@ -1,0 +1,17 @@
+Repo root: /home/seshu/Documents/Python/llm-decomposition
+Conda env: rl
+Log file: /home/seshu/Documents/Python/llm-decomposition/results/logs/phase2_20260311_211343.log
+Started at: Wed Mar 11 09:13:43 PM IST 2026
+Command: python scripts/run_phase2.py --dry-run
+Prepared 4 phase-2 runs.
+- P2B01: method=targeted_mixed_precision bits=n/a results_dir=/home/seshu/Documents/Python/llm-decomposition/results/phase2/P2B01
+- P2B02: method=targeted_mixed_precision bits=n/a results_dir=/home/seshu/Documents/Python/llm-decomposition/results/phase2/P2B02
+- P2R01: method=targeted_svd_rank bits=n/a results_dir=/home/seshu/Documents/Python/llm-decomposition/results/phase2/P2R01
+- P2R02: method=targeted_svd_rank bits=n/a results_dir=/home/seshu/Documents/Python/llm-decomposition/results/phase2/P2R02
+Summary written to /home/seshu/Documents/Python/llm-decomposition/results/phase2/phase2_preparation_summary.json
+- P2B01: status=dry_run method=targeted_mixed_precision missing=none
+- P2B02: status=dry_run method=targeted_mixed_precision missing=none
+- P2R01: status=dry_run method=targeted_svd_rank missing=none
+- P2R02: status=dry_run method=targeted_svd_rank missing=none
+Finished at: Wed Mar 11 09:13:43 PM IST 2026
+Saved log to /home/seshu/Documents/Python/llm-decomposition/results/logs/phase2_20260311_211343.log

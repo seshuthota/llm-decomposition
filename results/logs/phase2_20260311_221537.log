@@ -1,0 +1,18 @@
+Repo root: /home/seshu/Documents/Python/llm-decomposition
+Conda env: rl
+HF token: loaded from .env
+Log file: /home/seshu/Documents/Python/llm-decomposition/results/logs/phase2_20260311_221537.log
+Started at: Wed Mar 11 22:15:37 IST 2026
+Command: python scripts/run_phase2.py --run-id P2R02
+Prepared 1 phase-2 runs.
+- P2R02: method=targeted_svd_rank bits=n/a results_dir=/home/seshu/Documents/Python/llm-decomposition/results/phase2/P2R02
+Summary written to /home/seshu/Documents/Python/llm-decomposition/results/phase2/phase2_preparation_summary.json
+[P2R02] loading full-precision model
+[P2R02] building RTN base model for targeted rank allocation
+[P2R02] applying 14 targeted rank repairs with total selected rank bytes 3014656
+[P2R02] loading evaluation split
+[P2R02] evaluating targeted rank model on 589 sequences
+[P2R02] profiling targeted rank model
+- P2R02: status=completed method=targeted_svd_rank missing=none
+Finished at: Wed Mar 11 22:29:38 IST 2026
+Saved log to /home/seshu/Documents/Python/llm-decomposition/results/logs/phase2_20260311_221537.log

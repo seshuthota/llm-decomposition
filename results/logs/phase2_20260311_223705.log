@@ -1,0 +1,10 @@
+Repo root: /home/seshu/Documents/Python/llm-decomposition
+Conda env: rl
+HF token: loaded from .env
+Log file: /home/seshu/Documents/Python/llm-decomposition/results/logs/phase2_20260311_223705.log
+Started at: Wed Mar 11 22:37:05 IST 2026
+Command: python scripts/run_phase2.py --run-id P2B03
+Prepared 0 phase-2 runs.
+Summary written to /home/seshu/Documents/Python/llm-decomposition/results/phase2/phase2_preparation_summary.json
+Finished at: Wed Mar 11 22:37:05 IST 2026
+Saved log to /home/seshu/Documents/Python/llm-decomposition/results/logs/phase2_20260311_223705.log

@@ -1,0 +1,58 @@
+{
+  "pool_name": "qwen3_0p6b_r2_top12_matrix_pool",
+  "description": "Top-12 Phase-2 matrix candidate pool selected from R2 activation-space damage, plus shared metadata for targeted bits and targeted rank runs.",
+  "base_run_id": "R2",
+  "source_layer_errors_path": "results/phase1/R2/layer_errors.json",
+  "selection_rule": "top_12_by_activation_relative_l2",
+  "model_name": "Qwen/Qwen3-0.6B-Base",
+  "quantizer": "RTN",
+  "bit_width": 4,
+  "group_size": 128,
+  "symmetric": true,
+  "factor_dtype_bytes": 2,
+  "candidate_layers": [
+    "model.layers.27.mlp.down_proj",
+    "model.layers.14.mlp.down_proj",
+    "model.layers.15.mlp.down_proj",
+    "model.layers.13.mlp.down_proj",
+    "model.layers.14.self_attn.o_proj",
+    "model.layers.12.mlp.down_proj",
+    "model.layers.11.mlp.down_proj",
+    "model.layers.13.self_attn.o_proj",
+    "model.layers.8.self_attn.o_proj",
+    "model.layers.16.self_attn.o_proj",
+    "model.layers.12.self_attn.o_proj",
+    "model.layers.7.self_attn.o_proj"
+  ],
+  "control_layers": [
+    "model.layers.0.mlp.down_proj",
+    "model.layers.0.self_attn.o_proj"
+  ],
+  "budget_schedule_percent_of_r2": [
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "bit_actions": {
+    "target_granularity": "matrix",
+    "candidate_bit_widths": [
+      8
+    ],
+    "future_candidate_bit_widths": [
+      5,
+      6
+    ]
+  },
+  "rank_actions": {
+    "target_granularity": "matrix",
+    "candidate_ranks": [
+      4,
+      8,
+      16,
+      32
+    ]
+  }
+}

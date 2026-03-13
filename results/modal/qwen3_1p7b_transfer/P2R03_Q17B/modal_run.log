@@ -1,0 +1,11 @@
+[P2R03_Q17B] loading full-precision model
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:   4%|3         | 12/310 [00:00<00:02, 111.43it/s]Loading weights:   8%|8         | 25/310 [00:00<00:02, 109.68it/s]Loading weights:  15%|#4        | 45/310 [00:00<00:01, 142.56it/s]Loading weights:  19%|#9        | 60/310 [00:00<00:01, 142.43it/s]Loading weights:  26%|##5       | 80/310 [00:00<00:01, 153.41it/s]Loading weights:  31%|###       | 96/310 [00:00<00:01, 139.41it/s]Loading weights:  37%|###7      | 116/310 [00:00<00:01, 146.42it/s]Loading weights:  42%|####2     | 131/310 [00:00<00:01, 137.32it/s]Loading weights: 100%|##########| 310/310 [00:00<00:00, 325.40it/s]
+[P2R03_Q17B] building RTN base model for targeted rank allocation
+[P2R03_Q17B] applying 12 targeted rank repairs with total selected rank bytes 4456448
+[P2R03_Q17B] loading evaluation split
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]Generating test split: 100%|##########| 4358/4358 [00:00<00:00, 344388.74 examples/s]
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s]Generating train split: 100%|##########| 36718/36718 [00:00<00:00, 798701.67 examples/s]
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]Generating validation split: 100%|##########| 3760/3760 [00:00<00:00, 663968.64 examples/s]
+[P2R03_Q17B] evaluating targeted rank model on 589 sequences
+[P2R03_Q17B] profiling targeted rank model

@@ -1,0 +1,10 @@
+{
+  "phase": "phase2",
+  "description": "Phase-2 first pass: matrix-level targeted bits and targeted rank on a shared top-12 candidate pool for Qwen/Qwen3-0.6B-Base.",
+  "runs": [
+    "configs/phase2/p2b01_qwen3_0p6b_bits_uniform_0p25pct.json",
+    "configs/phase2/p2b02_qwen3_0p6b_bits_activation_1p0pct.json",
+    "configs/phase2/p2r01_qwen3_0p6b_rank_uniform_0p25pct.json",
+    "configs/phase2/p2r02_qwen3_0p6b_rank_activation_1p0pct.json"
+  ]
+}

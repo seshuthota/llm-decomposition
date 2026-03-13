@@ -1,0 +1,18 @@
+Repo root: /home/seshu/Documents/Python/llm-decomposition
+Conda env: rl
+HF token: loaded from .env
+Log file: /home/seshu/Documents/Python/llm-decomposition/results/logs/phase2_20260311_223722.log
+Started at: Wed Mar 11 22:37:22 IST 2026
+Command: python scripts/run_phase2.py --manifest configs/phase2/phase2_matched_frontier_manifest.json --run-id P2B03
+Prepared 1 phase-2 runs.
+- P2B03: method=targeted_mixed_precision bits=n/a results_dir=/home/seshu/Documents/Python/llm-decomposition/results/phase2/P2B03
+Summary written to /home/seshu/Documents/Python/llm-decomposition/results/phase2/phase2_preparation_summary.json
+[P2B03] loading full-precision model
+[P2B03] building targeted mixed-precision action set for 14 matrices with budget 6146089 bytes
+[P2B03] applying 5 matrix-level bit upgrades
+[P2B03] loading evaluation split
+[P2B03] evaluating targeted mixed-precision model on 589 sequences
+[P2B03] profiling targeted mixed-precision model
+- P2B03: status=completed method=targeted_mixed_precision missing=none
+Finished at: Wed Mar 11 22:51:59 IST 2026
+Saved log to /home/seshu/Documents/Python/llm-decomposition/results/logs/phase2_20260311_223722.log

@@ -1,0 +1,25 @@
+{
+  "bit_width": 4,
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "evaluated_tokens": 300979.0,
+  "latency_ms_per_token": 0.6853686295159577,
+  "memory_metadata_bytes": 9312256,
+  "memory_total_bytes": 309270528,
+  "method": "uniform_svd_repair",
+  "model_name": "Qwen/Qwen3-0.6B-Base",
+  "perplexity": 29.984764915103966,
+  "repair_factor_bytes": 1966080,
+  "run_id": "R7",
+  "selected_layers": [
+    "model.layers.27.mlp.down_proj",
+    "model.layers.14.mlp.down_proj",
+    "model.layers.15.mlp.down_proj",
+    "model.layers.13.mlp.down_proj",
+    "model.layers.14.self_attn.o_proj",
+    "model.layers.12.mlp.down_proj",
+    "model.layers.11.mlp.down_proj",
+    "model.layers.13.self_attn.o_proj"
+  ],
+  "status": "completed"
+}

@@ -1,0 +1,10 @@
+{
+  "phase": "phase2",
+  "description": "Phase-2 matched frontier runs for activation-greedy bits and rank at 1.0% and 2.0% RTN-relative budgets.",
+  "runs": [
+    "configs/phase2/p2b02_qwen3_0p6b_bits_activation_1p0pct.json",
+    "configs/phase2/p2r02_qwen3_0p6b_rank_activation_1p0pct.json",
+    "configs/phase2/p2b03_qwen3_0p6b_bits_activation_2p0pct.json",
+    "configs/phase2/p2r03_qwen3_0p6b_rank_activation_2p0pct.json"
+  ]
+}

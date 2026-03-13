@@ -1,0 +1,12 @@
+{
+  "description": "Uniform SVD repair and equal-budget bits-only runs built on the R2 RTN-4bit baseline for Qwen/Qwen3-0.6B-Base.",
+  "phase": "phase1_repair",
+  "prepared_runs": [
+    {
+      "bit_width": null,
+      "method": "mixed_precision_budget_match",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/phase1/R11",
+      "run_id": "R11"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "phase": "phase1_repair",
+  "description": "Uniform SVD repair and equal-budget bits-only runs built on the R2 RTN-4bit baseline for Qwen/Qwen3-0.6B-Base.",
+  "runs": [
+    "configs/phase1/r4_qwen3_0p6b_uniform_svd_rank4.json",
+    "configs/phase1/r5_qwen3_0p6b_uniform_svd_rank8.json",
+    "configs/phase1/r6_qwen3_0p6b_uniform_svd_rank16.json",
+    "configs/phase1/r7_qwen3_0p6b_uniform_svd_rank32.json",
+    "configs/phase1/r8_qwen3_0p6b_bits_match_r4.json",
+    "configs/phase1/r9_qwen3_0p6b_bits_match_r5.json",
+    "configs/phase1/r10_qwen3_0p6b_bits_match_r6.json",
+    "configs/phase1/r11_qwen3_0p6b_bits_match_r7.json"
+  ]
+}

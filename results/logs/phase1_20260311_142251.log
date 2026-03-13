@@ -1,0 +1,10 @@
+Repo root: /home/seshu/Documents/Python/llm-decomposition
+Conda env: rl
+Log file: /home/seshu/Documents/Python/llm-decomposition/results/logs/phase1_20260311_142251.log
+Started at: Wed Mar 11 02:22:51 PM IST 2026
+Command: python scripts/run_phase1.py --run-id R3
+Prepared 1 phase-1 runs.
+- R3: method=gptq bits=4 results_dir=/home/seshu/Documents/Python/llm-decomposition/results/phase1/R3
+Summary written to /home/seshu/Documents/Python/llm-decomposition/results/phase1_baselines/phase1_baselines_preparation_summary.json
+- R3: status=blocked method=gptq missing=optimum
+Finished at: Wed Mar 11 02:22:51 PM IST 2026

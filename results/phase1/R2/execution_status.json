@@ -1,0 +1,15 @@
+{
+  "bit_width": 4,
+  "dry_run": false,
+  "message": "RTN quantization evaluation completed successfully.",
+  "method": "rtn",
+  "metrics_summary": {
+    "latency_ms_per_token": 0.6853402444656435,
+    "memory_total_bytes": 307304448,
+    "perplexity": 30.516916135923783
+  },
+  "missing_dependencies": [],
+  "model_name": "Qwen/Qwen3-0.6B-Base",
+  "run_id": "R2",
+  "status": "completed"
+}
