@@ -218,6 +218,96 @@ What is safe to do next time:
 5. only then retry full `R3_Q17B`
 6. only after a valid baseline exists, resume `G2B02_Q17B` and `G2R02_Q17B`
 
+### Kaggle RTN Reproduction Check
+
+- Date: 2026-03-13
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method family: `RTN` transfer reruns on Kaggle
+- Scope: reproduction / robustness check
+
+Observed Kaggle metrics:
+
+- `P2B02_Q17B`: `21.2432`
+- `P2R02_Q17B`: `21.2982`
+- `P2B03_Q17B`: `21.1469`
+- `P2R03_Q17B`: `21.2982`
+
+Interpretation:
+
+- Kaggle reproduces the same ordering already seen on Modal
+- targeted bits still beat targeted rank on the `1.7B` RTN transfer study
+- Phase 2 can be considered closed with a stronger environment-level confirmation
+
+### Kaggle GPTQ Smoke Checks
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method family: `GPTQ` smoke debugging on Kaggle
+- Scope: backend validation, not transfer
+
+Observed Kaggle smoke results:
+
+- `R3S_Q17B`: `perplexity = NaN`, `dtype = float16`
+- `R3S2_Q17B`: `perplexity = NaN`, `dtype = float16`
+
+Interpretation:
+
+- Kaggle got the GPTQ path past the earlier install/build barrier
+- but the quantized model is still numerically unstable at evaluation time
+- so GPTQ remains blocked even after a working Kaggle environment
+
+Decision:
+
+- GPTQ remained blocked at that point and should not have been treated as ready for transfer
+
+### Modal GPTQ Recovery and Transfer Completion
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Platform: `Modal`
+- Scope: GPTQ recovery, baseline validation, and first matched transfer frontier
+
+What changed:
+
+- patched the Transformers GPTQ path to set `hf_device_map` before Optimum packing
+- added explicit finite-logit validation before perplexity evaluation
+- changed GPTQ targeted updates to replace selected packed modules with floating `nn.Linear` modules instead of trying to overwrite packed tensors directly
+
+Validated GPTQ runs:
+
+- `R3_Q17B`
+  - perplexity: `15.9137`
+  - memory: `1356968233`
+- `G2B02_Q17B`
+  - perplexity: `15.8993`
+  - memory: `1364308265`
+  - upgraded layers: `7`
+- `G2R02_Q17B`
+  - perplexity: `15.8823`
+  - memory: `1360965929`
+  - repair bytes: `3997696`
+- `G2B03_Q17B`
+  - perplexity: `15.8914`
+  - memory: `1383182633`
+  - upgraded layers: `10`
+- `G2R03_Q17B`
+  - perplexity: `15.8823`
+  - memory: `1360965929`
+  - repair bytes: `3997696`
+
+Interpretation:
+
+- GPTQ no longer has a bring-up blocker on Modal
+- the first valid GPTQ transfer point favors targeted rank over targeted bits
+- the current GPTQ rank action space saturates the candidate pool by `+1.0%`
+- because of that, `G2R03_Q17B` does not improve over `G2R02_Q17B`
+- this means the next GPTQ improvement, if we keep going, is not “run more points”
+- it is “expand or refine the rank/bit action space so the frontier can keep spending budget meaningfully”
+
+- do not run full `R3_Q17B`
+- do not run `G2B02_Q17B` / `G2R02_Q17B`
+- treat GPTQ as paused again until the backend path is changed or more deeply debugged
+
 ### Run R3
 
 - Date: 2026-03-11
@@ -1096,3 +1186,831 @@ Interpretation:
 - GPTQ transfer is still blocked until this smoke run either:
   - finishes with sane perplexity, or
   - exposes the next concrete backend/runtime failure
+
+## Phase 3
+
+### Run R2_S3B
+
+- Date: 2026-03-14
+- Model: `HuggingFaceTB/SmolLM3-3B-Base`
+- Method: `RTN 4-bit`
+- Execution path: `Modal`
+- GPU: `A10G`
+- Script: `./scripts/run_smollm3_3b_r2_modal.sh`
+- Metrics: `results/modal/smollm3_3b_baselines/R2_S3B/metrics.json`
+
+Result:
+
+- status: `completed`
+- perplexity: `47.91685627870016`
+- memory total bytes: `1585520640`
+- memory metadata bytes: `48046080`
+- latency ms/token: `0.12940787724541597`
+
+Notes:
+
+- this is the Phase 3 bridge-scale baseline
+- the RTN path needed a vectorized quantization implementation before this model became practical on `A10G`
+- after that optimization, baseline execution was stable and cheap enough to continue on the smaller GPU
+
+Interpretation:
+
+- the `3B` scale point is now anchored
+- candidate-pool construction and the first matched frontier pair were justified
+
+### Run P3B02_S3B
+
+- Date: 2026-03-14
+- Model: `HuggingFaceTB/SmolLM3-3B-Base`
+- Method: `targeted_mixed_precision`
+- Execution path: `Modal`
+- GPU: `A10G`
+- Script: `./scripts/run_smollm3_3b_p3b02_modal.sh`
+- Metrics: `results/modal/smollm3_3b_transfer/P3B02_S3B/metrics.json`
+- Actions: `results/modal/smollm3_3b_transfer/P3B02_S3B/actions.json`
+
+Result:
+
+- status: `completed`
+- extra budget bytes: `15855206`
+- perplexity: `47.4955338117833`
+- memory total bytes: `1591812096`
+
+Selected actions:
+
+- `model.layers.7.self_attn.o_proj` `4 -> 8`
+- `model.layers.3.self_attn.o_proj` `4 -> 8`
+- `model.layers.0.self_attn.o_proj` `4 -> 8`
+
+Interpretation:
+
+- targeted bits improved over the `R2_S3B` baseline at the first matched budget point
+- the gain-per-byte policy preferred `self_attn.o_proj` matrices over the higher-damage `mlp.down_proj` matrices
+
+### Run P3R02_S3B
+
+- Date: 2026-03-14
+- Model: `HuggingFaceTB/SmolLM3-3B-Base`
+- Method: `targeted_svd_rank`
+- Execution path: `Modal`
+- GPU: `A10G`
+- Script: `./scripts/run_smollm3_3b_p3r02_modal.sh`
+- Metrics: `results/modal/smollm3_3b_transfer/P3R02_S3B/metrics.json`
+- Actions: `results/modal/smollm3_3b_transfer/P3R02_S3B/actions.json`
+
+Result:
+
+- status: `completed`
+- extra budget bytes: `15855206`
+- perplexity: `47.98327419715927`
+- memory total bytes: `1595498496`
+- repair factor bytes: `9977856`
+
+Interpretation:
+
+- targeted rank was slightly worse than the `R2_S3B` baseline and clearly worse than `P3B02_S3B`
+- this made the first matched pair decisive enough to skip the `+2.0%` pair for `SmolLM3-3B`
+- the next cost-effective move is to proceed directly to the `Qwen/Qwen3-8B-Base` validation-scale point
+
+### Run R2_Q8B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `RTN 4-bit`
+- Execution path: `Modal`
+- GPU: `A100`
+- Script: `./scripts/run_qwen3_8b_r2_modal.sh`
+- Metrics: `results/modal/qwen3_8b_baselines/R2_Q8B/metrics.json`
+
+Result:
+
+- status: `completed`
+- perplexity: `16.193944972311687`
+- memory total bytes: `3902300160`
+- memory metadata bytes: `118251520`
+- latency ms/token: `0.12391592523730807`
+
+Implementation note:
+
+- the first `8B` attempts exposed a large-model limitation in the RTN path
+- the fix was:
+  - CPU-side RTN working tensors during quantization
+  - sequential model offload during activation profiling
+
+Interpretation:
+
+- with those changes, the `8B` baseline became practical on `A100`
+- this was enough to complete the validation-scale Phase 3 point without escalating hardware further
+
+### Run P3B02_Q8B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `targeted_mixed_precision`
+- Execution path: `Modal`
+- GPU: `A100`
+- Script: `./scripts/run_qwen3_8b_p3b02_modal.sh`
+- Metrics: `results/modal/qwen3_8b_transfer/P3B02_Q8B/metrics.json`
+- Actions: `results/modal/qwen3_8b_transfer/P3B02_Q8B/actions.json`
+
+Result:
+
+- status: `completed`
+- extra budget bytes: `39023002`
+- perplexity: `16.142918191325858`
+- memory total bytes: `3935854592`
+
+Selected actions:
+
+- `model.layers.21.self_attn.o_proj` `4 -> 8`
+- `model.layers.20.self_attn.o_proj` `4 -> 8`
+- `model.layers.18.self_attn.o_proj` `4 -> 8`
+- `model.layers.22.self_attn.o_proj` `4 -> 8`
+
+Interpretation:
+
+- targeted bits improved over the `R2_Q8B` baseline at the first matched budget point
+- the action pattern is consistent with the `1.7B` and `3B` results: late `self_attn.o_proj` matrices remain the highest-value bit-upgrade targets
+
+### Run P3R02_Q8B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `targeted_svd_rank`
+- Execution path: `Modal`
+- GPU: `A100`
+- Script: `./scripts/run_qwen3_8b_p3r02_modal.sh`
+- Metrics: `results/modal/qwen3_8b_transfer/P3R02_Q8B/metrics.json`
+- Actions: `results/modal/qwen3_8b_transfer/P3R02_Q8B/actions.json`
+
+Result:
+
+- status: `completed`
+- extra budget bytes: `39023002`
+- perplexity: `16.20352045227616`
+- memory total bytes: `3911213056`
+- repair factor bytes: `8912896`
+
+Interpretation:
+
+- targeted rank was slightly worse than the `R2_Q8B` baseline and clearly worse than `P3B02_Q8B`
+- this made the first matched pair decisive enough to skip the `+2.0%` pair for `Qwen3-8B`
+- Phase 3 `RTN` now has a stable cross-scale conclusion:
+  - `0.6B` favored targeted rank
+  - `1.7B`, `3B`, and `8B` favored targeted bits
+
+### Run R3_S3B
+
+- Date: 2026-03-14
+- Model: `HuggingFaceTB/SmolLM3-3B-Base`
+- Method: `gptq`
+- Execution path: `Modal`
+- GPU: `A10G`
+- Script: `./scripts/run_smollm3_3b_r3_gptq_modal.sh`
+- Metrics: `results/modal/smollm3_3b_gptq_baselines/R3_S3B/metrics.json`
+- Validation: `results/modal/smollm3_3b_gptq_baselines/R3_S3B/gptq_validation.json`
+
+Result:
+
+- status: `completed`
+- perplexity: `11.536600075046657`
+- memory total bytes: `1990237781`
+- latency ms/token: `0.1710847020350192`
+- finite output validation: `passed`
+
+Interpretation:
+
+- the `3B` GPTQ baseline is valid on Modal
+- `A10G` is sufficient for the `3B` GPTQ baseline
+
+### Run G3B02_S3B
+
+- Date: 2026-03-14
+- Model: `HuggingFaceTB/SmolLM3-3B-Base`
+- Method: `targeted_mixed_precision`
+- Execution path: `Modal`
+- GPU: `A100`
+- Script: `./scripts/run_smollm3_3b_g3b02_modal.sh`
+- Metrics: `results/modal/smollm3_3b_gptq_transfer/G3B02_S3B/metrics.json`
+- Actions: `results/modal/smollm3_3b_gptq_transfer/G3B02_S3B/actions.json`
+
+Result:
+
+- status: `completed`
+- extra budget bytes: `19902378`
+- perplexity: `11.548343137492862`
+- memory total bytes: `1997577813`
+
+Implementation note:
+
+- the first `A10G` attempt failed with a real CUDA OOM during GPTQ transfer-layer handling
+- `A100` was required for the `3B` GPTQ transfer path under the current implementation
+
+Interpretation:
+
+- targeted bits regressed slightly relative to the `R3_S3B` GPTQ baseline
+- selected actions concentrated in attention projection matrices, especially `v_proj` and `k_proj`
+
+### Run G3R02_S3B
+
+- Date: 2026-03-14
+- Model: `HuggingFaceTB/SmolLM3-3B-Base`
+- Method: `targeted_svd_rank`
+- Execution path: `Modal`
+- GPU: `A100`
+- Script: `./scripts/run_smollm3_3b_g3r02_modal.sh`
+- Metrics: `results/modal/smollm3_3b_gptq_transfer/G3R02_S3B/metrics.json`
+- Actions: `results/modal/smollm3_3b_gptq_transfer/G3R02_S3B/actions.json`
+
+Result:
+
+- status: `completed`
+- extra budget bytes: `19902378`
+- perplexity: `11.64821293633937`
+- memory total bytes: `2000477781`
+- repair factor bytes: `10240000`
+
+Interpretation:
+
+- targeted rank regressed more strongly than targeted bits relative to the `R3_S3B` GPTQ baseline
+- the `1.7B` GPTQ rank win does not transfer cleanly to `3B`
+- the first matched `3B` GPTQ pair is already decisive enough that a `+2.0%` pair is not required before moving on to `8B`
+
+### Run R3S_Q8B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `gptq`
+- Execution path: `Modal`
+- GPU: `A100`
+- Script: `./scripts/run_qwen3_8b_r3_gptq_smoke_modal.sh`
+- Metrics dir: `results/modal/qwen3_8b_gptq_smoke/R3S_Q8B`
+
+Result:
+
+- status: `blocked`
+- no valid perplexity produced
+- no valid `gptq_validation.json` produced
+
+Observed failure modes:
+
+1. Single-device placement (`device_map: "single"`)
+- eliminated the earlier `accelerate` hook failure
+- but failed with real CUDA OOM on `A100`
+
+2. Auto placement (`device_map: "auto"`)
+- avoided the single-device OOM
+- but still failed during GPTQ quantization with `StopIteration` in the `accelerate` offload hook for a parameterless module (`rotary_emb`)
+
+Artifacts:
+
+- payload: `results/modal/qwen3_8b_gptq_smoke/R3S_Q8B/modal_payload.json`
+- log: `results/modal/qwen3_8b_gptq_smoke/R3S_Q8B/modal_run.log`
+- validation plan: `docs/roadmap/qwen3_8b_gptq_validation_plan.md`
+
+Interpretation:
+
+- `8B` GPTQ is not ready for full baseline or matched transfer runs under the current backend path
+- the remaining issue is backend/runtime-specific, not just raw GPU size
+
+### Run R3S_Q8B (A100-80GB Retry)
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `gptq`
+- Execution path: `Modal`
+- GPU: `A100-80GB`
+- Script: `./scripts/run_qwen3_8b_r3_gptq_smoke_modal.sh`
+- Metrics dir: `results/modal/qwen3_8b_gptq_smoke/R3S_Q8B.a10080_1773480462`
+
+Result:
+
+- status: `blocked`
+- no valid perplexity produced
+- no valid `gptq_validation.json` produced
+
+Observed failure mode:
+
+- `device_map: "auto"` still failed during GPTQ quantization with `StopIteration` in the `accelerate` offload hook for the parameterless `rotary_emb` path
+- this reproduced even with `A100-80GB`, so the blocker is not resolved by moving from `40GB` to `80GB`
+
+Artifacts:
+
+- payload: `results/modal/qwen3_8b_gptq_smoke/R3S_Q8B.a10080_1773480462/modal_payload.json`
+- log: `results/modal/qwen3_8b_gptq_smoke/R3S_Q8B.a10080_1773480462/modal_run.log`
+
+Interpretation:
+
+- `8B` GPTQ remains blocked after the `A100-80GB` retry
+- the next step is backend/offload-path repair, not a larger GPU rerun
+
+### Run R3S_Q8B (A100-80GB Single-Device Retry)
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `gptq`
+- Execution path: `Modal`
+- GPU: `A100-80GB`
+- Script: `./scripts/run_qwen3_8b_r3_gptq_smoke_modal.sh`
+- Metrics dir: `results/modal/qwen3_8b_gptq_smoke/R3S_Q8B`
+
+Result:
+
+- status: `completed`
+- perplexity: `13.7503`
+- memory: `6,103,927,291` bytes
+- validation: finite logits and finite loss on the checked batch
+
+What changed:
+
+- the actual Modal GPU request was corrected to a real `A100-80GB`
+- the config switched to `device_map: "single"` instead of `auto`
+
+Interpretation:
+
+- the `8B` GPTQ smoke path is valid on Modal
+- the remaining blocker was the offload path, not the model itself
+
+### Run R3_Q8B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `gptq`
+- Execution path: `Modal`
+- GPU: `A100-80GB`
+- Script: `./scripts/run_qwen3_8b_r3_gptq_modal.sh`
+- Metrics dir: `results/modal/qwen3_8b_gptq_baselines/R3_Q8B`
+
+Result:
+
+- status: `completed`
+- perplexity: `11.7970`
+- memory: `6,103,975,811` bytes
+- validation: finite logits and finite loss on the checked batch
+
+Interpretation:
+
+- the full `8B` GPTQ baseline is now valid
+- `Qwen3-8B` can use the same `single`-device strategy as the successful smoke run
+
+### Run G2B02_Q8B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `targeted_mixed_precision`
+- Base method: `gptq`
+- Execution path: `Modal`
+- GPU: `A100-80GB`
+- Script: `./scripts/run_qwen3_8b_g2b02_gptq_modal.sh`
+- Metrics dir: `results/modal/qwen3_8b_gptq_transfer/G2B02_Q8B`
+
+Result:
+
+- status: `completed`
+- perplexity: `11.7823`
+- memory: `6,150,113,155` bytes
+- selected upgrades: `11`
+
+Interpretation:
+
+- targeted bits improved slightly over the `R3_Q8B` GPTQ baseline
+- the allocator concentrated on `self_attn.v_proj` and `self_attn.k_proj`, with one `mlp.down_proj`
+
+### Run G2R02_Q8B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `targeted_svd_rank`
+- Base method: `gptq`
+- Execution path: `Modal`
+- GPU: `A100-80GB`
+- Script: `./scripts/run_qwen3_8b_g2r02_gptq_modal.sh`
+- Metrics dir: `results/modal/qwen3_8b_gptq_transfer/G2R02_Q8B`
+
+Result:
+
+- status: `completed`
+- perplexity: `11.7962`
+- memory: `6,109,349,763` bytes
+- repair bytes: `5,373,952`
+
+Interpretation:
+
+- targeted rank was essentially flat relative to the `R3_Q8B` baseline
+- targeted bits clearly beat targeted rank at the first matched `8B` GPTQ point
+
+### Run G2B02RB_Q17B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `targeted_mixed_precision`
+- Base method: `gptq`
+- Action space: row-block bit upgrades, `256` rows per block
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_richer_bits_manifest.json`
+- Metrics dir: `results/modal/qwen3_1p7b_gptq_transfer/G2B02RB_Q17B`
+
+Result:
+
+- status: `completed`
+- perplexity: `15.9060`
+- memory: `1,370,337,577` bytes
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- the first richer-bits GPTQ pilot ran successfully on the cheaper `A10G` path
+- it improved over the `R3_Q17B` GPTQ baseline
+- but it did not beat the existing matrix-level bits point `G2B02_Q17B` (`15.8993`)
+- so the first row-block design is not yet strong enough to justify spending `A100-80GB` time on an `8B` rerun
+
+### Run G2B02RB128_Q17B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `targeted_mixed_precision`
+- Base method: `gptq`
+- Action space: row-block bit upgrades, `128` rows per block
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_richer_bits_rowblock128_manifest.json`
+- Metrics dir: `results/modal/qwen3_1p7b_gptq_transfer/G2B02RB128_Q17B`
+
+Result:
+
+- status: `completed`
+- perplexity: `15.8970`
+- memory: `1,370,468,649` bytes
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- the finer row-block design improved over the first `256`-row pilot
+- it also beat the matrix-level bits point `G2B02_Q17B` (`15.8993`)
+- this is the first richer-bits result strong enough to justify one `8B` validation run
+
+### Run G2B02RB128_Q8B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `targeted_mixed_precision`
+- Base method: `gptq`
+- Action space: row-block bit upgrades, `128` rows per block
+- Execution path: `Modal`
+- GPU: `A100-80GB`
+- Manifest: `configs/scaleup_qwen3_8b_gptq/qwen3_8b_gptq_richer_bits_rowblock128_manifest.json`
+- Metrics dir: `results/modal/qwen3_8b_gptq_transfer/G2B02RB128_Q8B`
+
+Result:
+
+- status: `completed`
+- perplexity: `11.7954`
+- memory: `6,164,268,931` bytes
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- the richer-bits `128`-row design remains valid on `8B`
+- it improves slightly over the `R3_Q8B` baseline
+- but it does not beat the existing matrix-level bits point `G2B02_Q8B` (`11.7823`)
+- so the richer-bits branch is now mixed across scale:
+  - `1.7B`: richer bits improved over matrix-level bits
+  - `8B`: matrix-level bits remained stronger
+
+### Run G2R02F_Q17B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `targeted_svd_rank`
+- Base method: `gptq`
+- Action space: finer incremental rank ladder `2/4/6/8/12/16/24/32/48/64`
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_fine_rank_manifest.json`
+- Metrics dir: `results/modal/qwen3_1p7b_gptq_transfer/G2R02F_Q17B`
+
+Result:
+
+- status: `completed`
+- perplexity: `15.9073`
+- memory: `1,364,963,625` bytes
+- repair bytes: `7,995,392`
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- the finer-rank ladder successfully spent more budget than the original `G2R02_Q17B`
+- but it performed worse than the original matrix-level rank result (`15.8823`)
+- so the next GPTQ branch should not be “more fine-rank ladder tuning”; it should be hybrid second-stage or a more structural rank action space
+
+### Run G2B03RB128_Q17B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `targeted_mixed_precision`
+- Base method: `gptq`
+- Action space: row-block bit upgrades, `128` rows per block
+- Budget: `+2.0%` of `R3_Q17B`
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_richer_bits_rowblock128_2pct_manifest.json`
+- Metrics dir: `results/modal/qwen3_1p7b_gptq_transfer/G2B03RB128_Q17B`
+
+Result:
+
+- status: `completed`
+- perplexity: `15.9272`
+- memory: `1,383,969,065` bytes
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- the richer-bits `+2.0%` follow-up was a valid run on `A10G`
+- but it was clearly worse than the stronger `+1.0%` richer-bits point `G2B02RB128_Q17B` (`15.8970`)
+- so, on `1.7B`, the second slice should not be assumed to go to more of the same row-block bit actions
+
+### Run H2R02RB128_Q17B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `hybrid_second_stage`
+- Base method: `gptq`
+- Hybrid base: `G2B02RB128_Q17B`
+- Extra budget slice: `+1.0%` of `R3_Q17B`
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_hybrid_manifest.json`
+- Metrics dir: `results/modal/qwen3_1p7b_gptq_transfer/H2R02RB128_Q17B`
+
+Result:
+
+- status: `completed`
+- perplexity: `15.8989`
+- memory: `1,374,466,345` bytes
+- prior bit bytes: `13,500,416`
+- second-stage rank bytes: `3,997,696`
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- the hybrid second-stage path is now implemented and working on Modal
+- at `1.7B`, giving the next slice to rank after the best richer-bits point was much better than giving it to more richer bits (`G2B03RB128_Q17B`: `15.9272`)
+- but hybrid still did not beat the earlier pure-rank `+1.0%` GPTQ point `G2R02_Q17B` (`15.8823`)
+- so the strongest current takeaway is:
+  - hybrid is useful as a second-stage correction relative to “more bits”
+  - but it is not yet the best overall GPTQ strategy on `1.7B`
+
+### Run G2R02RB128_Q17B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `targeted_svd_rank`
+- Base method: `gptq`
+- Action space: structural row-block rank repairs, `128` rows per block
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_rowblock_rank_manifest.json`
+- Metrics dir: `results/modal/qwen3_1p7b_gptq_transfer/G2R02RB128_Q17B`
+
+Result:
+
+- status: `completed`
+- perplexity: `15.9034`
+- memory: `1,370,523,945` bytes
+- repair bytes: `13,555,712`
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- the first structural GPTQ rank pilot was valid and affordable on `A10G`
+- but it underperformed the earlier matrix-level rank point `G2R02_Q17B` (`15.8823`)
+- it also underperformed the stronger richer-bits point `G2B02RB128_Q17B` (`15.8970`)
+- so the current evidence does not support spending more on small row-block rank variants
+
+### Run H2R02_Q8B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `hybrid_second_stage`
+- Base method: `gptq`
+- Hybrid base: `G2B02_Q8B`
+- Extra budget slice: `+1.0%` of `R3_Q8B`
+- Execution path: `Modal`
+- GPU: `A100-80GB`
+- Manifest: `configs/scaleup_qwen3_8b_gptq/qwen3_8b_gptq_hybrid_manifest.json`
+- Metrics dir: `results/modal/qwen3_8b_gptq_transfer/H2R02_Q8B`
+
+Result:
+
+- status: `completed`
+- perplexity: `11.7895`
+- memory: `6,155,487,107` bytes
+- prior bit bytes: `46,137,344`
+- second-stage rank bytes: `5,373,952`
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- `8B` hybrid second-stage repair improves over the `R3_Q8B` baseline and the rank-only point `G2R02_Q8B`
+- but it still does not beat the bits-only point `G2B02_Q8B` (`11.7823`)
+- so, under the current GPTQ action spaces, `8B` still prefers bits as the stronger policy
+
+### Run G2B02CB128_Q17B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `targeted_mixed_precision`
+- Base method: `gptq`
+- Action space: structural column-block bit upgrades, `128` columns per block
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_column_bits_manifest.json`
+- Metrics dir: `results/modal/qwen3_1p7b_gptq_transfer/G2B02CB128_Q17B`
+
+Result:
+
+- status: `completed`
+- perplexity: `15.9171`
+- memory: `1,370,468,649` bytes
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- this was the first GPTQ bits pilot aligned directly to column-grouped quantization structure
+- the run was valid and cheap on `A10G`
+- but it underperformed the `R3_Q17B` baseline and every stronger `1.7B` bits variant already on disk
+- so small column-block bit upgrades are not a promising next branch under the current scoring rule
+
+### Run G2R02CB128_Q17B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `targeted_svd_rank`
+- Base method: `gptq`
+- Action space: structural column-block rank repairs, `128` columns per block
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_column_rank_manifest.json`
+- Metrics dir: `results/modal/qwen3_1p7b_gptq_transfer/G2R02CB128_Q17B`
+
+Result:
+
+- status: `completed`
+- perplexity: `15.9004`
+- memory: `1,370,521,897` bytes
+- repair bytes: `13,553,664`
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- column-block rank is a better structural-rank fit than the earlier row-block rank pilot
+- but it still underperformed the original matrix-level rank point `G2R02_Q17B` (`15.8823`)
+- it also remained weaker than the stronger richer-bits point `G2B02RB128_Q17B` (`15.8970`)
+- so the `1.7B` evidence now argues against spending more on small blockwise rank variants
+
+### Run G2R02GRP_Q17B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `targeted_svd_rank`
+- Base method: `gptq`
+- Action space: matrix-level rank repairs with a family-aware grouped allocator
+- Allocator: `greedy_family_round_robin` with two balanced family rounds
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_grouped_rank_manifest.json`
+- Metrics dir: `results/modal/qwen3_1p7b_gptq_transfer/G2R02GRP_Q17B`
+
+Result:
+
+- status: `completed`
+- perplexity: `15.9224`
+- memory: `1,360,965,929` bytes
+- repair bytes: `3,997,696`
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- the grouped-rank allocator successfully spread the early budget across the main candidate families
+- but the result was clearly worse than the original matrix-level rank point `G2R02_Q17B` (`15.8823`)
+- this is a stronger negative result than the small blockwise pilots, because it changed the allocation policy itself rather than only the target shape
+- so the next rank branch should not be another simple balancing heuristic on the same action set
+
+### Run H2R02M_Q17B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `hybrid_second_stage`
+- Base method: `gptq`
+- Hybrid base: `G2B02_Q17B`
+- Extra budget slice: `+1.0%` of `R3_Q17B`
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_matrix_hybrid_manifest.json`
+- Metrics dir: `results/modal/qwen3_1p7b_gptq_transfer/H2R02M_Q17B`
+
+Result:
+
+- status: `completed`
+- perplexity: `15.8962`
+- memory: `1,368,305,961` bytes
+- prior bit bytes: `7,340,032`
+- second-stage rank bytes: `3,997,696`
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- this run removed the earlier granularity confound by starting from the matrix-level bits policy
+- hybrid improved over the first bits-only point `G2B02_Q17B`
+- but it still did not beat `G2B03_Q17B` or `G2R02_Q17B`
+- so the `1.7B` matrix-policy comparison is now clean:
+  - rank-only best
+  - bits-only second
+  - hybrid third
+
+### Run G2B03_Q8B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `targeted_mixed_precision`
+- Base method: `gptq`
+- Budget: `+2.0%` of `R3_Q8B`
+- Execution path: `Modal`
+- GPU: `A100-80GB`
+- Manifest: `configs/scaleup_qwen3_8b_gptq/qwen3_8b_gptq_transfer_2pct_manifest.json`
+- Metrics dir: `results/modal/qwen3_8b_gptq_transfer/G2B03_Q8B`
+
+Result:
+
+- status: `completed`
+- perplexity: `11.8024`
+- memory: `6,175,278,979` bytes
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- this was the missing equal-budget bits-only comparator for the `8B` hybrid result
+- adding more bits beyond the first `+1.0%` slice made the result worse, not better
+- so the best bits-only `8B` GPTQ point remains `G2B02_Q8B`
+
+### Run G2R03_Q8B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-8B-Base`
+- Method: `targeted_svd_rank`
+- Base method: `gptq`
+- Budget: `+2.0%` of `R3_Q8B`
+- Execution path: `Modal`
+- GPU: `A100-80GB`
+- Manifest: `configs/scaleup_qwen3_8b_gptq/qwen3_8b_gptq_transfer_2pct_manifest.json`
+- Metrics dir: `results/modal/qwen3_8b_gptq_transfer/G2R03_Q8B`
+
+Result:
+
+- status: `completed`
+- perplexity: `11.7962`
+- memory: `6,109,349,763` bytes
+- repair bytes: `5,373,952`
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- this was the missing equal-budget rank-only comparator for the `8B` hybrid result
+- it matched the earlier `G2R02_Q8B` result, which shows the current `8B` rank action space is saturated by `+1.0%`
+- the final `8B` policy ordering is now:
+  - bits-only best
+  - hybrid second
+  - rank-only third
+
+### Run MB1_Q17B
+
+- Date: 2026-03-14
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `targeted_mixed_precision`
+- Base method: `gptq`
+- Branch: `multi-bit bits-policy`
+- Candidate bit widths: `5/6/8`
+- Budget: `+1.0%` of `R3_Q17B`
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_multibit_manifest.json`
+- Metrics dir: `results/modal/qwen3_1p7b_gptq_multibit/MB1_Q17B`
+
+Result:
+
+- status: `completed`
+- perplexity: `15.9097`
+- memory: `1,366,667,561` bytes
+- validation: finite logits and finite loss
+
+Interpretation:
+
+- this was the first and only justified run of the bounded multi-bit bits-policy branch
+- the allocator selected a wide set of cheap `4->5` upgrades rather than `4->6` or `4->8`
+- even so, it failed to beat the current best bits point `G2B02_Q17B` (`15.8993`)
+- it also remained clearly below the current best rank point `G2R02_Q17B` (`15.8823`)
+- this triggers the endgame stop rule:
+  - do not run `MB2_Q17B`
+  - do not continue to `8B`
+  - treat the GPTQ multi-bit branch as tested and stopped at `1.7B`

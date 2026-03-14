@@ -1,0 +1,7 @@
+{
+  "phase": "qwen3_1p7b_gptq_transfer",
+  "description": "Richer GPTQ bits-action-space pilots for Qwen/Qwen3-1.7B-Base.",
+  "runs": [
+    "configs/scaleup_1p7b_gptq/g2b02_rowblock256_qwen3_1p7b_gptq_bits_activation_1p0pct.json"
+  ]
+}

@@ -13,6 +13,7 @@
     "name": "targeted_mixed_precision",
     "base_run_id": "R3_Q17B",
     "base_method": "gptq",
+    "implementation": "transformers_gptq_config",
     "base_bit_width": 4,
     "group_size": 128,
     "symmetric": true,
@@ -21,7 +22,13 @@
     "proxy_family": "activation",
     "candidate_pool_path": "configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_top12_candidate_pool.json",
     "budget_percent_of_base": 1.0,
-    "budget_reference_metric": "memory_total_bytes"
+    "budget_reference_metric": "memory_total_bytes",
+    "desc_act": true,
+    "act_group_aware": false,
+    "true_sequential": true,
+    "batch_size": 1,
+    "validate_outputs": true,
+    "non_finite_check_batches": 1
   },
   "calibration": {
     "dataset": "wikitext",

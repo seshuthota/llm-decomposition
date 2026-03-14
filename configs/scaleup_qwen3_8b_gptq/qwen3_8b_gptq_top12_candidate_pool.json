@@ -1,0 +1,55 @@
+{
+  "pool_name": "qwen3_8b_gptq_top12_candidate_pool",
+  "description": "Top-12 candidate pool built from R3_Q8B activation-space damage, plus shared metadata for targeted bits and targeted rank runs.",
+  "base_run_id": "R3_Q8B",
+  "source_layer_errors_path": "results/modal/qwen3_8b_gptq_baselines/R3_Q8B/layer_errors.json",
+  "selection_rule": "top_12_by_activation_relative_l2",
+  "model_name": "Qwen/Qwen3-8B-Base",
+  "quantizer": "GPTQ",
+  "bit_width": 4,
+  "group_size": 128,
+  "symmetric": true,
+  "factor_dtype_bytes": 2,
+  "candidate_layers": [
+    "model.layers.2.mlp.down_proj",
+    "model.layers.24.self_attn.v_proj",
+    "model.layers.1.mlp.down_proj",
+    "model.layers.23.self_attn.v_proj",
+    "model.layers.29.self_attn.v_proj",
+    "model.layers.32.self_attn.v_proj",
+    "model.layers.9.self_attn.k_proj",
+    "model.layers.34.self_attn.v_proj",
+    "model.layers.11.self_attn.k_proj",
+    "model.layers.30.self_attn.v_proj",
+    "model.layers.19.self_attn.k_proj",
+    "model.layers.33.self_attn.v_proj"
+  ],
+  "control_layers": [],
+  "budget_schedule_percent_of_r2": [
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "bit_actions": {
+    "target_granularity": "matrix",
+    "candidate_bit_widths": [
+      8
+    ],
+    "future_candidate_bit_widths": [
+      5,
+      6
+    ]
+  },
+  "rank_actions": {
+    "target_granularity": "matrix",
+    "candidate_ranks": [
+      4,
+      8,
+      16,
+      32
+    ]
+  }
+}

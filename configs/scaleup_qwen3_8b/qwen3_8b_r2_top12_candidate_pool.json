@@ -1,0 +1,55 @@
+{
+  "pool_name": "qwen3_8b_r2_top12_candidate_pool",
+  "description": "Top-12 candidate pool built from R2_Q8B activation-space damage, plus shared metadata for targeted bits and targeted rank runs.",
+  "base_run_id": "R2_Q8B",
+  "source_layer_errors_path": "results/modal/qwen3_8b_baselines/R2_Q8B/layer_errors.json",
+  "selection_rule": "top_12_by_activation_relative_l2",
+  "model_name": "Qwen/Qwen3-8B-Base",
+  "quantizer": "RTN",
+  "bit_width": 4,
+  "group_size": 128,
+  "symmetric": true,
+  "factor_dtype_bytes": 2,
+  "candidate_layers": [
+    "model.layers.21.self_attn.o_proj",
+    "model.layers.20.self_attn.o_proj",
+    "model.layers.21.mlp.down_proj",
+    "model.layers.18.self_attn.o_proj",
+    "model.layers.20.mlp.down_proj",
+    "model.layers.22.self_attn.o_proj",
+    "model.layers.17.mlp.down_proj",
+    "model.layers.26.self_attn.o_proj",
+    "model.layers.18.mlp.down_proj",
+    "model.layers.19.mlp.down_proj",
+    "model.layers.16.self_attn.o_proj",
+    "model.layers.31.self_attn.o_proj"
+  ],
+  "control_layers": [],
+  "budget_schedule_percent_of_r2": [
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "bit_actions": {
+    "target_granularity": "matrix",
+    "candidate_bit_widths": [
+      8
+    ],
+    "future_candidate_bit_widths": [
+      5,
+      6
+    ]
+  },
+  "rank_actions": {
+    "target_granularity": "matrix",
+    "candidate_ranks": [
+      4,
+      8,
+      16,
+      32
+    ]
+  }
+}

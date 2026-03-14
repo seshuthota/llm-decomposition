@@ -1,0 +1,37 @@
+[R2_S3B] loading full-precision model
+[R2_S3B] quantizing model with RTN 4-bit
+[quantization] processed 1/253 linear layers (latest=model.layers.0.self_attn.q_proj, bits=4)
+[quantization] processed 10/253 linear layers (latest=model.layers.1.self_attn.v_proj, bits=4)
+[quantization] processed 20/253 linear layers (latest=model.layers.2.mlp.up_proj, bits=4)
+[quantization] processed 30/253 linear layers (latest=model.layers.4.self_attn.k_proj, bits=4)
+[quantization] processed 40/253 linear layers (latest=model.layers.5.mlp.gate_proj, bits=4)
+[quantization] processed 50/253 linear layers (latest=model.layers.7.self_attn.q_proj, bits=4)
+[quantization] processed 60/253 linear layers (latest=model.layers.8.self_attn.o_proj, bits=4)
+[quantization] processed 70/253 linear layers (latest=model.layers.9.mlp.down_proj, bits=4)
+[quantization] processed 80/253 linear layers (latest=model.layers.11.self_attn.v_proj, bits=4)
+[quantization] processed 90/253 linear layers (latest=model.layers.12.mlp.up_proj, bits=4)
+[quantization] processed 100/253 linear layers (latest=model.layers.14.self_attn.k_proj, bits=4)
+[quantization] processed 110/253 linear layers (latest=model.layers.15.mlp.gate_proj, bits=4)
+[quantization] processed 120/253 linear layers (latest=model.layers.17.self_attn.q_proj, bits=4)
+[quantization] processed 130/253 linear layers (latest=model.layers.18.self_attn.o_proj, bits=4)
+[quantization] processed 140/253 linear layers (latest=model.layers.19.mlp.down_proj, bits=4)
+[quantization] processed 150/253 linear layers (latest=model.layers.21.self_attn.v_proj, bits=4)
+[quantization] processed 160/253 linear layers (latest=model.layers.22.mlp.up_proj, bits=4)
+[quantization] processed 170/253 linear layers (latest=model.layers.24.self_attn.k_proj, bits=4)
+[quantization] processed 180/253 linear layers (latest=model.layers.25.mlp.gate_proj, bits=4)
+[quantization] processed 190/253 linear layers (latest=model.layers.27.self_attn.q_proj, bits=4)
+[quantization] processed 200/253 linear layers (latest=model.layers.28.self_attn.o_proj, bits=4)
+[quantization] processed 210/253 linear layers (latest=model.layers.29.mlp.down_proj, bits=4)
+[quantization] processed 220/253 linear layers (latest=model.layers.31.self_attn.v_proj, bits=4)
+[quantization] processed 230/253 linear layers (latest=model.layers.32.mlp.up_proj, bits=4)
+[quantization] processed 240/253 linear layers (latest=model.layers.34.self_attn.k_proj, bits=4)
+[quantization] processed 250/253 linear layers (latest=model.layers.35.mlp.gate_proj, bits=4)
+[quantization] processed 253/253 linear layers (latest=lm_head, bits=4)
+[R2_S3B] loading evaluation split
+[R2_S3B] evaluating quantized model on 569 sequences
+[R2_S3B] profiling layerwise errors
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/326 [00:00<?, ?it/s]Loading weights:   3%|3         | 11/326 [00:00<00:24, 12.75it/s]Loading weights:   8%|7         | 25/326 [00:00<00:09, 30.22it/s]Loading weights:  10%|#         | 33/326 [00:01<00:08, 35.25it/s]Loading weights:  13%|#2        | 42/326 [00:01<00:06, 43.80it/s]Loading weights:  16%|#6        | 53/326 [00:01<00:04, 55.97it/s]Loading weights:  19%|#9        | 62/326 [00:01<00:04, 63.21it/s]Loading weights:  22%|##2       | 72/326 [00:01<00:03, 70.69it/s]Loading weights:  25%|##5       | 83/326 [00:01<00:03, 78.13it/s]Loading weights:  29%|##9       | 95/326 [00:01<00:02, 84.65it/s]Loading weights:  32%|###2      | 105/326 [00:01<00:02, 85.63it/s]Loading weights: 100%|##########| 326/326 [00:01<00:00, 166.21it/s]
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]Generating test split: 100%|##########| 4358/4358 [00:00<00:00, 324287.28 examples/s]
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s]Generating train split: 100%|##########| 36718/36718 [00:00<00:00, 924536.13 examples/s]
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]Generating validation split: 100%|##########| 3760/3760 [00:00<00:00, 588366.78 examples/s]

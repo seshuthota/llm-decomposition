@@ -1,0 +1,12 @@
+{
+  "description": "Baseline bring-up for HuggingFaceTB/SmolLM3-3B-Base before Phase 3 matched allocator runs.",
+  "phase": "smollm3_3b_baselines",
+  "prepared_runs": [
+    {
+      "bit_width": 4,
+      "method": "rtn",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/smollm3_3b/R2",
+      "run_id": "R2_S3B"
+    }
+  ]
+}

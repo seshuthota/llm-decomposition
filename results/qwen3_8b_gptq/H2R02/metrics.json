@@ -1,0 +1,10 @@
+{
+  "bit_width": null,
+  "latency_ms_per_token": null,
+  "memory_total_bytes": null,
+  "method": "hybrid_second_stage",
+  "model_name": "Qwen/Qwen3-8B-Base",
+  "perplexity": null,
+  "run_id": "H2R02_Q8B",
+  "status": "pending"
+}

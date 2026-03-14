@@ -121,3 +121,18 @@ My recommendation:
 - keep the current local result as the completed RTN Phase 2 conclusion
 - next try the same framework on the larger Qwen model if local resources allow
 - otherwise move to GPTQ on the stronger machine because quantizer dependence is now the most important unresolved question
+
+## Cross-Check With Later Scale-Up Work
+
+Phase 2 should now be read together with the completed `Qwen/Qwen3-1.7B-Base` transfer study.
+
+That later study showed:
+
+- the local `0.6B` RTN Phase 2 result favored targeted rank
+- the larger `1.7B` RTN transfer result favored targeted bits
+
+So the correct closeout reading for Phase 2 is:
+
+- the local Phase 2 result is valid
+- but it is not universal
+- it is one regime point in a broader scale-dependent map

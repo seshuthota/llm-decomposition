@@ -11,15 +11,18 @@
   },
   "method": {
     "name": "gptq",
+    "implementation": "transformers_gptq_config",
     "quantizer": "GPTQ",
     "bit_width": 4,
     "group_size": 128,
     "symmetric": true,
     "damp_percent": 0.1,
-    "desc_act": false,
-    "act_group_aware": true,
+    "desc_act": true,
+    "act_group_aware": false,
     "true_sequential": true,
-    "batch_size": 1
+    "batch_size": 1,
+    "validate_outputs": true,
+    "non_finite_check_batches": 1
   },
   "calibration": {
     "dataset": "wikitext",

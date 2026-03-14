@@ -1,0 +1,10 @@
+{
+  "phase": "smollm3_3b_transfer",
+  "description": "Matched Phase 3 RTN transfer runs for HuggingFaceTB/SmolLM3-3B-Base after the RTN baseline and candidate pool are available.",
+  "runs": [
+    "configs/scaleup_smollm3_3b/p3b02_smollm3_3b_bits_activation_1p0pct.json",
+    "configs/scaleup_smollm3_3b/p3r02_smollm3_3b_rank_activation_1p0pct.json",
+    "configs/scaleup_smollm3_3b/p3b03_smollm3_3b_bits_activation_2p0pct.json",
+    "configs/scaleup_smollm3_3b/p3r03_smollm3_3b_rank_activation_2p0pct.json"
+  ]
+}

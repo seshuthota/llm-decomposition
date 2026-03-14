@@ -1,14 +1,14 @@
 {
   "bit_width": 4,
   "device": "cuda",
-  "dtype": "bfloat16",
+  "dtype": "float16",
   "evaluated_tokens": 300979.0,
-  "latency_ms_per_token": 0.18431407655019505,
-  "memory_metadata_bytes": 4861952,
-  "memory_total_bytes": 1357024282,
+  "latency_ms_per_token": 0.13765844851634038,
+  "memory_metadata_bytes": 26882048,
+  "memory_total_bytes": 1356968233,
   "method": "gptq",
   "model_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/qwen3-1.7b-base",
-  "perplexity": 16103625.670221116,
+  "perplexity": 15.913735473118416,
   "run_id": "R3_Q17B",
   "status": "completed"
 }

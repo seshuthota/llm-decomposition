@@ -1,0 +1,12 @@
+{
+  "description": "Qwen/Qwen3-1.7B-Base GPTQ matrix-level hybrid policy comparison.",
+  "phase": "qwen3_1p7b_gptq_transfer",
+  "prepared_runs": [
+    {
+      "bit_width": null,
+      "method": "hybrid_second_stage",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/qwen3_1p7b_gptq/H2R02M",
+      "run_id": "H2R02M_Q17B"
+    }
+  ]
+}

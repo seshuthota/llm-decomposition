@@ -131,13 +131,23 @@ def evaluate_perplexity(
             inputs = sequence.unsqueeze(0).to(device)
             start = time.perf_counter()
             outputs = model(input_ids=inputs, labels=inputs)
+            logits = outputs.logits.detach()
+            loss_tensor = outputs.loss.detach()
+            if not torch.isfinite(loss_tensor).all().item():
+                raise RuntimeError(
+                    f"Non-finite loss detected during evaluation at batch {index}."
+                )
+            if not torch.isfinite(logits).all().item():
+                raise RuntimeError(
+                    f"Non-finite logits detected during evaluation at batch {index}."
+                )
             if device.type == "cuda":
                 torch.cuda.synchronize(device)
             end = time.perf_counter()
             if index > 0:
                 durations.append(end - start)
 
-            loss = float(outputs.loss.detach().cpu())
+            loss = float(loss_tensor.cpu())
             token_count = max(inputs.numel() - 1, 1)
             total_nll += loss * token_count
             total_tokens += token_count
@@ -154,6 +164,56 @@ def evaluate_perplexity(
         "perplexity": perplexity,
         "latency_ms_per_token": latency_ms_per_token,
         "evaluated_tokens": float(total_eval_tokens),
+    }
+
+
+def validate_finite_outputs(
+    model,
+    sequences: Iterable[torch.Tensor],
+    device: torch.device,
+    max_batches: int = 1,
+) -> dict[str, object]:
+    checked_batches = 0
+    batch_summaries: list[dict[str, object]] = []
+
+    with torch.no_grad():
+        for sequence in sequences:
+            if checked_batches >= max_batches:
+                break
+            inputs = sequence.unsqueeze(0).to(device)
+            outputs = model(input_ids=inputs, labels=inputs)
+            logits = outputs.logits.detach()
+            loss_tensor = outputs.loss.detach()
+
+            logits_finite = torch.isfinite(logits)
+            loss_finite = torch.isfinite(loss_tensor)
+            finite_logits = logits[logits_finite]
+
+            batch_summary = {
+                "batch_index": checked_batches,
+                "sequence_length": int(sequence.numel()),
+                "loss": float(loss_tensor.cpu()),
+                "loss_is_finite": bool(loss_finite.all().item()),
+                "logits_all_finite": bool(logits_finite.all().item()),
+                "finite_logit_count": int(logits_finite.sum().item()),
+                "total_logit_count": int(logits.numel()),
+                "finite_logit_min": float(finite_logits.min().cpu()) if finite_logits.numel() else None,
+                "finite_logit_max": float(finite_logits.max().cpu()) if finite_logits.numel() else None,
+            }
+            batch_summaries.append(batch_summary)
+            checked_batches += 1
+
+            if not batch_summary["loss_is_finite"] or not batch_summary["logits_all_finite"]:
+                return {
+                    "all_finite": False,
+                    "checked_batches": checked_batches,
+                    "batches": batch_summaries,
+                }
+
+    return {
+        "all_finite": True,
+        "checked_batches": checked_batches,
+        "batches": batch_summaries,
     }
 
 

@@ -1,0 +1,8 @@
+{
+  "phase": "qwen3_8b_gptq_transfer",
+  "description": "Qwen/Qwen3-8B-Base GPTQ +2.0% policy-comparison transfer points.",
+  "runs": [
+    "configs/scaleup_qwen3_8b_gptq/g2b03_qwen3_8b_gptq_bits_activation_2p0pct.json",
+    "configs/scaleup_qwen3_8b_gptq/g2r03_qwen3_8b_gptq_rank_activation_2p0pct.json"
+  ]
+}

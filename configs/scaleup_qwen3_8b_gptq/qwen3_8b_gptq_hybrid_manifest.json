@@ -1,0 +1,7 @@
+{
+  "phase": "qwen3_8b_gptq_transfer",
+  "description": "Qwen/Qwen3-8B-Base GPTQ hybrid second-stage validation on top of the current best bits point.",
+  "runs": [
+    "configs/scaleup_qwen3_8b_gptq/h2r02_qwen3_8b_gptq_hybrid_activation_1p0pct.json"
+  ]
+}

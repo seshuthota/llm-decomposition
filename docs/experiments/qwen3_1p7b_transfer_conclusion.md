@@ -18,6 +18,30 @@ The main result is:
 | P2B03_Q17B | targeted bits | `+2.0%` | 901787648 | 21.1505 |
 | P2R03_Q17B | targeted rank | `+2.0%` | 891564032 | 21.2971 |
 
+## Kaggle Reproduction Check
+
+The same `1.7B` RTN transfer pattern was later reproduced in a fresh Kaggle environment.
+
+Kaggle artifacts:
+
+- `llm-decomposition-results/results/qwen3_1p7b/P2B02/metrics.json`
+- `llm-decomposition-results/results/qwen3_1p7b/P2R02/metrics.json`
+- `llm-decomposition-results/results/qwen3_1p7b/P2B03/metrics.json`
+- `llm-decomposition-results/results/qwen3_1p7b/P2R03/metrics.json`
+
+Observed Kaggle values:
+
+- `P2B02_Q17B`: `21.2432`
+- `P2R02_Q17B`: `21.2982`
+- `P2B03_Q17B`: `21.1469`
+- `P2R03_Q17B`: `21.2982`
+
+Interpretation:
+
+- the Kaggle reruns confirm the same bits-over-rank ordering
+- small numeric differences are expected across environments
+- the main `1.7B` conclusion is therefore more robust than a single Modal-only run set
+
 ## What This Means
 
 ### 1. The `1.7B` result does not match the `0.6B` local result

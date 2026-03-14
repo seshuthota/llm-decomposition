@@ -5,5 +5,3 @@ huggingface_hub==1.6.0
 safetensors==0.5.2
 numpy
 optimum==2.1.0
-gptqmodel
-

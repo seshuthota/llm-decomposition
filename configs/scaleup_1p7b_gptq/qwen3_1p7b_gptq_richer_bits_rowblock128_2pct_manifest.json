@@ -1,0 +1,7 @@
+{
+  "phase": "qwen3_1p7b_gptq_transfer",
+  "description": "Qwen/Qwen3-1.7B-Base GPTQ richer-bits row-block 128 validation at +2.0% over the GPTQ baseline.",
+  "runs": [
+    "configs/scaleup_1p7b_gptq/g2b03_rowblock128_qwen3_1p7b_gptq_bits_activation_2p0pct.json"
+  ]
+}

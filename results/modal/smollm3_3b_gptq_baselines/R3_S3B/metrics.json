@@ -1,0 +1,14 @@
+{
+  "bit_width": 4,
+  "device": "cuda",
+  "dtype": "float16",
+  "evaluated_tokens": 290759.0,
+  "latency_ms_per_token": 0.1710847020350192,
+  "memory_metadata_bytes": 48046080,
+  "memory_total_bytes": 1990237781,
+  "method": "gptq",
+  "model_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/smollm3-3b-base",
+  "perplexity": 11.536600075046657,
+  "run_id": "R3_S3B",
+  "status": "completed"
+}

@@ -1,0 +1,68 @@
+{
+  "run_id": "G3B02_S3B",
+  "phase": "smollm3_3b_gptq_transfer",
+  "description": "SmolLM3-3B GPTQ-backed targeted mixed-precision allocator using activation-space sensitivity at +1.0% of R3_S3B memory.",
+  "model": {
+    "name": "HuggingFaceTB/SmolLM3-3B-Base",
+    "tokenizer_name": "HuggingFaceTB/SmolLM3-3B-Base",
+    "dtype_preference": [
+      "float16"
+    ]
+  },
+  "method": {
+    "name": "targeted_mixed_precision",
+    "base_run_id": "R3_S3B",
+    "base_method": "gptq",
+    "implementation": "transformers_gptq_config",
+    "base_bit_width": 4,
+    "group_size": 128,
+    "symmetric": true,
+    "target_granularity": "matrix",
+    "allocator": "greedy_activation",
+    "proxy_family": "activation",
+    "candidate_pool_path": "configs/scaleup_smollm3_3b_gptq/smollm3_3b_gptq_top12_candidate_pool.json",
+    "budget_percent_of_base": 1.0,
+    "budget_reference_metric": "memory_total_bytes",
+    "desc_act": true,
+    "act_group_aware": false,
+    "true_sequential": true,
+    "batch_size": 1,
+    "validate_outputs": true,
+    "non_finite_check_batches": 1
+  },
+  "calibration": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "train",
+    "num_sequences": 128,
+    "sequence_length": 512,
+    "sampling": "seeded_shuffle",
+    "seed": 42
+  },
+  "evaluation": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "test",
+    "sequence_length": 512,
+    "stride": 512,
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token",
+      "memory_total_bytes",
+      "allocation_actions"
+    ]
+  },
+  "profiling": {
+    "layerwise_weight_error": true,
+    "layerwise_activation_error": false,
+    "residual_svd_profile": false,
+    "profile_sequence_length": 128,
+    "profile_num_sequences": 8
+  },
+  "outputs": {
+    "results_dir": "results/smollm3_3b_gptq/G3B02",
+    "metrics_file": "metrics.json",
+    "layer_summary_file": "layer_errors.json",
+    "residual_profile_file": "residual_profiles.json"
+  }
+}

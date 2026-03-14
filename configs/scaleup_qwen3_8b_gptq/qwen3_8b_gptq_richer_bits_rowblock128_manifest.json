@@ -1,0 +1,7 @@
+{
+  "phase": "qwen3_8b_gptq_transfer",
+  "description": "Richer GPTQ bits-action-space pilot with 128-row blocks for Qwen/Qwen3-8B-Base.",
+  "runs": [
+    "configs/scaleup_qwen3_8b_gptq/g2b02_rowblock128_qwen3_8b_gptq_bits_activation_1p0pct.json"
+  ]
+}

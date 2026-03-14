@@ -1,0 +1,7 @@
+{
+  "phase": "smollm3_3b_gptq_baselines",
+  "description": "GPTQ baseline bring-up for HuggingFaceTB/SmolLM3-3B-Base before matched transfer runs.",
+  "runs": [
+    "configs/scaleup_smollm3_3b_gptq/r3_smollm3_3b_gptq_4bit.json"
+  ]
+}

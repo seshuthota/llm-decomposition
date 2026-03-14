@@ -36,12 +36,31 @@ image = (
         REPO_ROOT,
         remote_path=REMOTE_REPO_ROOT,
         copy=False,
-        ignore=[".git", ".venv", "__pycache__", ".mypy_cache", ".pytest_cache"],
+        ignore=[
+            ".git",
+            ".venv",
+            "__pycache__",
+            ".mypy_cache",
+            ".pytest_cache",
+            "llm-decomposition-results",
+            ".cache",
+        ],
     )
 )
 
 app = modal.App("llm-decomposition-experiments")
 model_volume = modal.Volume.from_name(DEFAULT_MODEL_VOLUME, create_if_missing=True)
+
+
+class _TeeBuffer(io.StringIO):
+    def __init__(self, mirror: io.TextIOBase) -> None:
+        super().__init__()
+        self._mirror = mirror
+
+    def write(self, s: str) -> int:
+        self._mirror.write(s)
+        self._mirror.flush()
+        return super().write(s)
 
 
 @app.function(
@@ -89,9 +108,10 @@ def run_config_remote(
     config.raw["outputs"]["results_dir"] = f"{results_prefix}/{phase}/{run_id}"
     prepared = prepare_run(repo_root, config)
 
-    stdout_buffer = io.StringIO()
+    stdout_buffer = _TeeBuffer(sys.__stdout__)
+    stderr_buffer = _TeeBuffer(sys.__stderr__)
     executor = ExperimentExecutor(repo_root)
-    with contextlib.redirect_stdout(stdout_buffer), contextlib.redirect_stderr(stdout_buffer):
+    with contextlib.redirect_stdout(stdout_buffer), contextlib.redirect_stderr(stderr_buffer):
         try:
             execution = executor.execute(config, dry_run=False)
             error = None
@@ -138,7 +158,7 @@ def run_config_remote(
         "model_source": model_subpath or config.model_name,
         "gpu": DEFAULT_GPU,
         "timeout": DEFAULT_TIMEOUT,
-        "stdout": stdout_buffer.getvalue(),
+        "stdout": stdout_buffer.getvalue() + stderr_buffer.getvalue(),
         "execution": execution_payload,
         "metrics": metrics_summary,
         "artifacts": artifact_files,

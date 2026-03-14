@@ -1,0 +1,12 @@
+{
+  "description": "Qwen/Qwen3-8B-Base GPTQ +2.0% policy-comparison transfer points.",
+  "phase": "qwen3_8b_gptq_transfer",
+  "prepared_runs": [
+    {
+      "bit_width": null,
+      "method": "targeted_mixed_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/qwen3_8b_gptq/G2B03",
+      "run_id": "G2B03_Q8B"
+    }
+  ]
+}

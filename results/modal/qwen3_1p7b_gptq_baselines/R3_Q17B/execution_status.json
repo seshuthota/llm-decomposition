@@ -4,9 +4,9 @@
   "message": "GPTQ quantization evaluation completed successfully.",
   "method": "gptq",
   "metrics_summary": {
-    "latency_ms_per_token": 0.18431407655019505,
-    "memory_total_bytes": 1357024282,
-    "perplexity": 16103625.670221116
+    "latency_ms_per_token": 0.13765844851634038,
+    "memory_total_bytes": 1356968233,
+    "perplexity": 15.913735473118416
   },
   "missing_dependencies": [],
   "model_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/qwen3-1.7b-base",

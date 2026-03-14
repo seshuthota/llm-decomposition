@@ -28,9 +28,9 @@ The required Phase 2 closure conditions are now satisfied:
 
 ## What Comes After Phase 2
 
-The next phase should be one of:
+The next phase should now be treated as:
 
-- scale the stabilized allocator logic to `Qwen/Qwen3-1.7B-Base`
-- or transfer the same framework to `GPTQ` on another machine
+- move from isolated regime conclusions to a broader Phase 3 regime map
+- continue GPTQ bring-up as one specific Phase 3 dependency, not as the whole project definition
 
 Do not keep adding local Phase 2 variants unless a new quantizer or larger-model result reopens the question.

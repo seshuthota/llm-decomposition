@@ -1,0 +1,10 @@
+{
+  "bit_width": 4,
+  "latency_ms_per_token": null,
+  "memory_total_bytes": null,
+  "method": "gptq",
+  "model_name": "HuggingFaceTB/SmolLM3-3B-Base",
+  "perplexity": null,
+  "run_id": "R3_S3B",
+  "status": "pending"
+}

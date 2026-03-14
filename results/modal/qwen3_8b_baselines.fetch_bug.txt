@@ -1,0 +1,30 @@
+[R2_Q8B] loading full-precision model
+[R2_Q8B] quantizing model with RTN 4-bit
+[quantization] processed 1/253 linear layers (latest=model.layers.0.self_attn.q_proj, bits=4)
+[quantization] processed 10/253 linear layers (latest=model.layers.1.self_attn.v_proj, bits=4)
+[quantization] processed 20/253 linear layers (latest=model.layers.2.mlp.up_proj, bits=4)
+[quantization] processed 30/253 linear layers (latest=model.layers.4.self_attn.k_proj, bits=4)
+[quantization] processed 40/253 linear layers (latest=model.layers.5.mlp.gate_proj, bits=4)
+[quantization] processed 50/253 linear layers (latest=model.layers.7.self_attn.q_proj, bits=4)
+[quantization] processed 60/253 linear layers (latest=model.layers.8.self_attn.o_proj, bits=4)
+[quantization] processed 70/253 linear layers (latest=model.layers.9.mlp.down_proj, bits=4)
+[quantization] processed 80/253 linear layers (latest=model.layers.11.self_attn.v_proj, bits=4)
+[quantization] processed 90/253 linear layers (latest=model.layers.12.mlp.up_proj, bits=4)
+[quantization] processed 100/253 linear layers (latest=model.layers.14.self_attn.k_proj, bits=4)
+[quantization] processed 110/253 linear layers (latest=model.layers.15.mlp.gate_proj, bits=4)
+[quantization] processed 120/253 linear layers (latest=model.layers.17.self_attn.q_proj, bits=4)
+[quantization] processed 130/253 linear layers (latest=model.layers.18.self_attn.o_proj, bits=4)
+[quantization] processed 140/253 linear layers (latest=model.layers.19.mlp.down_proj, bits=4)
+[quantization] processed 150/253 linear layers (latest=model.layers.21.self_attn.v_proj, bits=4)
+[quantization] processed 160/253 linear layers (latest=model.layers.22.mlp.up_proj, bits=4)
+[quantization] processed 170/253 linear layers (latest=model.layers.24.self_attn.k_proj, bits=4)
+[quantization] processed 180/253 linear layers (latest=model.layers.25.mlp.gate_proj, bits=4)
+[quantization] processed 190/253 linear layers (latest=model.layers.27.self_attn.q_proj, bits=4)
+[quantization] processed 200/253 linear layers (latest=model.layers.28.self_attn.o_proj, bits=4)
+[quantization] processed 210/253 linear layers (latest=model.layers.29.mlp.down_proj, bits=4)
+[quantization] processed 220/253 linear layers (latest=model.layers.31.self_attn.v_proj, bits=4)
+[quantization] processed 230/253 linear layers (latest=model.layers.32.mlp.up_proj, bits=4)
+[quantization] processed 240/253 linear layers (latest=model.layers.34.self_attn.k_proj, bits=4)
+[quantization] processed 250/253 linear layers (latest=model.layers.35.mlp.gate_proj, bits=4)
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:   1%|          | 3/399 [00:01<03:10,  2.08it/s]Loading weights:   1%|1         | 5/399 [00:01<01:49,  3.59it/s]Loading weights:   3%|2         | 10/399 [00:01<00:44,  8.68it/s]Loading weights:   3%|3         | 13/399 [00:01<00:37, 10.33it/s]Loading weights:   4%|4         | 16/399 [00:02<00:43,  8.79it/s]Loading weights:   5%|5         | 21/399 [00:02<00:28, 13.13it/s]Loading weights:   6%|6         | 24/399 [00:02<00:32, 11.48it/s]Loading weights:   7%|7         | 28/399 [00:02<00:24, 15.13it/s]Loading weights:   8%|8         | 33/399 [00:03<00:17, 20.44it/s]Loading weights:  10%|9         | 39/399 [00:03<00:13, 26.18it/s]Loading weights:  11%|#         | 43/399 [00:03<00:12, 28.68it/s]Loading weights:  13%|#3        | 52/399 [00:03<00:08, 40.80it/s]Loading weights:  15%|#4        | 58/399 [00:03<00:07, 42.94it/s]Loading weights:  17%|#6        | 67/399 [00:03<00:06, 53.16it/s]Loading weights:  18%|#8        | 73/399 [00:03<00:06, 53.79it/s]Loading weights:  21%|##1       | 85/399 [00:03<00:04, 67.36it/s]Loading weights:  23%|##3       | 93/399 [00:03<00:04, 66.59it/s]Loading weights:  25%|##5       | 100/399 [00:04<00:04, 67.41it/s]Loading weights:  27%|##6       | 107/399 [00:04<00:04, 59.17it/s]Loading weights:  29%|##8       | 114/399 [00:04<00:04, 57.60it/s]Loading weights:  31%|###       | 123/399 [00:04<00:04, 62.53it/s]Loading weights:  33%|###2      | 130/399 [00:04<00:04, 57.38it/s]Loading weights:  34%|###4      | 137/399 [00:04<00:04, 55.44it/s]Loading weights:  36%|###5      | 143/399 [00:04<00:05, 50.17it/s]Loading weights:  38%|###7      | 151/399 [00:05<00:04, 53.01it/s]Loading weights:  66%|######6   | 265/399 [00:05<00:00, 311.03it/s]Loading weights: 100%|##########| 399/399 [00:05<00:00, 77.78it/s] 

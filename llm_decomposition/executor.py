@@ -154,6 +154,19 @@ class ExperimentExecutor:
             write_json(execution_path, _result_payload(config, result, dry_run=False, metrics=metrics))
             return result
 
+        if config.method_name == "hybrid_second_stage":
+            from llm_decomposition.hf_backend import execute_hybrid_second_stage
+
+            metrics = execute_hybrid_second_stage(self.root, config)
+            result = ExecutionResult(
+                run_id=config.run_id,
+                status="completed",
+                message="Hybrid second-stage evaluation completed successfully.",
+                missing_dependencies=[],
+            )
+            write_json(execution_path, _result_payload(config, result, dry_run=False, metrics=metrics))
+            return result
+
         result = ExecutionResult(
             run_id=config.run_id,
             status="not_implemented",

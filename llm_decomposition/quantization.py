@@ -32,20 +32,41 @@ def quantize_model_mixed_precision(
     quantized_model = copy.deepcopy(model)
     layer_stats: dict[str, dict[str, Any]] = {}
     source_modules = dict(model.named_modules())
+    linear_layer_names = [
+        name
+        for name, module in quantized_model.named_modules()
+        if isinstance(module, nn.Linear)
+    ]
+    total_linear_layers = len(linear_layer_names)
+    progress_interval = 10 if total_linear_layers >= 10 else 1
+    processed_linear_layers = 0
 
     for name, module in quantized_model.named_modules():
         if not isinstance(module, nn.Linear):
             continue
         target_bit_width = layer_bit_overrides.get(name, default_bit_width)
-        original_weight = source_modules[name].weight.detach().to(torch.float32)
+        original_weight = source_modules[name].weight.detach().to(device="cpu", dtype=torch.float32)
         quantized_weight, stats = quantize_linear_weight(
             original_weight,
             bit_width=target_bit_width,
             group_size=group_size,
             symmetric=symmetric,
         )
-        module.weight.data.copy_(quantized_weight.to(module.weight.dtype))
+        module.weight.data.copy_(
+            quantized_weight.to(device=module.weight.device, dtype=module.weight.dtype)
+        )
         layer_stats[name] = stats
+        processed_linear_layers += 1
+        if (
+            processed_linear_layers == 1
+            or processed_linear_layers == total_linear_layers
+            or processed_linear_layers % progress_interval == 0
+        ):
+            print(
+                "[quantization] processed "
+                f"{processed_linear_layers}/{total_linear_layers} linear layers "
+                f"(latest={name}, bits={target_bit_width})"
+            )
 
     return quantized_model, layer_stats
 
@@ -67,16 +88,22 @@ def quantize_linear_weight(
     weight_sq_norm = float(weight.pow(2).sum().item())
     num_groups = 0
 
-    for row_index in range(rows):
-        row = weight[row_index]
-        chunks = torch.split(row, group_size)
-        quantized_chunks: list[torch.Tensor] = []
-        for chunk in chunks:
+    full_chunk_cols = (cols // group_size) * group_size
+    if full_chunk_cols > 0:
+        full_chunks = weight[:, :full_chunk_cols].reshape(rows, full_chunk_cols // group_size, group_size)
+        dequantized_full = _quantize_chunk_tensor(full_chunks, qmin=qmin, qmax=qmax, symmetric=symmetric)
+        q_weight[:, :full_chunk_cols] = dequantized_full.reshape(rows, full_chunk_cols)
+        original_sq_error += float((full_chunks - dequantized_full).pow(2).sum().item())
+        num_groups += rows * (full_chunk_cols // group_size)
+
+    if full_chunk_cols < cols:
+        tail = weight[:, full_chunk_cols:]
+        for row_index in range(rows):
+            chunk = tail[row_index]
             dequantized = _quantize_chunk(chunk, qmin=qmin, qmax=qmax, symmetric=symmetric)
-            quantized_chunks.append(dequantized)
+            q_weight[row_index, full_chunk_cols:] = dequantized
             original_sq_error += float((chunk - dequantized).pow(2).sum().item())
             num_groups += 1
-        q_weight[row_index] = torch.cat(quantized_chunks, dim=0)
 
     metadata_bytes = num_groups * 2
     if not symmetric:
@@ -101,6 +128,31 @@ def quantize_linear_weight(
         "relative_fro_error": (original_sq_error / max(weight_sq_norm, 1e-12)) ** 0.5,
     }
     return q_weight, stats
+
+
+def _quantize_chunk_tensor(
+    chunks: torch.Tensor,
+    qmin: int,
+    qmax: int,
+    symmetric: bool,
+) -> torch.Tensor:
+    if symmetric:
+        max_abs = chunks.abs().amax(dim=-1, keepdim=True)
+        scale = max_abs / max(qmax, 1)
+        safe_scale = torch.where(scale == 0, torch.ones_like(scale), scale)
+        q = torch.clamp(torch.round(chunks / safe_scale), qmin, qmax)
+        dequantized = q * safe_scale
+        return torch.where(max_abs == 0, torch.zeros_like(dequantized), dequantized)
+
+    min_value = chunks.amin(dim=-1, keepdim=True)
+    max_value = chunks.amax(dim=-1, keepdim=True)
+    equal_mask = max_value == min_value
+    scale = (max_value - min_value) / max(qmax - qmin, 1)
+    safe_scale = torch.where(equal_mask, torch.ones_like(scale), scale)
+    zero_point = torch.round(qmin - min_value / safe_scale)
+    q = torch.clamp(torch.round(chunks / safe_scale + zero_point), qmin, qmax)
+    dequantized = (q - zero_point) * safe_scale
+    return torch.where(equal_mask, min_value.expand_as(dequantized), dequantized)
 
 
 def apply_uniform_svd_repair(

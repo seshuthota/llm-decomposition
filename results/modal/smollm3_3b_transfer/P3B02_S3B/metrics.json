@@ -1,0 +1,73 @@
+{
+  "allocator": "greedy_activation",
+  "bit_width": 4,
+  "candidate_pool_path": "configs/scaleup_smollm3_3b/smollm3_3b_r2_top12_candidate_pool.json",
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "evaluated_tokens": 290759.0,
+  "extra_budget_bytes": 15855206,
+  "latency_ms_per_token": 0.1298223322132768,
+  "memory_metadata_bytes": 48046080,
+  "memory_total_bytes": 1591812096,
+  "method": "targeted_mixed_precision",
+  "model_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/smollm3-3b-base",
+  "perplexity": 47.4955338117833,
+  "proxy_family": "activation",
+  "run_id": "P3B02_S3B",
+  "selected_actions": [
+    {
+      "action_id": "bit_model_layers_7_self_attn_o_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 2097152,
+      "cumulative_budget_bytes": 2097152,
+      "predicted_gain_per_byte": 2.9343478941165654e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.6153773554842343,
+      "selected": true,
+      "selection_order": 1,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.7.self_attn.o_proj"
+    },
+    {
+      "action_id": "bit_model_layers_3_self_attn_o_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 2097152,
+      "cumulative_budget_bytes": 4194304,
+      "predicted_gain_per_byte": 2.6296086465164964e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.5514689032259363,
+      "selected": true,
+      "selection_order": 2,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.3.self_attn.o_proj"
+    },
+    {
+      "action_id": "bit_model_layers_0_self_attn_o_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 2097152,
+      "cumulative_budget_bytes": 6291456,
+      "predicted_gain_per_byte": 7.583562166005913e-08,
+      "proxy_family": "activation",
+      "proxy_score": 0.15903882563563632,
+      "selected": true,
+      "selection_order": 3,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.0.self_attn.o_proj"
+    }
+  ],
+  "status": "completed",
+  "upgraded_layers": [
+    "model.layers.0.self_attn.o_proj",
+    "model.layers.3.self_attn.o_proj",
+    "model.layers.7.self_attn.o_proj"
+  ]
+}

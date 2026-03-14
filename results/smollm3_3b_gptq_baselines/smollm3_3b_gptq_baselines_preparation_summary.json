@@ -1,0 +1,12 @@
+{
+  "description": "GPTQ baseline bring-up for HuggingFaceTB/SmolLM3-3B-Base before matched transfer runs.",
+  "phase": "smollm3_3b_gptq_baselines",
+  "prepared_runs": [
+    {
+      "bit_width": 4,
+      "method": "gptq",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/smollm3_3b_gptq/R3",
+      "run_id": "R3_S3B"
+    }
+  ]
+}

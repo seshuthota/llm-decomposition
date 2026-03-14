@@ -38,6 +38,7 @@ def measure_activation_error(
     sequences: list[torch.Tensor],
     device: torch.device,
     target_layers: list[str] | None = None,
+    sequential_offload: bool = False,
 ) -> dict[str, dict[str, float]]:
     fp_modules = {
         name: module for name, module in fp_model.named_modules() if isinstance(module, nn.Linear)
@@ -65,11 +66,22 @@ def measure_activation_error(
     try:
         with torch.no_grad():
             for sequence in sequences:
-                inputs = sequence.unsqueeze(0).to(device)
                 fp_outputs.clear()
                 quant_outputs.clear()
-                fp_model(input_ids=inputs)
-                quantized_model(input_ids=inputs)
+                inputs = sequence.unsqueeze(0).to(device)
+                if sequential_offload:
+                    fp_model.to(device)
+                    fp_model(input_ids=inputs)
+                    fp_model.to("cpu")
+                    _clear_cuda_cache(device)
+
+                    quantized_model.to(device)
+                    quantized_model(input_ids=inputs)
+                    quantized_model.to("cpu")
+                    _clear_cuda_cache(device)
+                else:
+                    fp_model(input_ids=inputs)
+                    quantized_model(input_ids=inputs)
                 for name, stats in accumulators.items():
                     if name not in fp_outputs or name not in quant_outputs:
                         continue
@@ -128,13 +140,11 @@ def profile_residual_svd(
         quant_module = quant_modules.get(layer_name)
         if fp_module is None or quant_module is None:
             continue
-        quant_weight = _extract_module_weight(quant_module)
+        fp_weight = fp_module.weight.detach().to(torch.float32)
+        quant_weight = extract_aligned_module_weight(quant_module, fp_weight)
         if quant_weight is None:
             continue
-        residual = (
-            fp_module.weight.detach().to(torch.float32)
-            - quant_weight
-        )
+        residual = fp_weight - quant_weight
         singular_values = torch.linalg.svdvals(residual)
         energy = singular_values.pow(2)
         total_energy = float(energy.sum().item())
@@ -164,11 +174,28 @@ def _capture_output_hook(store: dict[str, torch.Tensor], name: str):
     return hook
 
 
-def _extract_module_weight(module: nn.Module) -> torch.Tensor | None:
-    weight = getattr(module, "weight", None)
-    if torch.is_tensor(weight):
-        return weight.detach().to(torch.float32)
+def _clear_cuda_cache(device: torch.device) -> None:
+    if device.type == "cuda":
+        torch.cuda.empty_cache()
 
+
+def extract_aligned_module_weight(
+    module: nn.Module,
+    reference_weight: torch.Tensor | None = None,
+) -> torch.Tensor | None:
+    weight = _extract_module_weight(module)
+    if weight is None:
+        return None
+    if reference_weight is None:
+        return weight
+    if tuple(weight.shape) == tuple(reference_weight.shape):
+        return weight
+    if weight.ndim == 2 and tuple(weight.t().shape) == tuple(reference_weight.shape):
+        return weight.t().contiguous()
+    return None
+
+
+def _extract_module_weight(module: nn.Module) -> torch.Tensor | None:
     for attr_name in ("dequantize_weight", "dequantize", "unpack"):
         method = getattr(module, attr_name, None)
         if not callable(method):
@@ -181,4 +208,8 @@ def _extract_module_weight(module: nn.Module) -> torch.Tensor | None:
             continue
         if torch.is_tensor(candidate):
             return candidate.detach().to(torch.float32)
+
+    weight = getattr(module, "weight", None)
+    if torch.is_tensor(weight):
+        return weight.detach().to(torch.float32)
     return None

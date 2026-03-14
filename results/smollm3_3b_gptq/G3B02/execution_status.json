@@ -1,0 +1,14 @@
+{
+  "bit_width": null,
+  "dry_run": true,
+  "message": "Execution backend is not ready because required Python modules are missing for method 'targeted_mixed_precision'.",
+  "method": "targeted_mixed_precision",
+  "missing_dependencies": [
+    "torch",
+    "transformers",
+    "datasets"
+  ],
+  "model_name": "HuggingFaceTB/SmolLM3-3B-Base",
+  "run_id": "G3B02_S3B",
+  "status": "blocked"
+}

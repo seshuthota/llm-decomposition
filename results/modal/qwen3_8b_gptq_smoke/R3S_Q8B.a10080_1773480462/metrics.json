@@ -1,0 +1,10 @@
+{
+  "bit_width": 4,
+  "latency_ms_per_token": null,
+  "memory_total_bytes": null,
+  "method": "gptq",
+  "model_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/qwen3-8b-base",
+  "perplexity": null,
+  "run_id": "R3S_Q8B",
+  "status": "pending"
+}

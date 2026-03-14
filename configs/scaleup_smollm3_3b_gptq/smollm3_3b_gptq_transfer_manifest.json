@@ -1,0 +1,10 @@
+{
+  "phase": "smollm3_3b_gptq_transfer",
+  "description": "Matched GPTQ transfer runs for HuggingFaceTB/SmolLM3-3B-Base after the GPTQ baseline and candidate pool are available.",
+  "runs": [
+    "configs/scaleup_smollm3_3b_gptq/g3b02_smollm3_3b_gptq_bits_activation_1p0pct.json",
+    "configs/scaleup_smollm3_3b_gptq/g3r02_smollm3_3b_gptq_rank_activation_1p0pct.json",
+    "configs/scaleup_smollm3_3b_gptq/g3b03_smollm3_3b_gptq_bits_activation_2p0pct.json",
+    "configs/scaleup_smollm3_3b_gptq/g3r03_smollm3_3b_gptq_rank_activation_2p0pct.json"
+  ]
+}

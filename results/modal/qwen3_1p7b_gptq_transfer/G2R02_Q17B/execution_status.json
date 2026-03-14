@@ -1,0 +1,15 @@
+{
+  "bit_width": null,
+  "dry_run": false,
+  "message": "Phase-2 targeted SVD rank evaluation completed successfully.",
+  "method": "targeted_svd_rank",
+  "metrics_summary": {
+    "latency_ms_per_token": 0.12426506372869733,
+    "memory_total_bytes": 1360965929,
+    "perplexity": 15.8822943408655
+  },
+  "missing_dependencies": [],
+  "model_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/qwen3-1.7b-base",
+  "run_id": "G2R02_Q17B",
+  "status": "completed"
+}

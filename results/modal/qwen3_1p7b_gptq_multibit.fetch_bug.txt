@@ -1,0 +1,3 @@
+The `results/modal/qwen3_1p7b_gptq_multibit` path was previously occupied by a fetched text artifact instead of a directory.
+
+This file records the path conflict so the completed Modal result can be re-fetched into a proper directory layout.

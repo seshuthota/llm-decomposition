@@ -1,0 +1,8 @@
+{
+  "phase": "qwen3_8b_gptq_transfer",
+  "description": "Matched GPTQ transfer runs for Qwen/Qwen3-8B-Base after the GPTQ baseline and candidate pool are available.",
+  "runs": [
+    "configs/scaleup_qwen3_8b_gptq/g2b02_qwen3_8b_gptq_bits_activation_1p0pct.json",
+    "configs/scaleup_qwen3_8b_gptq/g2r02_qwen3_8b_gptq_rank_activation_1p0pct.json"
+  ]
+}

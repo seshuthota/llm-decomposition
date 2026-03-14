@@ -1,0 +1,30 @@
+{
+  "description": "Matched GPTQ transfer runs for HuggingFaceTB/SmolLM3-3B-Base after the GPTQ baseline and candidate pool are available.",
+  "phase": "smollm3_3b_gptq_transfer",
+  "prepared_runs": [
+    {
+      "bit_width": null,
+      "method": "targeted_mixed_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/smollm3_3b_gptq/G3B02",
+      "run_id": "G3B02_S3B"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_svd_rank",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/smollm3_3b_gptq/G3R02",
+      "run_id": "G3R02_S3B"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_mixed_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/smollm3_3b_gptq/G3B03",
+      "run_id": "G3B03_S3B"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_svd_rank",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/smollm3_3b_gptq/G3R03",
+      "run_id": "G3R03_S3B"
+    }
+  ]
+}

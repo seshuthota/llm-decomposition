@@ -1,0 +1,14 @@
+{
+  "bit_width": null,
+  "dry_run": true,
+  "message": "Execution backend is not ready because required Python modules are missing for method 'targeted_mixed_precision'.",
+  "method": "targeted_mixed_precision",
+  "missing_dependencies": [
+    "torch",
+    "transformers",
+    "datasets"
+  ],
+  "model_name": "Qwen/Qwen3-8B-Base",
+  "run_id": "G2B03_Q8B",
+  "status": "blocked"
+}

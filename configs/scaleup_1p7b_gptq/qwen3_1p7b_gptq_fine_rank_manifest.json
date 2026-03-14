@@ -1,0 +1,7 @@
+{
+  "phase": "qwen3_1p7b_gptq_transfer",
+  "description": "Finer-rank GPTQ pilot for Qwen/Qwen3-1.7B-Base.",
+  "runs": [
+    "configs/scaleup_1p7b_gptq/g2r02_fineranks_qwen3_1p7b_gptq_rank_activation_1p0pct.json"
+  ]
+}

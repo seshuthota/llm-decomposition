@@ -1,0 +1,16 @@
+{
+  "bit_width": 4,
+  "dry_run": true,
+  "message": "Execution backend is not ready because required Python modules are missing for method 'gptq'.",
+  "method": "gptq",
+  "missing_dependencies": [
+    "torch",
+    "transformers",
+    "datasets",
+    "optimum",
+    "gptqmodel"
+  ],
+  "model_name": "HuggingFaceTB/SmolLM3-3B-Base",
+  "run_id": "R3_S3B",
+  "status": "blocked"
+}

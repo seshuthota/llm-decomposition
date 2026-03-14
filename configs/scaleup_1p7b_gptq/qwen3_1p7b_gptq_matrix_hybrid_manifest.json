@@ -1,0 +1,7 @@
+{
+  "phase": "qwen3_1p7b_gptq_transfer",
+  "description": "Qwen/Qwen3-1.7B-Base GPTQ matrix-level hybrid policy comparison.",
+  "runs": [
+    "configs/scaleup_1p7b_gptq/h2r02_matrix_qwen3_1p7b_gptq_hybrid_activation_1p0pct.json"
+  ]
+}

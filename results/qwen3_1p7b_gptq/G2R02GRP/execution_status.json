@@ -1,0 +1,14 @@
+{
+  "bit_width": null,
+  "dry_run": true,
+  "message": "Execution backend is not ready because required Python modules are missing for method 'targeted_svd_rank'.",
+  "method": "targeted_svd_rank",
+  "missing_dependencies": [
+    "torch",
+    "transformers",
+    "datasets"
+  ],
+  "model_name": "Qwen/Qwen3-1.7B-Base",
+  "run_id": "G2R02GRP_Q17B",
+  "status": "blocked"
+}

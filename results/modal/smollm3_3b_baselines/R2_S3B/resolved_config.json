@@ -1,0 +1,63 @@
+{
+  "calibration": {
+    "dataset": "wikitext",
+    "num_sequences": 128,
+    "sampling": "seeded_shuffle",
+    "seed": 42,
+    "sequence_length": 512,
+    "split": "train",
+    "subset": "wikitext-2-raw-v1"
+  },
+  "description": "RTN 4-bit baseline for HuggingFaceTB/SmolLM3-3B-Base.",
+  "evaluation": {
+    "dataset": "wikitext",
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token",
+      "memory_total_bytes",
+      "layerwise_weight_error",
+      "layerwise_activation_error"
+    ],
+    "sequence_length": 512,
+    "split": "test",
+    "stride": 512,
+    "subset": "wikitext-2-raw-v1"
+  },
+  "method": {
+    "bit_width": 4,
+    "group_size": 128,
+    "name": "rtn",
+    "quantizer": "RTN",
+    "symmetric": true
+  },
+  "model": {
+    "dtype_preference": [
+      "bfloat16",
+      "float16"
+    ],
+    "name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/smollm3-3b-base",
+    "tokenizer_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/smollm3-3b-base"
+  },
+  "outputs": {
+    "layer_summary_file": "layer_errors.json",
+    "metrics_file": "metrics.json",
+    "residual_profile_file": "residual_profiles.json",
+    "results_dir": "/resultsvol/results/modal/smollm3_3b_baselines/R2_S3B"
+  },
+  "phase": "smollm3_3b_baselines",
+  "profiling": {
+    "candidate_ranks": [
+      4,
+      8,
+      16,
+      32
+    ],
+    "layerwise_activation_error": true,
+    "layerwise_weight_error": true,
+    "profile_num_sequences": 8,
+    "profile_sequence_length": 128,
+    "residual_svd_profile": false,
+    "residual_top_k_layers": 12
+  },
+  "run_id": "R2_S3B"
+}

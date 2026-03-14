@@ -92,6 +92,14 @@ For GPTQ work:
 bash scripts/kaggle/bootstrap_kaggle.sh gptq
 ```
 
+Important note for GPTQ:
+
+- the Kaggle GPTQ path now installs a prebuilt `gptqmodel` wheel matched to Kaggle's
+  current stack (`torch 2.9`, `cu126`, `cp312`)
+- this avoids the previous source-build failure
+- if Kaggle changes its Python or Torch version later, set `GPTQMODEL_WHEEL_URL`
+  manually before running the bootstrap
+
 ### 4. Set Hugging Face Token
 
 In the notebook:
@@ -155,6 +163,112 @@ Only after RTN works cleanly on Kaggle:
 2. then retry full `R3_Q17B`
 3. only then run `G2B02_Q17B` / `G2R02_Q17B`
 
+### GPTQ notebook sequence
+
+After the RTN path is validated:
+
+1. install GPTQ dependencies:
+
+```bash
+bash scripts/kaggle/bootstrap_kaggle.sh gptq
+```
+
+2. run the GPTQ smoke baseline on one GPU:
+
+```bash
+bash scripts/kaggle/run_qwen3_1p7b_gptq_smoke.sh 0
+```
+
+3. inspect the smoke result:
+
+```bash
+sed -n '1,160p' results/modal/qwen3_1p7b_gptq_smoke/R3S_Q17B/metrics.json
+sed -n '1,200p' results/modal/qwen3_1p7b_gptq_smoke/R3S_Q17B/execution_status.json
+```
+
+4. only if the smoke baseline looks sane, run the full GPTQ baseline:
+
+```bash
+bash scripts/kaggle/run_qwen3_1p7b_gptq_baseline.sh 0
+```
+
+5. inspect the full baseline:
+
+```bash
+sed -n '1,160p' results/modal/qwen3_1p7b_gptq_baselines/R3_Q17B/metrics.json
+sed -n '1,200p' results/modal/qwen3_1p7b_gptq_baselines/R3_Q17B/execution_status.json
+```
+
+6. only after a valid GPTQ baseline exists, resume the transfer runs
+
+## Fresh Notebook Runbook
+
+Use these cells in order.
+
+### Cell 1: clone repo
+
+```bash
+!git clone https://github.com/seshuthota/llm-decomposition.git
+%cd /kaggle/working/llm-decomposition
+```
+
+### Cell 2: set Hugging Face token
+
+```python
+import os
+from kaggle_secrets import UserSecretsClient
+
+client = UserSecretsClient()
+os.environ["HF_TOKEN"] = client.get_secret("HF_TOKEN")
+os.environ["HUGGING_FACE_HUB_TOKEN"] = os.environ["HF_TOKEN"]
+```
+
+### Cell 3: bootstrap RTN dependencies
+
+```bash
+!bash scripts/kaggle/bootstrap_kaggle.sh rtn
+```
+
+### Cell 4: run the trusted RTN pair on two GPUs
+
+```bash
+!bash scripts/kaggle/run_two_runs.sh \
+  configs/scaleup_1p7b/qwen3_1p7b_transfer_manifest.json P2B02_Q17B \
+  configs/scaleup_1p7b/qwen3_1p7b_transfer_manifest.json P2R02_Q17B
+```
+
+### Cell 5: inspect RTN metrics
+
+```bash
+!sed -n '1,160p' results/qwen3_1p7b/P2B02/metrics.json
+!sed -n '1,160p' results/qwen3_1p7b/P2R02/metrics.json
+```
+
+### Cell 6: bootstrap GPTQ dependencies
+
+```bash
+!bash scripts/kaggle/bootstrap_kaggle.sh gptq
+```
+
+### Cell 7: run GPTQ smoke
+
+```bash
+!bash scripts/kaggle/run_qwen3_1p7b_gptq_smoke.sh 0
+```
+
+### Cell 8: inspect GPTQ smoke result
+
+```bash
+!sed -n '1,160p' results/modal/qwen3_1p7b_gptq_smoke/R3S_Q17B/metrics.json
+!sed -n '1,200p' results/modal/qwen3_1p7b_gptq_smoke/R3S_Q17B/execution_status.json
+```
+
+### Cell 9: export results
+
+```bash
+!bash scripts/kaggle/export_results.sh
+```
+
 ## Downloading Outputs
 
 At the end:
@@ -175,3 +289,4 @@ For the first Kaggle session:
 - use both GPUs only for parallel independent runs
 - do not attempt true multi-GPU model execution yet
 - only move to `GPTQ` after the notebook setup is proven stable
+- treat GPTQ smoke as the first real Kaggle GPTQ success criterion, not the full baseline

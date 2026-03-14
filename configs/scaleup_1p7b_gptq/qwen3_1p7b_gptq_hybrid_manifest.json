@@ -1,0 +1,7 @@
+{
+  "phase": "qwen3_1p7b_gptq_transfer",
+  "description": "Qwen/Qwen3-1.7B-Base GPTQ hybrid second-stage validation on top of the strongest richer-bits point.",
+  "runs": [
+    "configs/scaleup_1p7b_gptq/h2r02_rowblock128_qwen3_1p7b_gptq_hybrid_activation_1p0pct.json"
+  ]
+}

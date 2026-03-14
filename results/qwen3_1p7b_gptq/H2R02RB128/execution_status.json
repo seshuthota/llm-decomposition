@@ -1,0 +1,14 @@
+{
+  "bit_width": null,
+  "dry_run": true,
+  "message": "Execution backend is not ready because required Python modules are missing for method 'hybrid_second_stage'.",
+  "method": "hybrid_second_stage",
+  "missing_dependencies": [
+    "torch",
+    "transformers",
+    "datasets"
+  ],
+  "model_name": "Qwen/Qwen3-1.7B-Base",
+  "run_id": "H2R02RB128_Q17B",
+  "status": "blocked"
+}

@@ -2,9 +2,21 @@
 
 ## Current Status
 
-The GPTQ transfer phase is **not ready to proceed** to `G2B02_Q17B` or `G2R02_Q17B`.
+The GPTQ bring-up is now **successful enough to run the `1.7B` transfer study on Modal**.
 
-The RTN transfer work is complete and trustworthy, but the GPTQ baseline on `Qwen/Qwen3-1.7B-Base` is still blocked by a bring-up issue.
+The old failure modes were fixed in stages:
+
+- injected `hf_device_map` before Optimum packing in the Transformers GPTQ path
+- added finite-logit validation before perplexity evaluation
+- stopped treating packed GPTQ tensors as directly writable when applying targeted updates
+- replaced selected GPTQ layers with ordinary floating `nn.Linear` modules for:
+  - targeted 8-bit upgrades
+  - targeted low-rank repairs
+
+The remaining caveat is scientific, not bring-up:
+
+- the current GPTQ rank action space saturates the candidate pool by `+1.0%`
+- so the `+2.0%` rank point does not move beyond the `+1.0%` rank point
 
 ## What Was Attempted
 
@@ -64,6 +76,42 @@ Interpretation:
   - GPTQ numerical validity under the current backend path
   - and/or termination before final artifact commit
 
+### 5. Kaggle GPTQ smoke baseline
+
+- Run: `R3S_Q17B`
+- Platform: `Kaggle`
+- Outcome: completed with valid artifacts, but invalid numerics
+
+Observed result:
+
+- dtype: `float16`
+- perplexity: `NaN`
+- layer summaries were populated across real layers
+
+Interpretation:
+
+- Kaggle solved the old package/build barrier well enough to execute the GPTQ path
+- but the quantized model remained numerically unstable at evaluation time
+- this means the current blocker is no longer just installation or artifact persistence
+- the blocker is now confirmed to be GPTQ runtime numerical validity
+
+### 6. Kaggle GPTQ second smoke baseline
+
+- Run: `R3S2_Q17B`
+- Platform: `Kaggle`
+- Outcome: completed with safer settings, but still invalid numerics
+
+Observed result:
+
+- dtype: `float16`
+- perplexity: `NaN`
+- smaller evaluation still produced `NaN`
+
+Interpretation:
+
+- changing to a safer smoke configuration did not fix the evaluation instability
+- so the current GPTQ backend path should be treated as blocked across both Modal and Kaggle
+
 ## Code Changes Already Made
 
 - forced GPTQ CUDA runs toward `float16` instead of the general `bfloat16` preference path
@@ -89,27 +137,19 @@ Interpretation:
 - `RTN` conclusions remain valid
 - `GPTQ` transfer conclusions are **not** ready
 - the current `R3_Q17B` artifacts in `results/modal/qwen3_1p7b_gptq_baselines/R3_Q17B` should still be treated as stale / not scientifically usable
+- the Kaggle smoke artifacts confirm that the problem is not just environment bring-up; GPTQ numerics are still unstable
 
 ## Recommended Next Debug Step
 
-The next step should be a **small GPTQ smoke baseline** before another full `WikiText-2` pass.
+Do **not** retry the full GPTQ baseline immediately.
 
-Recommended smoke run changes:
+The smoke-baseline stage has now been attempted on Kaggle and still failed numerically.
 
-- same model: `Qwen/Qwen3-1.7B-Base`
-- same quantizer: `GPTQ 4-bit`
-- much smaller evaluation:
-  - fewer calibration texts
-  - fewer evaluation sequences
-  - no profiling
-- explicit runtime logging written incrementally to disk
+So the next GPTQ work, when resumed, should be a backend-level debugging pass, not just another run retry. That likely means one of:
 
-Success criterion:
-
-- perplexity is at least in a plausible language-model range
-- committed artifacts reflect the corrected `float16` config
-
-Only after that smoke run is sane should the project return to the full `R3_Q17B` baseline and then the `G2B02_Q17B` / `G2R02_Q17B` transfer pair.
+- changing GPTQ backend/library
+- instrumenting the quantized model outputs to localize the first `NaN`
+- or reducing the GPTQ path to a simpler internal validation before perplexity evaluation
 
 ## Pause Point
 
@@ -143,10 +183,32 @@ When resuming this track:
    - run `G2B02_Q17B`
    - run `G2R02_Q17B`
 
+## Final Bring-up Outcome
+
+The following runs are now valid on Modal:
+
+- `R3_Q17B`
+- `G2B02_Q17B`
+- `G2R02_Q17B`
+- `G2B03_Q17B`
+- `G2R03_Q17B`
+
+Key metrics:
+
+- `R3_Q17B`: perplexity `15.9137`
+- `G2B02_Q17B`: perplexity `15.8993`
+- `G2R02_Q17B`: perplexity `15.8823`
+- `G2B03_Q17B`: perplexity `15.8914`
+- `G2R03_Q17B`: perplexity `15.8823`
+
+Interpretation:
+
+- GPTQ transfer is now runnable and produces stable finite metrics
+- targeted rank beats targeted bits at the first matched point
+- the current rank frontier saturates by `+1.0%`, so the `+2.0%` rank point is unchanged
+
 ## Safe Current Conclusion
 
 - RTN conclusions are complete and trustworthy.
-- GPTQ conclusions are **not ready**.
-- The repo should currently be read as:
-  - `RTN`: complete through transfer
-  - `GPTQ`: bring-up paused, baseline not yet valid
+- GPTQ bring-up is no longer blocked.
+- GPTQ transfer conclusions are now available for the current `1.7B` matrix-level action space.

@@ -22,6 +22,23 @@ DEFAULT_MODEL_VOLUME = os.environ.get("MODAL_MODEL_VOLUME", "llm-decomposition-m
 DEFAULT_RESULTS_VOLUME = os.environ.get("MODAL_RESULTS_VOLUME", "llm-decomposition-results")
 
 
+def _resolve_gpu_spec(gpu_name: str):
+    normalized = gpu_name.strip().upper()
+    if normalized == "T4":
+        return modal.gpu.T4()
+    if normalized == "A10G":
+        return modal.gpu.A10G()
+    if normalized == "A100":
+        return modal.gpu.A100()
+    if normalized in {"A100-80GB", "A100_80GB", "A100:80GB"}:
+        return modal.gpu.A100(size="80GB")
+    if normalized == "L40S":
+        return modal.gpu.L40S()
+    if normalized == "H100":
+        return modal.gpu.H100()
+    return gpu_name
+
+
 image = (
     modal.Image.debian_slim(python_version="3.11")
     .pip_install(
@@ -56,7 +73,7 @@ results_volume = modal.Volume.from_name(DEFAULT_RESULTS_VOLUME, create_if_missin
 
 @app.function(
     image=image,
-    gpu=DEFAULT_GPU,
+    gpu=_resolve_gpu_spec(DEFAULT_GPU),
     timeout=DEFAULT_TIMEOUT,
     volumes={
         REMOTE_MODEL_ROOT: model_volume,
@@ -119,7 +136,7 @@ def run_config_remote(
 
     run_dir = repo_root / config.results_dir
     log_path = run_dir / "modal_run.log"
-    log_path.parent.mkdir(parents=True, exist_ok=True)
+    run_dir.mkdir(parents=True, exist_ok=True)
     log_path.write_text(stdout_buffer.getvalue(), encoding="utf-8")
     results_volume.commit()
 
@@ -134,6 +151,7 @@ def run_config_remote(
         "layer_errors.json",
         "residual_profiles.json",
         "resolved_config.json",
+        "gptq_validation.json",
         "notes.md",
         "execution_status.json",
         "modal_run.log",
@@ -152,7 +170,7 @@ def run_config_remote(
             "missing_dependencies": execution.missing_dependencies,
         }
 
-    return {
+    payload = {
         "run_id": run_id,
         "manifest": manifest,
         "phase": phase,
@@ -168,6 +186,9 @@ def run_config_remote(
         "artifact_files": artifact_files,
         "error": error,
     }
+    (run_dir / "modal_payload.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    results_volume.commit()
+    return payload
 
 
 def _write_local_artifacts(payload: dict[str, Any]) -> None:
@@ -175,6 +196,7 @@ def _write_local_artifacts(payload: dict[str, Any]) -> None:
     run_dir.mkdir(parents=True, exist_ok=True)
     for filename, contents in payload.get("artifact_files", {}).items():
         (run_dir / filename).write_text(contents, encoding="utf-8")
+    (run_dir / "modal_payload.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
 @app.local_entrypoint()

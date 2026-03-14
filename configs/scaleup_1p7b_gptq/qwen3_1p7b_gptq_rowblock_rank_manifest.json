@@ -1,0 +1,7 @@
+{
+  "phase": "qwen3_1p7b_gptq_transfer",
+  "description": "Qwen/Qwen3-1.7B-Base GPTQ structural row-block rank validation at +1.0% over the GPTQ baseline.",
+  "runs": [
+    "configs/scaleup_1p7b_gptq/g2r02_rowblock128_qwen3_1p7b_gptq_rank_activation_1p0pct.json"
+  ]
+}

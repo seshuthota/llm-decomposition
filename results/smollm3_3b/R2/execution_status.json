@@ -1,0 +1,10 @@
+{
+  "bit_width": 4,
+  "dry_run": true,
+  "message": "Dependencies are available and the config is executable. No model run was started because dry-run mode is enabled.",
+  "method": "rtn",
+  "missing_dependencies": [],
+  "model_name": "HuggingFaceTB/SmolLM3-3B-Base",
+  "run_id": "R2_S3B",
+  "status": "dry_run"
+}

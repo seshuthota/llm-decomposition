@@ -8,11 +8,14 @@ Documentation is organized under [docs/README.md](docs/README.md):
 - consolidated execution roadmap
 - phase results and decision memos
 - detailed experiment journal
+- archived source notes and feedback
 - harness/config reference
 
 Current stop-point:
 
-- `RTN` results are complete through the `1.7B` transfer study
-- `GPTQ` is paused at baseline bring-up
+- `RTN` results are complete through the current cross-scale regime map
+- `GPTQ` matrix-level validation is now complete on `1.7B`, `3B`, and `8B`
 - restart from [docs/roadmap/next_steps.md](docs/roadmap/next_steps.md)
 - Kaggle notebook bring-up plan is in [docs/roadmap/kaggle_plan.md](docs/roadmap/kaggle_plan.md)
+- Phase 3 roadmap is in [docs/roadmap/phase3_plan.md](docs/roadmap/phase3_plan.md)
+- next implementation branch is [docs/roadmap/gptq_richer_action_space_plan.md](docs/roadmap/gptq_richer_action_space_plan.md)

@@ -1,0 +1,7 @@
+{
+  "phase": "qwen3_8b_baselines",
+  "description": "Baseline bring-up for Qwen/Qwen3-8B-Base before Phase 3 matched allocator runs.",
+  "runs": [
+    "configs/scaleup_qwen3_8b/r2_qwen3_8b_rtn_4bit.json"
+  ]
+}

@@ -13,6 +13,7 @@
     "name": "targeted_svd_rank",
     "base_run_id": "R3_Q17B",
     "base_method": "gptq",
+    "implementation": "transformers_gptq_config",
     "base_bit_width": 4,
     "group_size": 128,
     "symmetric": true,
@@ -28,7 +29,13 @@
       16,
       32
     ],
-    "factor_dtype_bytes": 2
+    "factor_dtype_bytes": 2,
+    "desc_act": true,
+    "act_group_aware": false,
+    "true_sequential": true,
+    "batch_size": 1,
+    "validate_outputs": true,
+    "non_finite_check_batches": 1
   },
   "calibration": {
     "dataset": "wikitext",

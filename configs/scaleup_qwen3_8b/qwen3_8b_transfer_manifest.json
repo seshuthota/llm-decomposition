@@ -1,0 +1,10 @@
+{
+  "phase": "qwen3_8b_transfer",
+  "description": "Matched Phase 3 RTN transfer runs for Qwen/Qwen3-8B-Base after the RTN baseline and candidate pool are available.",
+  "runs": [
+    "configs/scaleup_qwen3_8b/p3b02_qwen3_8b_bits_activation_1p0pct.json",
+    "configs/scaleup_qwen3_8b/p3r02_qwen3_8b_rank_activation_1p0pct.json",
+    "configs/scaleup_qwen3_8b/p3b03_qwen3_8b_bits_activation_2p0pct.json",
+    "configs/scaleup_qwen3_8b/p3r03_qwen3_8b_rank_activation_2p0pct.json"
+  ]
+}

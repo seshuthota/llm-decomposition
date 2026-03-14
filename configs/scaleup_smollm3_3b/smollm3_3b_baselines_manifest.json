@@ -1,0 +1,7 @@
+{
+  "phase": "smollm3_3b_baselines",
+  "description": "Baseline bring-up for HuggingFaceTB/SmolLM3-3B-Base before Phase 3 matched allocator runs.",
+  "runs": [
+    "configs/scaleup_smollm3_3b/r2_smollm3_3b_rtn_4bit.json"
+  ]
+}

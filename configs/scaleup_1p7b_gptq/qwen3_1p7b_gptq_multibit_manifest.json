@@ -1,0 +1,8 @@
+{
+  "phase": "qwen3_1p7b_gptq_multibit",
+  "description": "Bounded multi-bit bits-policy validation for Qwen/Qwen3-1.7B-Base GPTQ.",
+  "runs": [
+    "configs/scaleup_1p7b_gptq/mb1_qwen3_1p7b_gptq_multibit_bits_activation_1p0pct.json",
+    "configs/scaleup_1p7b_gptq/mb2_qwen3_1p7b_gptq_multibit_bits_activation_2p0pct.json"
+  ]
+}

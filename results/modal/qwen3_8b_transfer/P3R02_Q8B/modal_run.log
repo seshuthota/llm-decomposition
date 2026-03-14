@@ -1,0 +1,39 @@
+[P3R02_Q8B] loading full-precision model
+[P3R02_Q8B] building RTN base model for targeted rank allocation
+[quantization] processed 1/253 linear layers (latest=model.layers.0.self_attn.q_proj, bits=4)
+[quantization] processed 10/253 linear layers (latest=model.layers.1.self_attn.v_proj, bits=4)
+[quantization] processed 20/253 linear layers (latest=model.layers.2.mlp.up_proj, bits=4)
+[quantization] processed 30/253 linear layers (latest=model.layers.4.self_attn.k_proj, bits=4)
+[quantization] processed 40/253 linear layers (latest=model.layers.5.mlp.gate_proj, bits=4)
+[quantization] processed 50/253 linear layers (latest=model.layers.7.self_attn.q_proj, bits=4)
+[quantization] processed 60/253 linear layers (latest=model.layers.8.self_attn.o_proj, bits=4)
+[quantization] processed 70/253 linear layers (latest=model.layers.9.mlp.down_proj, bits=4)
+[quantization] processed 80/253 linear layers (latest=model.layers.11.self_attn.v_proj, bits=4)
+[quantization] processed 90/253 linear layers (latest=model.layers.12.mlp.up_proj, bits=4)
+[quantization] processed 100/253 linear layers (latest=model.layers.14.self_attn.k_proj, bits=4)
+[quantization] processed 110/253 linear layers (latest=model.layers.15.mlp.gate_proj, bits=4)
+[quantization] processed 120/253 linear layers (latest=model.layers.17.self_attn.q_proj, bits=4)
+[quantization] processed 130/253 linear layers (latest=model.layers.18.self_attn.o_proj, bits=4)
+[quantization] processed 140/253 linear layers (latest=model.layers.19.mlp.down_proj, bits=4)
+[quantization] processed 150/253 linear layers (latest=model.layers.21.self_attn.v_proj, bits=4)
+[quantization] processed 160/253 linear layers (latest=model.layers.22.mlp.up_proj, bits=4)
+[quantization] processed 170/253 linear layers (latest=model.layers.24.self_attn.k_proj, bits=4)
+[quantization] processed 180/253 linear layers (latest=model.layers.25.mlp.gate_proj, bits=4)
+[quantization] processed 190/253 linear layers (latest=model.layers.27.self_attn.q_proj, bits=4)
+[quantization] processed 200/253 linear layers (latest=model.layers.28.self_attn.o_proj, bits=4)
+[quantization] processed 210/253 linear layers (latest=model.layers.29.mlp.down_proj, bits=4)
+[quantization] processed 220/253 linear layers (latest=model.layers.31.self_attn.v_proj, bits=4)
+[quantization] processed 230/253 linear layers (latest=model.layers.32.mlp.up_proj, bits=4)
+[quantization] processed 240/253 linear layers (latest=model.layers.34.self_attn.k_proj, bits=4)
+[quantization] processed 250/253 linear layers (latest=model.layers.35.mlp.gate_proj, bits=4)
+[quantization] processed 253/253 linear layers (latest=lm_head, bits=4)
+[P3R02_Q8B] applying 12 targeted rank repairs with total selected rank bytes 8912896
+[P3R02_Q8B] offloading full-precision reference model to CPU before evaluation
+[P3R02_Q8B] loading evaluation split
+[P3R02_Q8B] evaluating targeted rank model on 589 sequences
+[P3R02_Q8B] profiling targeted rank model
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights:   2%|2         | 9/399 [00:00<00:04, 84.56it/s]Loading weights:   5%|4         | 18/399 [00:00<00:04, 80.31it/s]Loading weights:   7%|6         | 27/399 [00:00<00:05, 66.80it/s]Loading weights:   9%|8         | 34/399 [00:00<00:06, 56.34it/s]Loading weights:  10%|#         | 41/399 [00:00<00:06, 55.90it/s]Loading weights:  12%|#2        | 48/399 [00:00<00:06, 54.89it/s]Loading weights:  14%|#4        | 56/399 [00:00<00:05, 61.22it/s]Loading weights:  16%|#6        | 64/399 [00:01<00:05, 65.74it/s]Loading weights:  18%|#7        | 71/399 [00:01<00:05, 61.88it/s]Loading weights:  20%|#9        | 78/399 [00:01<00:05, 53.97it/s]Loading weights:  21%|##1       | 85/399 [00:01<00:05, 55.15it/s]Loading weights:  23%|##2       | 91/399 [00:01<00:06, 48.47it/s]Loading weights:  24%|##4       | 97/399 [00:01<00:06, 50.00it/s]Loading weights:  26%|##6       | 105/399 [00:01<00:05, 52.44it/s]Loading weights:  28%|##7       | 111/399 [00:01<00:05, 52.70it/s]Loading weights:  30%|##9       | 118/399 [00:02<00:05, 55.63it/s]Loading weights:  31%|###1      | 124/399 [00:02<00:05, 54.59it/s]Loading weights:  33%|###2      | 130/399 [00:02<00:05, 50.39it/s]Loading weights:  34%|###4      | 136/399 [00:02<00:05, 48.00it/s]Loading weights: 100%|##########| 399/399 [00:02<00:00, 161.22it/s]
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]Generating test split:  23%|##2       | 1000/4358 [00:00<00:00, 9633.07 examples/s]Generating test split: 100%|##########| 4358/4358 [00:00<00:00, 35417.60 examples/s]
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s]Generating train split: 100%|##########| 36718/36718 [00:00<00:00, 760289.17 examples/s]
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]Generating validation split: 100%|##########| 3760/3760 [00:00<00:00, 506035.07 examples/s]

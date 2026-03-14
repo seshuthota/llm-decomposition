@@ -1,0 +1,14 @@
+{
+  "bit_width": 4,
+  "device": "cuda",
+  "dtype": "float16",
+  "evaluated_tokens": 300979.0,
+  "latency_ms_per_token": 0.15133260084258396,
+  "memory_metadata_bytes": 118251520,
+  "memory_total_bytes": 6103975811,
+  "method": "gptq",
+  "model_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/qwen3-8b-base",
+  "perplexity": 11.79696882654856,
+  "run_id": "R3_Q8B",
+  "status": "completed"
+}
