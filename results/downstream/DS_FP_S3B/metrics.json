@@ -1,0 +1,10 @@
+{
+  "bit_width": null,
+  "latency_ms_per_token": null,
+  "memory_total_bytes": null,
+  "method": "full_precision",
+  "model_name": "HuggingFaceTB/SmolLM3-3B-Base",
+  "perplexity": null,
+  "run_id": "DS_FP_S3B",
+  "status": "pending"
+}

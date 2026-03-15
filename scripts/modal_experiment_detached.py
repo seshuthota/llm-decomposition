@@ -44,6 +44,7 @@ image = (
         "huggingface_hub==1.6.0",
         "safetensors==0.5.2",
         "numpy",
+        "lm-eval[hf]",
     )
     .add_local_dir(
         REPO_ROOT,
@@ -103,9 +104,9 @@ def run_config_remote(
     config = selected[0]
 
     if model_subpath:
-        volume_model_path = str((Path(REMOTE_MODEL_ROOT) / model_subpath).resolve())
+        volume_model_path = str(Path(REMOTE_MODEL_ROOT) / model_subpath)
         config.raw["model"]["name"] = volume_model_path
-        if config.raw["model"].get("tokenizer_name") is not None:
+        if config.raw["model"].get("tokenizer_name") is None:
             config.raw["model"]["tokenizer_name"] = volume_model_path
 
     phase = config.raw.get("phase", "adhoc")
@@ -151,6 +152,7 @@ def run_config_remote(
         "execution_status.json",
         "modal_run.log",
         "actions.json",
+        "downstream_metrics.json",
     ):
         path = run_dir / filename
         if path.exists():

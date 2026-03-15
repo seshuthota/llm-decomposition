@@ -37,6 +37,10 @@ class RunConfig:
         return self.raw["model"]["name"]
 
     @property
+    def tokenizer_name(self) -> str:
+        return self.raw["model"].get("tokenizer_name", self.model_name)
+
+    @property
     def method_name(self) -> str:
         return self.raw["method"]["name"]
 

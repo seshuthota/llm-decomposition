@@ -1,0 +1,10 @@
+{
+  "bit_width": null,
+  "latency_ms_per_token": null,
+  "memory_total_bytes": null,
+  "method": "full_precision",
+  "model_name": "Qwen/Qwen3-8B-Base",
+  "perplexity": null,
+  "run_id": "DS_FP_Q8B",
+  "status": "pending"
+}

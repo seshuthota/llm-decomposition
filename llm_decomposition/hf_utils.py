@@ -53,7 +53,13 @@ def resolve_runtime_context(dtype_preferences: list[str] | None) -> RuntimeConte
 
 def load_tokenizer(model_name: str):
     token = _hf_token()
-    tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True, token=token)
+    tokenizer_kwargs = {"use_fast": True}
+    model_path = Path(model_name)
+    if model_path.is_absolute():
+        tokenizer_kwargs["local_files_only"] = True
+    elif token is not None:
+        tokenizer_kwargs["token"] = token
+    tokenizer = AutoTokenizer.from_pretrained(model_name, **tokenizer_kwargs)
     if tokenizer.pad_token_id is None and tokenizer.eos_token_id is not None:
         tokenizer.pad_token = tokenizer.eos_token
     return tokenizer
@@ -66,7 +72,10 @@ def load_causal_lm(model_name: str, runtime: RuntimeContext):
     if runtime.device.type == "cuda":
         kwargs["torch_dtype"] = runtime.dtype
     token = _hf_token()
-    if token is not None:
+    model_path = Path(model_name)
+    if model_path.is_absolute():
+        kwargs["local_files_only"] = True
+    elif token is not None:
         kwargs["token"] = token
     model = AutoModelForCausalLM.from_pretrained(model_name, **kwargs)
     model.to(runtime.device)

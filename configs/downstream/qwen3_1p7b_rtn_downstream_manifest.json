@@ -1,0 +1,9 @@
+{
+  "phase": "downstream_qwen3_1p7b_rtn",
+  "description": "Downstream zero-shot evaluation for Qwen3-1.7B RTN cross-quantizer anchor runs.",
+  "runs": [
+    "configs/downstream/qwen3_1p7b_rtn/ds_r2_q17b.json",
+    "configs/downstream/qwen3_1p7b_rtn/ds_p2b03_q17b.json",
+    "configs/downstream/qwen3_1p7b_rtn/ds_p2r02_q17b.json"
+  ]
+}

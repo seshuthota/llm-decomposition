@@ -238,6 +238,137 @@ Interpretation:
 - targeted bits still beat targeted rank on the `1.7B` RTN transfer study
 - Phase 2 can be considered closed with a stronger environment-level confirmation
 
+## Paper-Readiness Downstream Evaluation
+
+### Run DS_FP_Q17B
+
+- Date: 2026-03-15
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `full_precision`
+- Script: `./scripts/run_modal_experiment_gptq_rl.sh DS_FP_Q17B configs/downstream/qwen3_1p7b_downstream_manifest.json qwen3-1.7b-base`
+- Results: `results/modal/downstream_qwen3_1p7b/DS_FP_Q17B`
+
+Result:
+
+- perplexity: `15.0347`
+- memory total bytes: `3441149952`
+- latency ms/token: `0.1155`
+- `hellaswag acc_norm`: `0.6652`
+- `arc_easy acc_norm`: `0.6831`
+- `arc_challenge acc_norm`: `0.5563`
+- `winogrande acc`: `0.6598`
+- `piqa acc_norm`: `0.7579`
+- `boolq acc`: `0.7914`
+
+Interpretation:
+
+- this is the first end-to-end validated Modal downstream run
+- it proves that the downstream harness, artifact persistence, and result collection all work on the paper-readiness path
+- this run is the full-precision anchor for the `1.7B` GPTQ downstream comparison set
+
+### Run DS_R3_Q17B
+
+- Date: 2026-03-15
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `GPTQ 4-bit baseline`
+- Script: `./scripts/run_modal_experiment_gptq_rl.sh DS_R3_Q17B configs/downstream/qwen3_1p7b_downstream_manifest.json qwen3-1.7b-base`
+- Results: `results/modal/downstream_qwen3_1p7b/DS_R3_Q17B`
+
+Result:
+
+- perplexity: `15.9010`
+- `hellaswag acc_norm`: `0.6325`
+- `arc_easy acc_norm`: `0.7168`
+- `arc_challenge acc_norm`: `0.5171`
+- `winogrande acc`: `0.6456`
+- `piqa acc_norm`: `0.7421`
+- `boolq acc`: `0.7887`
+
+### Run DS_G2B03_Q17B
+
+- Date: `2026-03-15`
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `GPTQ best bits-only`
+- Script: `./scripts/run_modal_experiment_gptq_rl.sh DS_G2B03_Q17B configs/downstream/qwen3_1p7b_downstream_manifest.json qwen3-1.7b-base`
+- Results: `results/modal/downstream_qwen3_1p7b/DS_G2B03_Q17B`
+
+Result:
+
+- perplexity: `15.8914`
+- `hellaswag acc_norm`: `0.6295`
+- `arc_easy acc_norm`: `0.7226`
+- `arc_challenge acc_norm`: `0.5222`
+- `winogrande acc`: `0.6535`
+- `piqa acc_norm`: `0.7416`
+- `boolq acc`: `0.7920`
+
+### Run DS_G2R02_Q17B
+
+- Date: `2026-03-15`
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `GPTQ best rank-only`
+- Script: `./scripts/run_modal_experiment_gptq_rl.sh DS_G2R02_Q17B configs/downstream/qwen3_1p7b_downstream_manifest.json qwen3-1.7b-base`
+- Results: `results/modal/downstream_qwen3_1p7b/DS_G2R02_Q17B`
+
+Result:
+
+- perplexity: `15.8823`
+- `hellaswag acc_norm`: `0.6311`
+- `arc_easy acc_norm`: `0.7134`
+- `arc_challenge acc_norm`: `0.5128`
+- `winogrande acc`: `0.6456`
+- `piqa acc_norm`: `0.7427`
+- `boolq acc`: `0.7902`
+
+### Run DS_H2R02M_Q17B
+
+- Date: `2026-03-15`
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Method: `GPTQ best hybrid`
+- Script: `./scripts/run_modal_experiment_gptq_rl.sh DS_H2R02M_Q17B configs/downstream/qwen3_1p7b_downstream_manifest.json qwen3-1.7b-base`
+- Results: `results/modal/downstream_qwen3_1p7b/DS_H2R02M_Q17B`
+
+Result:
+
+- perplexity: `15.8962`
+- `hellaswag acc_norm`: `0.6292`
+- `arc_easy acc_norm`: `0.7117`
+- `arc_challenge acc_norm`: `0.5162`
+- `winogrande acc`: `0.6456`
+- `piqa acc_norm`: `0.7410`
+- `boolq acc`: `0.7927`
+
+### 1.7B GPTQ Downstream Comparison Summary
+
+- Date: `2026-03-15`
+- Scope: first complete downstream policy comparison set under GPTQ
+
+Policy ordering under perplexity:
+
+- rank-only `DS_G2R02_Q17B`: `15.8823`
+- bits-only `DS_G2B03_Q17B`: `15.8914`
+- hybrid `DS_H2R02M_Q17B`: `15.8962`
+- baseline `DS_R3_Q17B`: `15.9010`
+
+Observed downstream pattern:
+
+- `arc_easy` slightly favored bits over rank and hybrid
+- `arc_challenge` also slightly favored bits over rank and hybrid
+- `hellaswag` and `piqa` were very close across all three repaired policies
+- `boolq` was strongest for hybrid by a small margin
+- `winogrande` favored bits over rank / hybrid
+
+Interpretation:
+
+- the perplexity ordering remains clean and trustworthy
+- downstream accuracy moves are smaller and more task-dependent than the perplexity deltas
+- this is exactly why the downstream branch was necessary for paper readiness
+- the current evidence supports a paper claim of regime dependence, but not a claim that the best perplexity policy is uniformly best on every downstream task
+
+Infrastructure note:
+
+- the detached downstream fetch path in `scripts/run_modal_experiment_gptq_rl.sh` was fixed during this set so completed Modal runs now land cleanly under `results/modal/...`
+
 ### Kaggle GPTQ Smoke Checks
 
 - Date: 2026-03-14
@@ -2014,3 +2145,144 @@ Interpretation:
   - do not run `MB2_Q17B`
   - do not continue to `8B`
   - treat the GPTQ multi-bit branch as tested and stopped at `1.7B`
+
+## Downstream Evaluation
+
+### Run DS_FP_S3B
+
+- Date: 2026-03-15
+- Model: `HuggingFaceTB/SmolLM3-3B-Base`
+- Method: `full_precision`
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/downstream/smollm3_3b_downstream_manifest.json`
+- Metrics dir: `results/modal/downstream_smollm3_3b/DS_FP_S3B`
+
+Result:
+
+- status: `completed`
+- perplexity: `10.8249`
+- memory: `6,150,197,248` bytes
+- latency: `0.1342 ms/token`
+- `hellaswag acc_norm`: `0.7524`
+- `arc_easy acc_norm`: `0.7689`
+- `arc_challenge acc_norm`: `0.5998`
+- `winogrande acc`: `0.7348`
+- `piqa acc_norm`: `0.7840`
+- `boolq acc`: `0.8021`
+
+### Run DS_R3_S3B
+
+- Date: 2026-03-15
+- Model: `HuggingFaceTB/SmolLM3-3B-Base`
+- Method: `gptq`
+- Execution path: `Modal`
+- GPU: `A10G`
+- Manifest: `configs/downstream/smollm3_3b_downstream_manifest.json`
+- Metrics dir: `results/modal/downstream_smollm3_3b/DS_R3_S3B`
+
+Result:
+
+- status: `completed`
+- perplexity: `11.5455`
+- memory: `1,990,237,781` bytes
+- latency: `0.1964 ms/token`
+- `hellaswag acc_norm`: `0.7399`
+- `arc_easy acc_norm`: `0.7407`
+- `arc_challenge acc_norm`: `0.5546`
+- `winogrande acc`: `0.7190`
+- `piqa acc_norm`: `0.7731`
+- `boolq acc`: `0.7936`
+
+### Run DS_G3B02_S3B
+
+- Date: 2026-03-15
+- Model: `HuggingFaceTB/SmolLM3-3B-Base`
+- Method: `targeted_mixed_precision`
+- Base method: `gptq`
+- Execution path: `Modal`
+- GPU: first `A10G` attempt OOM, successful rerun on `A100-80GB`
+- Manifest: `configs/downstream/smollm3_3b_downstream_manifest.json`
+- Metrics dir: `results/modal/downstream_smollm3_3b/DS_G3B02_S3B`
+
+Result:
+
+- status: `completed`
+- perplexity: `11.5483`
+- memory: `1,997,577,813` bytes
+- latency: `0.1531 ms/token`
+- `hellaswag acc_norm`: `0.7404`
+- `arc_easy acc_norm`: `0.7370`
+- `arc_challenge acc_norm`: `0.5657`
+- `winogrande acc`: `0.7222`
+- `piqa acc_norm`: `0.7845`
+- `boolq acc`: `0.7835`
+
+Interpretation:
+
+- the `3B` bits-only downstream point stayed close to the GPTQ baseline in perplexity
+- it slightly improved some downstream tasks, especially `arc_challenge` and `piqa`
+- the run required `A100-80GB` because the first `A10G` attempt OOMed during GPTQ mixed-precision base-model construction
+
+### Run DS_G3R02_S3B
+
+- Date: 2026-03-15
+- Model: `HuggingFaceTB/SmolLM3-3B-Base`
+- Method: `targeted_svd_rank`
+- Base method: `gptq`
+- Execution path: `Modal`
+- GPU: first `A10G` attempt OOM, successful rerun on `A100-80GB`
+- Manifest: `configs/downstream/smollm3_3b_downstream_manifest.json`
+- Metrics dir: `results/modal/downstream_smollm3_3b/DS_G3R02_S3B`
+
+Result:
+
+- status: `completed`
+- perplexity: `11.6482`
+- memory: `2,000,477,781` bytes
+- latency: `0.1035 ms/token`
+- `hellaswag acc_norm`: `0.7416`
+- `arc_easy acc_norm`: `0.7365`
+- `arc_challenge acc_norm`: `0.5614`
+- `winogrande acc`: `0.7182`
+- `piqa acc_norm`: `0.7813`
+- `boolq acc`: `0.7927`
+
+Interpretation:
+
+- the `3B` rank-only downstream point remained the weakest policy at this scale
+- compared with `DS_G3B02_S3B`, rank was worse in perplexity and weaker on most downstream tasks
+- the successful rerun again required `A100-80GB` because the initial `A10G` run OOMed during GPTQ base-model estimation
+
+## 2026-03-15: Item 1 Downstream Analysis Complete
+
+- Scope:
+  - consolidate all completed downstream runs across GPTQ `1.7B`, `3B`, `8B` and the RTN `1.7B` anchor
+  - compute cross-run `ΔPPL` versus downstream-score relationships
+  - compute recovered downstream quality per added MB
+- Script:
+  - `python3 scripts/build_downstream_summary.py`
+- Outputs:
+  - `results/analysis/downstream_run_summary.csv`
+  - `results/analysis/downstream_group_deltas.csv`
+  - `results/analysis/downstream_item1_summary.json`
+  - `docs/experiments/downstream_item1_analysis.md`
+
+Key conclusions:
+
+- full-precision anchors preserve a strong positive global trend between perplexity and downstream quality
+- within the compressed-policy regime, small perplexity improvements do not reliably imply better downstream mean score
+- `1.7B` GPTQ keeps the cross-quantizer contrast:
+  - rank is best by perplexity
+  - bits has the best mean downstream score and wins the most tasks
+- `8B` GPTQ remains bits-favoring by perplexity, but downstream is effectively tied between baseline, rank, and hybrid
+- `3B` GPTQ remains the neutral midpoint:
+  - baseline best by perplexity
+  - bits slightly best by mean downstream score
+  - rank weakest
+- `1.7B` RTN remains bits-favoring by perplexity, while rank slightly edges the mean downstream score and bits wins the most tasks
+
+Decision:
+
+- Item 1 is complete
+- the next must-have branch is Item 2: activation-space versus weight-space allocator ablation

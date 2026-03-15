@@ -1,0 +1,92 @@
+{
+  "calibration": {
+    "dataset": "wikitext",
+    "num_sequences": 128,
+    "num_text_samples": 128,
+    "sampling": "seeded_shuffle",
+    "seed": 42,
+    "sequence_length": 512,
+    "split": "train",
+    "subset": "wikitext-2-raw-v1"
+  },
+  "description": "GPTQ 4-bit baseline for Qwen/Qwen3-1.7B-Base on Modal.",
+  "downstream": {
+    "batch_size": 4,
+    "enabled": true,
+    "num_fewshot": {
+      "arc_challenge": 25,
+      "arc_easy": 0,
+      "boolq": 0,
+      "hellaswag": 0,
+      "piqa": 0,
+      "winogrande": 5
+    },
+    "output_file": "downstream_metrics.json",
+    "tasks": [
+      "hellaswag",
+      "arc_easy",
+      "arc_challenge",
+      "winogrande",
+      "piqa",
+      "boolq"
+    ]
+  },
+  "evaluation": {
+    "dataset": "wikitext",
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token",
+      "memory_total_bytes",
+      "layerwise_weight_error",
+      "layerwise_activation_error"
+    ],
+    "sequence_length": 512,
+    "split": "test",
+    "stride": 512,
+    "subset": "wikitext-2-raw-v1"
+  },
+  "method": {
+    "act_group_aware": false,
+    "batch_size": 1,
+    "bit_width": 4,
+    "damp_percent": 0.1,
+    "desc_act": true,
+    "group_size": 128,
+    "implementation": "transformers_gptq_config",
+    "name": "gptq",
+    "non_finite_check_batches": 1,
+    "quantizer": "GPTQ",
+    "symmetric": true,
+    "true_sequential": true,
+    "validate_outputs": true
+  },
+  "model": {
+    "dtype_preference": [
+      "float16"
+    ],
+    "name": "Qwen/Qwen3-1.7B-Base",
+    "tokenizer_name": "Qwen/Qwen3-1.7B-Base"
+  },
+  "outputs": {
+    "layer_summary_file": "layer_errors.json",
+    "metrics_file": "metrics.json",
+    "residual_profile_file": "residual_profiles.json",
+    "results_dir": "results/downstream/DS_R3_Q17B"
+  },
+  "phase": "downstream_qwen3_1p7b",
+  "profiling": {
+    "candidate_ranks": [
+      4,
+      8,
+      16,
+      32
+    ],
+    "layerwise_activation_error": false,
+    "layerwise_weight_error": true,
+    "profile_num_sequences": 8,
+    "profile_sequence_length": 128,
+    "residual_svd_profile": false,
+    "residual_top_k_layers": 12
+  },
+  "run_id": "DS_R3_Q17B"
+}

@@ -54,6 +54,37 @@ echo "Modal model subpath: ${MODEL_SUBPATH}"
 echo "Detach mode: ${DETACH_MODE}"
 echo "Command target: scripts/modal_experiment_gptq.py::run_config_remote"
 
+fetch_results() {
+  local parent_dir
+  local run_dir_name
+  local staging_root
+  local staging_run_dir
+
+  parent_dir="$(dirname "${RESULTS_DIR}")"
+  run_dir_name="$(basename "${RESULTS_DIR}")"
+  staging_root=".modal_fetch/${RUN_ID}"
+  staging_run_dir="${staging_root}/${run_dir_name}"
+
+  echo "Fetching results from ${RESULTS_VOLUME_NAME}:/$(printf '%s' "${RESULTS_DIR}")"
+  rm -rf "${staging_root}"
+  mkdir -p "${staging_root}"
+
+  if [ -f "${parent_dir}" ]; then
+    rm -f "${parent_dir}"
+  fi
+  mkdir -p "${parent_dir}"
+
+  modal volume get "${RESULTS_VOLUME_NAME}" "/${RESULTS_DIR}" "${staging_root}" --force || return 0
+
+  if [ -d "${staging_run_dir}" ]; then
+    rm -rf "${RESULTS_DIR}"
+    mv "${staging_run_dir}" "${RESULTS_DIR}"
+    echo "Wrote results into ${RESULTS_DIR}"
+  else
+    echo "No fetched result directory found for ${RUN_ID}"
+  fi
+}
+
 if [ "${DETACH_MODE}" = "1" ]; then
   RUN_OUTPUT="$(
     modal run --detach scripts/modal_experiment_gptq.py::run_config_remote \
@@ -86,8 +117,7 @@ if [ "${DETACH_MODE}" = "1" ]; then
     sleep "${POLL_SECONDS}"
   done
 
-  echo "Fetching results from ${RESULTS_VOLUME_NAME}:/$(printf '%s' "${RESULTS_DIR}")"
-  modal volume get "${RESULTS_VOLUME_NAME}" "/${RESULTS_DIR}" "$(dirname "${RESULTS_DIR}")" --force || true
+  fetch_results
 else
   modal run scripts/modal_experiment_gptq.py::run_config_remote \
     --run-id "${RUN_ID}" \
@@ -95,8 +125,7 @@ else
     --model-subpath "${MODEL_SUBPATH}" \
     --results-prefix "results/modal"
   MODAL_EXIT_CODE=$?
-  echo "Fetching results from ${RESULTS_VOLUME_NAME}:/$(printf '%s' "${RESULTS_DIR}")"
-  modal volume get "${RESULTS_VOLUME_NAME}" "/${RESULTS_DIR}" "$(dirname "${RESULTS_DIR}")" --force || true
+  fetch_results
 fi
 
 if [ -f "${RESULTS_DIR}/metrics.json" ]; then

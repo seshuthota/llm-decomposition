@@ -7,6 +7,7 @@ Canonical experiment reports live here. Use this folder for human-written experi
 - [final_quantization_vs_svd_synthesis.md](final_quantization_vs_svd_synthesis.md): canonical final synthesis across RTN and GPTQ
 - [quantization_vs_svd_detailed_report.md](quantization_vs_svd_detailed_report.md): full phase-by-phase report with tables, equations, and plots
 - [phase1_to_now_report.md](phase1_to_now_report.md): consolidated report from Phase 1 through the current GPTQ and RTN results
+- [downstream_item1_analysis.md](downstream_item1_analysis.md): completed Item 1 downstream evaluation analysis for paper readiness
 - [experiment_journal.md](experiment_journal.md): detailed chronological run journal
 - [gptq_pre_final_branch_snapshot.md](gptq_pre_final_branch_snapshot.md): frozen GPTQ frontier snapshot before the final bounded branch stop
 

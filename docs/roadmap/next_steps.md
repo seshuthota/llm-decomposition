@@ -104,6 +104,66 @@ Canonical references:
 - `docs/roadmap/gptq_richer_action_space_plan.md`
 - `docs/experiments/experiment_journal.md`
 
+## Downstream Evaluation Status
+
+Paper-readiness downstream Item 1 is now complete on Modal.
+
+Completed `1.7B` GPTQ downstream set:
+
+- `DS_FP_Q17B`
+- `DS_R3_Q17B`
+- `DS_G2B03_Q17B`
+- `DS_G2R02_Q17B`
+- `DS_H2R02M_Q17B`
+
+Completed `8B` GPTQ downstream set:
+
+- `DS_FP_Q8B`
+- `DS_R3_Q8B`
+- `DS_G2B02_Q8B`
+- `DS_G2R02_Q8B`
+- `DS_H2R02_Q8B`
+
+Completed `3B` GPTQ downstream set:
+
+- `DS_FP_S3B`
+- `DS_R3_S3B`
+- `DS_G3B02_S3B`
+- `DS_G3R02_S3B`
+
+Completed RTN cross-quantizer anchor on `1.7B`:
+
+- `DS_R2_Q17B`
+- `DS_P2B03_Q17B`
+- `DS_P2R02_Q17B`
+
+Current downstream interpretation:
+
+- `1.7B` GPTQ remains rank-favoring by perplexity, but downstream task ordering is more mixed
+- `8B` GPTQ remains bits-favoring by perplexity, with hybrid and rank still competitive on some tasks
+- `3B` GPTQ remains the neutral / mixed midpoint where bits and baseline stay close and rank is weakest
+- `1.7B` RTN remains bits-favoring by perplexity, giving the clean cross-quantizer contrast with `1.7B` GPTQ
+
+Item 1 outputs:
+
+- report: `docs/experiments/downstream_item1_analysis.md`
+- generated tables:
+  - `results/analysis/downstream_run_summary.csv`
+  - `results/analysis/downstream_group_deltas.csv`
+
+Item 1 conclusion:
+
+- full-precision anchors preserve a positive global `ΔPPL` / downstream relationship
+- within compressed policies, that relationship is weak and unstable
+- the regime map therefore survives downstream evaluation, but downstream ordering is more task-dependent than the perplexity frontier
+
+Priority order now:
+
+1. activation-vs-weight ablation
+2. multi-seed stability
+3. latency
+4. paper writing / figures
+
 ## Immediate Resume Plan
 
 When work resumes, do this in order:
@@ -113,7 +173,8 @@ When work resumes, do this in order:
 3. Treat the first `GPTQ 3B` matrix-level transfer point as complete:
    - the `1.7B` GPTQ rank win did not transfer cleanly
    - the current `3B` GPTQ transfer point favors bits only in the weak sense that bits regressed less than rank
-4. Decide the next research branch:
+4. Treat the `1.7B` GPTQ downstream policy comparison as complete and trustworthy.
+5. Decide the next research branch:
    - treat the first GPTQ hybrid second-stage pilot as complete on `1.7B`
    - treat the first `8B` hybrid validation as complete
    - treat the first structural row-block rank pilot on `1.7B` as negative
@@ -122,7 +183,8 @@ When work resumes, do this in order:
    - treat the bounded multi-bit bits-policy branch as complete and stopped at `1.7B`
    - freeze the trusted GPTQ state in:
      - `docs/experiments/gptq_pre_final_branch_snapshot.md`
-   - the remaining GPTQ work is now synthesis / write-up, not another experiment branch
+   - the remaining GPTQ method work is now synthesis / write-up, not another experiment branch
+   - the active experimental branch is paper-readiness downstream evaluation plus the remaining must-have ablations
 
 Current `8B` GPTQ status:
 
@@ -184,4 +246,5 @@ The next session should start from:
 
 and then choose between:
 
+- finish paper-readiness downstream / ablation work
 - project closure / synthesis

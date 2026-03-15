@@ -1,0 +1,14 @@
+{
+  "bit_width": null,
+  "device": "cuda",
+  "dtype": "float16",
+  "evaluated_tokens": 300979.0,
+  "latency_ms_per_token": 0.1154596976400346,
+  "memory_metadata_bytes": 0,
+  "memory_total_bytes": 3441149952,
+  "method": "full_precision",
+  "model_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/qwen3-1.7b-base",
+  "perplexity": 15.034692030741335,
+  "run_id": "DS_FP_Q17B",
+  "status": "completed"
+}

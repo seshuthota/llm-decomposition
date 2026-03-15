@@ -37,7 +37,7 @@ from llm_decomposition.quantization import (
 def execute_full_precision(root: Path, config: RunConfig) -> dict[str, Any]:
     print(f"[{config.run_id}] loading tokenizer and full-precision model")
     runtime = resolve_runtime_context(config.raw["model"].get("dtype_preference"))
-    tokenizer = load_tokenizer(config.model_name)
+    tokenizer = load_tokenizer(config.tokenizer_name)
     model = load_causal_lm(config.model_name, runtime)
 
     print(f"[{config.run_id}] loading evaluation split and building sequences")
@@ -60,12 +60,13 @@ def execute_full_precision(root: Path, config: RunConfig) -> dict[str, Any]:
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
     }
     _write_outputs(root, config, metrics, [], [])
+    _maybe_run_downstream(root, config, model, tokenizer, runtime.device, metrics)
     return metrics
 
 
 def execute_rtn(root: Path, config: RunConfig) -> dict[str, Any]:
     runtime = resolve_runtime_context(config.raw["model"].get("dtype_preference"))
-    tokenizer = load_tokenizer(config.model_name)
+    tokenizer = load_tokenizer(config.tokenizer_name)
 
     print(f"[{config.run_id}] loading full-precision model")
     fp_model = load_causal_lm(config.model_name, runtime)
@@ -118,6 +119,7 @@ def execute_rtn(root: Path, config: RunConfig) -> dict[str, Any]:
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, residual_profiles)
+    _maybe_run_downstream(root, config, quantized_model, tokenizer, runtime.device, metrics)
     return metrics
 
 
@@ -125,7 +127,7 @@ def execute_gptq(root: Path, config: RunConfig) -> dict[str, Any]:
     from llm_decomposition.gptq_backend import estimate_gptq_layer_stats, quantize_model_gptq
 
     runtime = _resolve_gptq_runtime(config)
-    tokenizer = load_tokenizer(config.model_name)
+    tokenizer = load_tokenizer(config.tokenizer_name)
     method_cfg = config.raw["method"]
     print(
         f"[{config.run_id}] GPTQ runtime "
@@ -188,12 +190,13 @@ def execute_gptq(root: Path, config: RunConfig) -> dict[str, Any]:
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, residual_profiles)
+    _maybe_run_downstream(root, config, quantized_model, tokenizer, runtime.device, metrics)
     return metrics
 
 
 def execute_uniform_svd_repair(root: Path, config: RunConfig) -> dict[str, Any]:
     runtime = resolve_runtime_context(config.raw["model"].get("dtype_preference"))
-    tokenizer = load_tokenizer(config.model_name)
+    tokenizer = load_tokenizer(config.tokenizer_name)
     method_cfg = config.raw["method"]
 
     print(f"[{config.run_id}] loading full-precision model")
@@ -259,12 +262,13 @@ def execute_uniform_svd_repair(root: Path, config: RunConfig) -> dict[str, Any]:
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, residual_profiles)
+    _maybe_run_downstream(root, config, quantized_model, tokenizer, runtime.device, metrics)
     return metrics
 
 
 def execute_mixed_precision_budget_match(root: Path, config: RunConfig) -> dict[str, Any]:
     runtime = resolve_runtime_context(config.raw["model"].get("dtype_preference"))
-    tokenizer = load_tokenizer(config.model_name)
+    tokenizer = load_tokenizer(config.tokenizer_name)
     method_cfg = config.raw["method"]
 
     print(f"[{config.run_id}] loading full-precision model")
@@ -333,12 +337,13 @@ def execute_mixed_precision_budget_match(root: Path, config: RunConfig) -> dict[
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, residual_profiles)
+    _maybe_run_downstream(root, config, quantized_model, tokenizer, runtime.device, metrics)
     return metrics
 
 
 def execute_targeted_mixed_precision(root: Path, config: RunConfig) -> dict[str, Any]:
     runtime = _resolve_runtime_for_config(config)
-    tokenizer = load_tokenizer(config.model_name)
+    tokenizer = load_tokenizer(config.tokenizer_name)
     method_cfg = config.raw["method"]
     base_method = method_cfg.get("base_method", "rtn")
 
@@ -478,12 +483,13 @@ def execute_targeted_mixed_precision(root: Path, config: RunConfig) -> dict[str,
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, residual_profiles)
     _write_actions(root, config, actions, selected_actions)
+    _maybe_run_downstream(root, config, quantized_model, tokenizer, runtime.device, metrics)
     return metrics
 
 
 def execute_targeted_svd_rank(root: Path, config: RunConfig) -> dict[str, Any]:
     runtime = _resolve_runtime_for_config(config)
-    tokenizer = load_tokenizer(config.model_name)
+    tokenizer = load_tokenizer(config.tokenizer_name)
     method_cfg = config.raw["method"]
     base_method = method_cfg.get("base_method", "rtn")
 
@@ -629,12 +635,13 @@ def execute_targeted_svd_rank(root: Path, config: RunConfig) -> dict[str, Any]:
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, final_residual_profiles)
     _write_actions(root, config, actions, selected_actions)
+    _maybe_run_downstream(root, config, quantized_model, tokenizer, runtime.device, metrics)
     return metrics
 
 
 def execute_hybrid_second_stage(root: Path, config: RunConfig) -> dict[str, Any]:
     runtime = _resolve_runtime_for_config(config)
-    tokenizer = load_tokenizer(config.model_name)
+    tokenizer = load_tokenizer(config.tokenizer_name)
     method_cfg = config.raw["method"]
     base_method = method_cfg.get("base_method", "rtn")
 
@@ -812,6 +819,7 @@ def execute_hybrid_second_stage(root: Path, config: RunConfig) -> dict[str, Any]
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, final_residual_profiles)
     _write_actions(root, config, prior_bit_actions + rank_actions, selected_rank_actions, base_actions=prior_bit_actions)
+    _maybe_run_downstream(root, config, quantized_model, tokenizer, runtime.device, metrics)
     return metrics
 
 
@@ -2202,3 +2210,37 @@ def _module_dtype(module: nn.Module) -> torch.dtype:
 
 def _full_precision_memory_bytes(model) -> int:
     return sum(parameter.numel() * parameter.element_size() for parameter in model.parameters())
+
+
+def _maybe_run_downstream(
+    root: Path,
+    config: RunConfig,
+    model: nn.Module,
+    tokenizer: Any,
+    device: torch.device,
+    metrics: dict[str, Any],
+) -> None:
+    """Run downstream zero-shot evaluation if ``downstream.enabled`` is set."""
+    downstream_cfg = config.raw.get("downstream")
+    if not downstream_cfg or not downstream_cfg.get("enabled", False):
+        return
+
+    from llm_decomposition.downstream_eval import (
+        evaluate_downstream,
+        write_downstream_metrics,
+    )
+
+    print(f"[{config.run_id}] running downstream evaluation")
+    results = evaluate_downstream(
+        model=model,
+        tokenizer=tokenizer,
+        tasks=downstream_cfg.get("tasks"),
+        num_fewshot=downstream_cfg.get("num_fewshot"),
+        batch_size=downstream_cfg.get("batch_size", 4),
+        device=device,
+    )
+    run_dir = root / config.raw["outputs"]["results_dir"]
+    output_file = downstream_cfg.get("output_file", "downstream_metrics.json")
+    write_downstream_metrics(run_dir, config.run_id, results, output_file)
+    metrics["downstream"] = results.get("results", {})
+    print(f"[{config.run_id}] downstream evaluation complete")

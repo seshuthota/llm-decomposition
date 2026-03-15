@@ -1,0 +1,11 @@
+{
+  "phase": "downstream_qwen3_8b",
+  "description": "Downstream zero-shot evaluation for Qwen3-8B GPTQ regime points.",
+  "runs": [
+    "configs/downstream/qwen3_8b/ds_fp_q8b.json",
+    "configs/downstream/qwen3_8b/ds_r3_q8b.json",
+    "configs/downstream/qwen3_8b/ds_g2b02_q8b.json",
+    "configs/downstream/qwen3_8b/ds_g2r02_q8b.json",
+    "configs/downstream/qwen3_8b/ds_h2r02_q8b.json"
+  ]
+}

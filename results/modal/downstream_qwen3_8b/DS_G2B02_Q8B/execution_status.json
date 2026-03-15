@@ -1,0 +1,15 @@
+{
+  "bit_width": null,
+  "dry_run": false,
+  "message": "Phase-2 targeted mixed-precision evaluation completed successfully.",
+  "method": "targeted_mixed_precision",
+  "metrics_summary": {
+    "latency_ms_per_token": 0.2519415023905302,
+    "memory_total_bytes": 6150113155,
+    "perplexity": 11.782303101845551
+  },
+  "missing_dependencies": [],
+  "model_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/qwen3-8b-base",
+  "run_id": "DS_G2B02_Q8B",
+  "status": "completed"
+}

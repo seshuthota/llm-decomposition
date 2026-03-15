@@ -1,0 +1,30 @@
+{
+  "description": "Downstream zero-shot evaluation for SmolLM3-3B GPTQ regime points.",
+  "phase": "downstream_smollm3_3b",
+  "prepared_runs": [
+    {
+      "bit_width": null,
+      "method": "full_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/downstream/DS_FP_S3B",
+      "run_id": "DS_FP_S3B"
+    },
+    {
+      "bit_width": 4,
+      "method": "gptq",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/downstream/DS_R3_S3B",
+      "run_id": "DS_R3_S3B"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_mixed_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/downstream/DS_G3B02_S3B",
+      "run_id": "DS_G3B02_S3B"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_svd_rank",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/downstream/DS_G3R02_S3B",
+      "run_id": "DS_G3R02_S3B"
+    }
+  ]
+}

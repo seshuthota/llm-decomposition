@@ -1,0 +1,79 @@
+{
+  "task_metrics": {
+    "hellaswag": "acc_norm,none",
+    "arc_easy": "acc_norm,none",
+    "arc_challenge": "acc_norm,none",
+    "winogrande": "acc,none",
+    "piqa": "acc_norm,none",
+    "boolq": "acc,none"
+  },
+  "task_winners": {
+    "gptq_q17b": {
+      "wins": {
+        "DS_R3_Q17B": 1,
+        "DS_G2B03_Q17B": 3,
+        "DS_G2R02_Q17B": 1,
+        "DS_H2R02M_Q17B": 1
+      },
+      "task_winners": {
+        "hellaswag": "DS_R3_Q17B",
+        "arc_easy": "DS_G2B03_Q17B",
+        "arc_challenge": "DS_G2B03_Q17B",
+        "winogrande": "DS_G2B03_Q17B",
+        "piqa": "DS_G2R02_Q17B",
+        "boolq": "DS_H2R02M_Q17B"
+      }
+    },
+    "gptq_q8b": {
+      "wins": {
+        "DS_R3_Q8B": 2,
+        "DS_G2B02_Q8B": 0,
+        "DS_G2R02_Q8B": 2,
+        "DS_H2R02_Q8B": 2
+      },
+      "task_winners": {
+        "hellaswag": "DS_H2R02_Q8B",
+        "arc_easy": "DS_G2R02_Q8B",
+        "arc_challenge": "DS_R3_Q8B",
+        "winogrande": "DS_H2R02_Q8B",
+        "piqa": "DS_G2R02_Q8B",
+        "boolq": "DS_R3_Q8B"
+      }
+    },
+    "gptq_s3b": {
+      "wins": {
+        "DS_R3_S3B": 2,
+        "DS_G3B02_S3B": 3,
+        "DS_G3R02_S3B": 1
+      },
+      "task_winners": {
+        "hellaswag": "DS_G3R02_S3B",
+        "arc_easy": "DS_R3_S3B",
+        "arc_challenge": "DS_G3B02_S3B",
+        "winogrande": "DS_G3B02_S3B",
+        "piqa": "DS_G3B02_S3B",
+        "boolq": "DS_R3_S3B"
+      }
+    },
+    "rtn_q17b": {
+      "wins": {
+        "DS_R2_Q17B": 2,
+        "DS_P2B03_Q17B": 3,
+        "DS_P2R02_Q17B": 1
+      },
+      "task_winners": {
+        "hellaswag": "DS_P2B03_Q17B",
+        "arc_easy": "DS_R2_Q17B",
+        "arc_challenge": "DS_P2B03_Q17B",
+        "winogrande": "DS_P2B03_Q17B",
+        "piqa": "DS_R2_Q17B",
+        "boolq": "DS_P2R02_Q17B"
+      }
+    }
+  },
+  "generated_files": [
+    "results/analysis/downstream_run_summary.csv",
+    "results/analysis/downstream_group_deltas.csv",
+    "docs/experiments/downstream_item1_analysis.md"
+  ]
+}

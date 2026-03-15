@@ -1,0 +1,15 @@
+{
+  "bit_width": null,
+  "dry_run": false,
+  "message": "Full-precision evaluation completed successfully with the generic Hugging Face backend.",
+  "method": "full_precision",
+  "metrics_summary": {
+    "latency_ms_per_token": 0.1342209330510833,
+    "memory_total_bytes": 6150197248,
+    "perplexity": 10.824901275585061
+  },
+  "missing_dependencies": [],
+  "model_name": "HuggingFaceTB/SmolLM3-3B-Base",
+  "run_id": "DS_FP_S3B",
+  "status": "completed"
+}

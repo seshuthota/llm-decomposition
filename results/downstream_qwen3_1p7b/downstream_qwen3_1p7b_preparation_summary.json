@@ -1,0 +1,36 @@
+{
+  "description": "Downstream zero-shot evaluation for Qwen3-1.7B GPTQ regime points.",
+  "phase": "downstream_qwen3_1p7b",
+  "prepared_runs": [
+    {
+      "bit_width": null,
+      "method": "full_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/downstream/DS_FP_Q17B",
+      "run_id": "DS_FP_Q17B"
+    },
+    {
+      "bit_width": 4,
+      "method": "gptq",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/downstream/DS_R3_Q17B",
+      "run_id": "DS_R3_Q17B"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_mixed_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/downstream/DS_G2B03_Q17B",
+      "run_id": "DS_G2B03_Q17B"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_svd_rank",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/downstream/DS_G2R02_Q17B",
+      "run_id": "DS_G2R02_Q17B"
+    },
+    {
+      "bit_width": null,
+      "method": "hybrid_second_stage",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/downstream/DS_H2R02M_Q17B",
+      "run_id": "DS_H2R02M_Q17B"
+    }
+  ]
+}

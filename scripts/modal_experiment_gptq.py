@@ -53,6 +53,7 @@ image = (
         "safetensors==0.5.2",
         "numpy",
         "optimum==2.1.0",
+        "lm-eval[hf]",
     )
     .run_commands(
         "python -m pip install --upgrade setuptools wheel",
@@ -106,12 +107,29 @@ def run_config_remote(
     if not selected:
         raise ValueError(f"Run id '{run_id}' was not found in manifest '{manifest}'.")
     config = selected[0]
+    model_preflight: dict[str, Any] | None = None
 
     if model_subpath:
-        volume_model_path = str((Path(REMOTE_MODEL_ROOT) / model_subpath).resolve())
-        config.raw["model"]["name"] = volume_model_path
-        if config.raw["model"].get("tokenizer_name") is not None:
-            config.raw["model"]["tokenizer_name"] = volume_model_path
+        requested_model = config.raw["model"]["name"]
+        requested_tokenizer = config.raw["model"].get("tokenizer_name")
+        volume_model_dir = Path(REMOTE_MODEL_ROOT) / model_subpath
+        config_path = volume_model_dir / "config.json"
+        tokenizer_config_path = volume_model_dir / "tokenizer_config.json"
+        model_preflight = {
+            "requested_model": requested_model,
+            "requested_tokenizer": requested_tokenizer,
+            "model_subpath": model_subpath,
+            "volume_model_dir": volume_model_dir.as_posix(),
+            "volume_model_dir_exists": volume_model_dir.exists(),
+            "config_exists": config_path.exists(),
+            "tokenizer_config_exists": tokenizer_config_path.exists(),
+        }
+        if volume_model_dir.exists() and config_path.exists():
+            volume_model_path = str(volume_model_dir)
+            config.raw["model"]["name"] = volume_model_path
+            tokenizer_name = config.raw["model"].get("tokenizer_name")
+            if tokenizer_name is None:
+                config.raw["model"]["tokenizer_name"] = volume_model_path
 
     phase = config.raw.get("phase", "adhoc")
     local_results_dir = Path(results_prefix) / phase / run_id
@@ -156,6 +174,7 @@ def run_config_remote(
         "execution_status.json",
         "modal_run.log",
         "actions.json",
+        "downstream_metrics.json",
     ):
         path = run_dir / filename
         if path.exists():
@@ -178,6 +197,7 @@ def run_config_remote(
         "remote_results_dir": config.results_dir,
         "local_results_dir": local_results_dir.as_posix(),
         "model_source": model_subpath or config.model_name,
+        "model_preflight": model_preflight,
         "gpu": DEFAULT_GPU,
         "timeout": DEFAULT_TIMEOUT,
         "stdout_tail": stdout_buffer.getvalue()[-8000:],

@@ -1,0 +1,15 @@
+{
+  "bit_width": null,
+  "dry_run": false,
+  "message": "Hybrid second-stage evaluation completed successfully.",
+  "method": "hybrid_second_stage",
+  "metrics_summary": {
+    "latency_ms_per_token": 0.12190042935221505,
+    "memory_total_bytes": 1368305961,
+    "perplexity": 15.89620325388434
+  },
+  "missing_dependencies": [],
+  "model_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/qwen3-1.7b-base",
+  "run_id": "DS_H2R02M_Q17B",
+  "status": "completed"
+}

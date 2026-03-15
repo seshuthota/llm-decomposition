@@ -1,0 +1,14 @@
+{
+  "bit_width": null,
+  "device": "cuda",
+  "dtype": "float16",
+  "evaluated_tokens": 290759.0,
+  "latency_ms_per_token": 0.1342209330510833,
+  "memory_metadata_bytes": 0,
+  "memory_total_bytes": 6150197248,
+  "method": "full_precision",
+  "model_name": "HuggingFaceTB/SmolLM3-3B-Base",
+  "perplexity": 10.824901275585061,
+  "run_id": "DS_FP_S3B",
+  "status": "completed"
+}

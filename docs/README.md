@@ -23,6 +23,7 @@ This repo now keeps planning and experiment notes in one place instead of spread
 - [experiments/qwen3_1p7b_transfer_conclusion.md](experiments/qwen3_1p7b_transfer_conclusion.md): final `1.7B` Modal transfer result
 - [experiments/phase3_rtn_regime_map.md](experiments/phase3_rtn_regime_map.md): final Phase 3 `RTN` cross-scale result
 - [experiments/gptq_pre_final_branch_snapshot.md](experiments/gptq_pre_final_branch_snapshot.md): frozen GPTQ frontier before the bounded endgame stop
+- [experiments/downstream_item1_analysis.md](experiments/downstream_item1_analysis.md): completed paper-readiness downstream analysis across GPTQ and RTN
 
 ## Proposal History
 

@@ -1,0 +1,15 @@
+{
+  "bit_width": null,
+  "dry_run": false,
+  "message": "Full-precision evaluation completed successfully with the generic Hugging Face backend.",
+  "method": "full_precision",
+  "metrics_summary": {
+    "latency_ms_per_token": 0.1154596976400346,
+    "memory_total_bytes": 3441149952,
+    "perplexity": 15.034692030741335
+  },
+  "missing_dependencies": [],
+  "model_name": "/__modal/volumes/vo-34bHdyikTfjM8k8hJ7wQXB/qwen3-1.7b-base",
+  "run_id": "DS_FP_Q17B",
+  "status": "completed"
+}

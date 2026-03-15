@@ -1,0 +1,68 @@
+{
+  "calibration": {
+    "dataset": "wikitext",
+    "num_sequences": 128,
+    "sampling": "seeded_shuffle",
+    "seed": 42,
+    "sequence_length": 512,
+    "split": "train",
+    "subset": "wikitext-2-raw-v1"
+  },
+  "description": "Full-precision SmolLM3-3B downstream evaluation.",
+  "downstream": {
+    "batch_size": 4,
+    "enabled": true,
+    "num_fewshot": {
+      "arc_challenge": 25,
+      "arc_easy": 0,
+      "boolq": 0,
+      "hellaswag": 0,
+      "piqa": 0,
+      "winogrande": 5
+    },
+    "output_file": "downstream_metrics.json",
+    "tasks": [
+      "hellaswag",
+      "arc_easy",
+      "arc_challenge",
+      "winogrande",
+      "piqa",
+      "boolq"
+    ]
+  },
+  "evaluation": {
+    "dataset": "wikitext",
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token",
+      "memory_total_bytes"
+    ],
+    "sequence_length": 512,
+    "split": "test",
+    "stride": 512,
+    "subset": "wikitext-2-raw-v1"
+  },
+  "method": {
+    "name": "full_precision"
+  },
+  "model": {
+    "dtype_preference": [
+      "float16"
+    ],
+    "name": "HuggingFaceTB/SmolLM3-3B-Base",
+    "tokenizer_name": "HuggingFaceTB/SmolLM3-3B-Base"
+  },
+  "outputs": {
+    "layer_summary_file": "layer_errors.json",
+    "metrics_file": "metrics.json",
+    "residual_profile_file": "residual_profiles.json",
+    "results_dir": "/resultsvol/results/modal/downstream_smollm3_3b/DS_FP_S3B"
+  },
+  "phase": "downstream_smollm3_3b",
+  "profiling": {
+    "layerwise_activation_error": false,
+    "layerwise_weight_error": false,
+    "residual_svd_profile": false
+  },
+  "run_id": "DS_FP_S3B"
+}
