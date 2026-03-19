@@ -4,6 +4,7 @@ This repo now keeps planning and experiment notes in one place instead of spread
 
 ## Start Here
 
+- [paper/paper_draft.md](paper/paper_draft.md): working paper draft with manuscript prose built from the completed paper-readiness experiments
 - [experiments/final_quantization_vs_svd_synthesis.md](experiments/final_quantization_vs_svd_synthesis.md): canonical project-level synthesis across RTN and GPTQ
 - [proposals/current_proposal.md](proposals/current_proposal.md): active research framing
 - [roadmap/execution_roadmap.md](roadmap/execution_roadmap.md): current execution plan, evaluation setup, and next milestones
@@ -24,6 +25,9 @@ This repo now keeps planning and experiment notes in one place instead of spread
 - [experiments/phase3_rtn_regime_map.md](experiments/phase3_rtn_regime_map.md): final Phase 3 `RTN` cross-scale result
 - [experiments/gptq_pre_final_branch_snapshot.md](experiments/gptq_pre_final_branch_snapshot.md): frozen GPTQ frontier before the bounded endgame stop
 - [experiments/downstream_item1_analysis.md](experiments/downstream_item1_analysis.md): completed paper-readiness downstream analysis across GPTQ and RTN
+- [experiments/activation_vs_weight_ablation.md](experiments/activation_vs_weight_ablation.md): completed paper-readiness allocator-proxy ablation
+- [experiments/item3_multiseed_analysis.md](experiments/item3_multiseed_analysis.md): completed paper-readiness multi-seed stability analysis
+- [experiments/item4_latency_analysis.md](experiments/item4_latency_analysis.md): completed paper-readiness latency and peak-VRAM analysis
 
 ## Proposal History
 

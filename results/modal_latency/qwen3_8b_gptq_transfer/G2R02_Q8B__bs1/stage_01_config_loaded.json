@@ -1,0 +1,9 @@
+{
+  "stage": "stage_01_config_loaded",
+  "timestamp_utc": "2026-03-19T06:54:20.484331+00:00",
+  "run_id": "G2R02_Q8B",
+  "benchmark_run_id": "G2R02_Q8B__bs1",
+  "manifest": "configs/scaleup_qwen3_8b_gptq/qwen3_8b_gptq_transfer_manifest.json",
+  "batch_size": 1,
+  "local_results_dir": "results/modal_latency_rankfix_v1/qwen3_8b_gptq_transfer/G2R02_Q8B__bs1"
+}

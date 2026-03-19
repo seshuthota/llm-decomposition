@@ -1,0 +1,12 @@
+{
+  "phase": "multiseed_stability",
+  "description": "Multi-seed stability analysis for bits vs rank policy on Qwen3-1.7B GPTQ",
+  "runs": [
+    "configs/multiseed/G2R02W_Q17B_s42.json",
+    "configs/multiseed/G2R02W_Q17B_s123.json",
+    "configs/multiseed/G2R02W_Q17B_s456.json",
+    "configs/multiseed/G2B02W_Q17B_s42.json",
+    "configs/multiseed/G2B02W_Q17B_s123.json",
+    "configs/multiseed/G2B02W_Q17B_s456.json"
+  ]
+}

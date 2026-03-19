@@ -31,6 +31,8 @@ image = (
         "huggingface_hub==1.6.0",
         "safetensors==0.5.2",
         "numpy",
+        "optimum>=1.0",
+        "auto-gptq>=0.7.0",
     )
     .add_local_dir(
         REPO_ROOT,
@@ -93,7 +95,9 @@ def run_config_remote(
     from llm_decomposition.prepare import prepare_run
 
     manifest_obj = load_manifest(repo_root, manifest)
-    selected = [config for config in manifest_obj.run_configs if config.run_id == run_id]
+    selected = [
+        config for config in manifest_obj.run_configs if config.run_id == run_id
+    ]
     if not selected:
         raise ValueError(f"Run id '{run_id}' was not found in manifest '{manifest}'.")
     config = selected[0]
@@ -111,7 +115,10 @@ def run_config_remote(
     stdout_buffer = _TeeBuffer(sys.__stdout__)
     stderr_buffer = _TeeBuffer(sys.__stderr__)
     executor = ExperimentExecutor(repo_root)
-    with contextlib.redirect_stdout(stdout_buffer), contextlib.redirect_stderr(stderr_buffer):
+    with (
+        contextlib.redirect_stdout(stdout_buffer),
+        contextlib.redirect_stderr(stderr_buffer),
+    ):
         try:
             execution = executor.execute(config, dry_run=False)
             error = None

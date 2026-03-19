@@ -1,0 +1,188 @@
+{
+  "allocator": "greedy_activation",
+  "bit_width": 4,
+  "candidate_bit_widths": [
+    8
+  ],
+  "candidate_pool_path": "configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_top12_candidate_pool.json",
+  "device": "cuda",
+  "dtype": "float16",
+  "evaluated_tokens": 300979.0,
+  "extra_budget_bytes": 13569682,
+  "latency_ms_per_token": 0.1391129113094287,
+  "memory_metadata_bytes": 26882048,
+  "memory_total_bytes": 1364308265,
+  "method": "targeted_mixed_precision",
+  "model_name": "/vol/models/qwen3-1.7b-base",
+  "perplexity": 15.899260789398474,
+  "profiling_wall_time_s": 12.489737606999995,
+  "proxy_family": "activation",
+  "run_id": "G2B02A_Q17B",
+  "selected_actions": [
+    {
+      "action_id": "bit_model_layers_21_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 1048576,
+      "cumulative_budget_bytes": 1048576,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 1048576,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.1645870720262475e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.22697340536369945,
+      "selected": true,
+      "selection_order": 1,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.21.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_19_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 1048576,
+      "cumulative_budget_bytes": 2097152,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 1048576,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.1123984372778764e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.22150103037670865,
+      "selected": true,
+      "selection_order": 2,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.19.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_22_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 1048576,
+      "cumulative_budget_bytes": 3145728,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 1048576,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.0794045732958794e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.21804137298483,
+      "selected": true,
+      "selection_order": 3,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.22.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_23_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 1048576,
+      "cumulative_budget_bytes": 4194304,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 1048576,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.0239338981877544e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.21222485112261227,
+      "selected": true,
+      "selection_order": 4,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.23.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_20_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 1048576,
+      "cumulative_budget_bytes": 5242880,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 1048576,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.0049222191567888e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.2102313320874549,
+      "selected": true,
+      "selection_order": 5,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.20.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_8_self_attn_k_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 1048576,
+      "cumulative_budget_bytes": 6291456,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 1048576,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 1.7534648862259567e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.18386411965392688,
+      "selected": true,
+      "selection_order": 6,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.8.self_attn.k_proj"
+    },
+    {
+      "action_id": "bit_model_layers_9_self_attn_k_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 1048576,
+      "cumulative_budget_bytes": 7340032,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 1048576,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 1.3609789872576407e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.14270899025426678,
+      "selected": true,
+      "selection_order": 7,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.9.self_attn.k_proj"
+    }
+  ],
+  "selection_profiling_wall_time_s": 15.118557725000016,
+  "status": "completed",
+  "upgraded_layers": [
+    "model.layers.19.self_attn.v_proj",
+    "model.layers.20.self_attn.v_proj",
+    "model.layers.21.self_attn.v_proj",
+    "model.layers.22.self_attn.v_proj",
+    "model.layers.23.self_attn.v_proj",
+    "model.layers.8.self_attn.k_proj",
+    "model.layers.9.self_attn.k_proj"
+  ]
+}

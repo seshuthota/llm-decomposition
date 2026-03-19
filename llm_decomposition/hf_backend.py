@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import time
 from typing import Any
 
 import torch
@@ -92,7 +93,7 @@ def execute_rtn(root: Path, config: RunConfig) -> dict[str, Any]:
     eval_metrics = evaluate_perplexity(quantized_model, eval_sequences, runtime.device)
 
     print(f"[{config.run_id}] profiling layerwise errors")
-    merged_layer_metrics, residual_profiles = _profile_model_pair(
+    merged_layer_metrics, residual_profiles, profiling_wall_time_s = _profile_model_pair(
         root=root,
         config=config,
         tokenizer=tokenizer,
@@ -117,6 +118,7 @@ def execute_rtn(root: Path, config: RunConfig) -> dict[str, Any]:
         "perplexity": eval_metrics["perplexity"],
         "latency_ms_per_token": eval_metrics["latency_ms_per_token"],
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
+        "profiling_wall_time_s": profiling_wall_time_s,
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, residual_profiles)
     _maybe_run_downstream(root, config, quantized_model, tokenizer, runtime.device, metrics)
@@ -147,7 +149,7 @@ def execute_gptq(root: Path, config: RunConfig) -> dict[str, Any]:
     gptq_source_model = load_causal_lm(config.model_name, runtime)
 
     print(f"[{config.run_id}] quantizing model with GPTQ {method_cfg['bit_width']}-bit")
-    quantized_model, saved_artifact_bytes = quantize_model_gptq(
+    quantized_model = quantize_model_gptq(
         gptq_source_model,
         config,
         tokenizer,
@@ -164,7 +166,7 @@ def execute_gptq(root: Path, config: RunConfig) -> dict[str, Any]:
     eval_metrics = evaluate_perplexity(quantized_model, eval_sequences, runtime.device)
 
     print(f"[{config.run_id}] profiling layerwise errors")
-    merged_layer_metrics, residual_profiles = _profile_model_pair(
+    merged_layer_metrics, residual_profiles, profiling_wall_time_s = _profile_model_pair(
         root=root,
         config=config,
         tokenizer=tokenizer,
@@ -183,11 +185,12 @@ def execute_gptq(root: Path, config: RunConfig) -> dict[str, Any]:
         "bit_width": config.bit_width,
         "device": runtime.device_label,
         "dtype": str(runtime.dtype).replace("torch.", ""),
-        "memory_total_bytes": saved_artifact_bytes,
+        "memory_total_bytes": sum(item["total_quantized_bytes"] for item in layer_stats.values()),
         "memory_metadata_bytes": memory_metadata_bytes,
         "perplexity": eval_metrics["perplexity"],
         "latency_ms_per_token": eval_metrics["latency_ms_per_token"],
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
+        "profiling_wall_time_s": profiling_wall_time_s,
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, residual_profiles)
     _maybe_run_downstream(root, config, quantized_model, tokenizer, runtime.device, metrics)
@@ -232,7 +235,7 @@ def execute_uniform_svd_repair(root: Path, config: RunConfig) -> dict[str, Any]:
     eval_metrics = evaluate_perplexity(quantized_model, eval_sequences, runtime.device)
 
     print(f"[{config.run_id}] profiling repaired model")
-    merged_layer_metrics, residual_profiles = _profile_model_pair(
+    merged_layer_metrics, residual_profiles, profiling_wall_time_s = _profile_model_pair(
         root=root,
         config=config,
         tokenizer=tokenizer,
@@ -260,6 +263,7 @@ def execute_uniform_svd_repair(root: Path, config: RunConfig) -> dict[str, Any]:
         "perplexity": eval_metrics["perplexity"],
         "latency_ms_per_token": eval_metrics["latency_ms_per_token"],
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
+        "profiling_wall_time_s": profiling_wall_time_s,
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, residual_profiles)
     _maybe_run_downstream(root, config, quantized_model, tokenizer, runtime.device, metrics)
@@ -306,7 +310,7 @@ def execute_mixed_precision_budget_match(root: Path, config: RunConfig) -> dict[
     eval_metrics = evaluate_perplexity(quantized_model, eval_sequences, runtime.device)
 
     print(f"[{config.run_id}] profiling mixed-precision model")
-    merged_layer_metrics, residual_profiles = _profile_model_pair(
+    merged_layer_metrics, residual_profiles, profiling_wall_time_s = _profile_model_pair(
         root=root,
         config=config,
         tokenizer=tokenizer,
@@ -335,6 +339,7 @@ def execute_mixed_precision_budget_match(root: Path, config: RunConfig) -> dict[
         "perplexity": eval_metrics["perplexity"],
         "latency_ms_per_token": eval_metrics["latency_ms_per_token"],
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
+        "profiling_wall_time_s": profiling_wall_time_s,
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, residual_profiles)
     _maybe_run_downstream(root, config, quantized_model, tokenizer, runtime.device, metrics)
@@ -350,32 +355,13 @@ def execute_targeted_mixed_precision(root: Path, config: RunConfig) -> dict[str,
     print(f"[{config.run_id}] loading full-precision model")
     fp_model = load_causal_lm(config.model_name, runtime)
     candidate_pool = _load_candidate_pool(root, method_cfg["candidate_pool_path"])
-    layer_error_map = _load_layer_error_map(root, candidate_pool["source_layer_errors_path"])
     candidate_layers = _candidate_layers_from_pool(candidate_pool)
-    budget_bytes = _resolve_budget_bytes(root, method_cfg["base_run_id"], method_cfg["budget_percent_of_base"])
+    budget_bytes = _resolve_budget_bytes(root, method_cfg)
     candidate_bit_widths = _resolve_candidate_bit_widths(candidate_pool, method_cfg)
     if not candidate_bit_widths:
         raise ValueError("No candidate bit widths are available for targeted mixed precision.")
 
-    print(
-        f"[{config.run_id}] building targeted mixed-precision action set "
-        f"for {len(candidate_layers)} matrices with budget {budget_bytes} bytes"
-    )
-    actions = _build_bit_actions(
-        fp_model=fp_model,
-        candidate_layers=candidate_layers,
-        layer_error_map=layer_error_map,
-        base_bit_width=method_cfg.get("base_bit_width", 4),
-        target_bit_widths=candidate_bit_widths,
-        group_size=candidate_pool.get("group_size", 128),
-        symmetric=candidate_pool.get("symmetric", True),
-        proxy_family=method_cfg.get("proxy_family", "activation"),
-        target_granularity=method_cfg.get("target_granularity", "matrix"),
-        row_block_size=method_cfg.get("row_block_size"),
-        column_block_size=method_cfg.get("column_block_size"),
-    )
-    selected_actions = _select_bit_actions(actions, allocator=method_cfg.get("allocator", "greedy_activation"), budget_bytes=budget_bytes)
-    layer_bit_overrides = {action.target_name: action.bit_to for action in selected_actions if action.target_granularity == "matrix"}
+    selection_profiling_wall_time_s = 0.0
 
     if base_method == "gptq":
         from llm_decomposition.gptq_backend import apply_targeted_bit_upgrades
@@ -385,12 +371,51 @@ def execute_targeted_mixed_precision(root: Path, config: RunConfig) -> dict[str,
             f"device={runtime.device_label} dtype={str(runtime.dtype).replace('torch.', '')}"
         )
         print(f"[{config.run_id}] building GPTQ base model for targeted mixed-precision allocation")
-        gptq_source_model = load_causal_lm(config.model_name, runtime)
+        # Optimization: Move fp_model to CPU to free VRAM for GPTQ loading
+        fp_model.to("cpu")
+        _clear_cuda_cache()
+
         quantized_model, base_total_bytes, layer_stats = _build_gptq_base_model(
             config=config,
             tokenizer=tokenizer,
-            source_model=gptq_source_model,
+            source_model=None,  # Redundant for transformers_gptq_config
             fp_reference_model=fp_model,
+        )
+        # Move fp_model back to runtime device for profiling
+        _move_model_to_runtime_device(fp_model, runtime.device)
+
+        layer_error_map, selection_profiling_wall_time_s = _resolve_selection_layer_error_map(
+            root=root,
+            config=config,
+            tokenizer=tokenizer,
+            runtime_device=runtime.device,
+            fp_model=fp_model,
+            eval_model=quantized_model,
+            layer_stats=layer_stats,
+            target_layers=candidate_layers,
+            fallback_source_path=candidate_pool["source_layer_errors_path"],
+        )
+        print(
+            f"[{config.run_id}] building targeted mixed-precision action set "
+            f"for {len(candidate_layers)} matrices with budget {budget_bytes} bytes"
+        )
+        actions = _build_bit_actions(
+            fp_model=fp_model,
+            candidate_layers=candidate_layers,
+            layer_error_map=layer_error_map,
+            base_bit_width=method_cfg.get("base_bit_width", 4),
+            target_bit_widths=candidate_bit_widths,
+            group_size=candidate_pool.get("group_size", 128),
+            symmetric=candidate_pool.get("symmetric", True),
+            proxy_family=method_cfg.get("proxy_family", "activation"),
+            target_granularity=method_cfg.get("target_granularity", "matrix"),
+            row_block_size=method_cfg.get("row_block_size"),
+            column_block_size=method_cfg.get("column_block_size"),
+        )
+        selected_actions = _select_bit_actions(
+            actions,
+            allocator=method_cfg.get("allocator", "greedy_activation"),
+            budget_bytes=budget_bytes,
         )
         print(f"[{config.run_id}] applying {len(selected_actions)} matrix-level bit upgrades on GPTQ base")
         upgraded_layers = _apply_targeted_bit_actions(
@@ -404,6 +429,47 @@ def execute_targeted_mixed_precision(root: Path, config: RunConfig) -> dict[str,
         )
         memory_total_bytes = base_total_bytes + sum(action.byte_cost for action in selected_actions)
     else:
+        print(f"[{config.run_id}] building RTN base model for targeted mixed-precision allocation")
+        quantized_model, layer_stats = quantize_model_rtn(
+            fp_model,
+            bit_width=method_cfg.get("base_bit_width", 4),
+            group_size=candidate_pool.get("group_size", 128),
+            symmetric=candidate_pool.get("symmetric", True),
+        )
+        layer_error_map, selection_profiling_wall_time_s = _resolve_selection_layer_error_map(
+            root=root,
+            config=config,
+            tokenizer=tokenizer,
+            runtime_device=runtime.device,
+            fp_model=fp_model,
+            eval_model=quantized_model,
+            layer_stats=layer_stats,
+            target_layers=candidate_layers,
+            fallback_source_path=candidate_pool["source_layer_errors_path"],
+        )
+        print(
+            f"[{config.run_id}] building targeted mixed-precision action set "
+            f"for {len(candidate_layers)} matrices with budget {budget_bytes} bytes"
+        )
+        actions = _build_bit_actions(
+            fp_model=fp_model,
+            candidate_layers=candidate_layers,
+            layer_error_map=layer_error_map,
+            base_bit_width=method_cfg.get("base_bit_width", 4),
+            target_bit_widths=candidate_bit_widths,
+            group_size=candidate_pool.get("group_size", 128),
+            symmetric=candidate_pool.get("symmetric", True),
+            proxy_family=method_cfg.get("proxy_family", "activation"),
+            target_granularity=method_cfg.get("target_granularity", "matrix"),
+            row_block_size=method_cfg.get("row_block_size"),
+            column_block_size=method_cfg.get("column_block_size"),
+        )
+        selected_actions = _select_bit_actions(
+            actions,
+            allocator=method_cfg.get("allocator", "greedy_activation"),
+            budget_bytes=budget_bytes,
+        )
+        layer_bit_overrides = {action.target_name: action.bit_to for action in selected_actions if action.target_granularity == "matrix"}
         if all(action.target_granularity == "matrix" for action in selected_actions):
             print(f"[{config.run_id}] applying {len(selected_actions)} matrix-level bit upgrades")
             quantized_model, layer_stats = quantize_model_mixed_precision(
@@ -448,7 +514,7 @@ def execute_targeted_mixed_precision(root: Path, config: RunConfig) -> dict[str,
     eval_metrics = evaluate_perplexity(quantized_model, eval_sequences, runtime.device)
 
     print(f"[{config.run_id}] profiling targeted mixed-precision model")
-    merged_layer_metrics, residual_profiles = _profile_model_pair(
+    merged_layer_metrics, residual_profiles, profiling_wall_time_s = _profile_model_pair(
         root=root,
         config=config,
         tokenizer=tokenizer,
@@ -480,6 +546,8 @@ def execute_targeted_mixed_precision(root: Path, config: RunConfig) -> dict[str,
         "perplexity": eval_metrics["perplexity"],
         "latency_ms_per_token": eval_metrics["latency_ms_per_token"],
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
+        "selection_profiling_wall_time_s": selection_profiling_wall_time_s,
+        "profiling_wall_time_s": profiling_wall_time_s,
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, residual_profiles)
     _write_actions(root, config, actions, selected_actions)
@@ -496,9 +564,9 @@ def execute_targeted_svd_rank(root: Path, config: RunConfig) -> dict[str, Any]:
     print(f"[{config.run_id}] loading full-precision model")
     fp_model = load_causal_lm(config.model_name, runtime)
     candidate_pool = _load_candidate_pool(root, method_cfg["candidate_pool_path"])
-    layer_error_map = _load_layer_error_map(root, candidate_pool["source_layer_errors_path"])
     candidate_layers = _candidate_layers_from_pool(candidate_pool)
-    budget_bytes = _resolve_budget_bytes(root, method_cfg["base_run_id"], method_cfg["budget_percent_of_base"])
+    budget_bytes = _resolve_budget_bytes(root, method_cfg)
+    selection_profiling_wall_time_s = 0.0
 
     if base_method == "gptq":
         print(
@@ -506,13 +574,18 @@ def execute_targeted_svd_rank(root: Path, config: RunConfig) -> dict[str, Any]:
             f"device={runtime.device_label} dtype={str(runtime.dtype).replace('torch.', '')}"
         )
         print(f"[{config.run_id}] building GPTQ base model for targeted rank allocation")
-        gptq_source_model = load_causal_lm(config.model_name, runtime)
+        # Optimization: Move fp_model to CPU to free VRAM for GPTQ loading
+        fp_model.to("cpu")
+        _clear_cuda_cache()
+
         quantized_model, base_total_bytes, layer_stats = _build_gptq_base_model(
             config=config,
             tokenizer=tokenizer,
-            source_model=gptq_source_model,
+            source_model=None,  # Redundant for transformers_gptq_config
             fp_reference_model=fp_model,
         )
+        # Move fp_model back to runtime device for profiling
+        _move_model_to_runtime_device(fp_model, runtime.device)
     else:
         print(f"[{config.run_id}] building RTN base model for targeted rank allocation")
         quantized_model, layer_stats = quantize_model_rtn(
@@ -522,6 +595,17 @@ def execute_targeted_svd_rank(root: Path, config: RunConfig) -> dict[str, Any]:
             symmetric=candidate_pool.get("symmetric", True),
         )
         base_total_bytes = sum(item["total_quantized_bytes"] for item in layer_stats.values())
+    layer_error_map, selection_profiling_wall_time_s = _resolve_selection_layer_error_map(
+        root=root,
+        config=config,
+        tokenizer=tokenizer,
+        runtime_device=runtime.device,
+        fp_model=fp_model,
+        eval_model=quantized_model,
+        layer_stats=layer_stats,
+        target_layers=candidate_layers,
+        fallback_source_path=candidate_pool["source_layer_errors_path"],
+    )
     target_granularity = method_cfg.get("target_granularity", "matrix")
     candidate_ranks = method_cfg.get("candidate_ranks", candidate_pool["rank_actions"]["candidate_ranks"])
     if target_granularity == "row_block":
@@ -595,7 +679,7 @@ def execute_targeted_svd_rank(root: Path, config: RunConfig) -> dict[str, Any]:
     eval_metrics = evaluate_perplexity(quantized_model, eval_sequences, runtime.device)
 
     print(f"[{config.run_id}] profiling targeted rank model")
-    merged_layer_metrics, final_residual_profiles = _profile_model_pair(
+    merged_layer_metrics, final_residual_profiles, profiling_wall_time_s = _profile_model_pair(
         root=root,
         config=config,
         tokenizer=tokenizer,
@@ -632,6 +716,8 @@ def execute_targeted_svd_rank(root: Path, config: RunConfig) -> dict[str, Any]:
         "perplexity": eval_metrics["perplexity"],
         "latency_ms_per_token": eval_metrics["latency_ms_per_token"],
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
+        "selection_profiling_wall_time_s": selection_profiling_wall_time_s,
+        "profiling_wall_time_s": profiling_wall_time_s,
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, final_residual_profiles)
     _write_actions(root, config, actions, selected_actions)
@@ -650,7 +736,7 @@ def execute_hybrid_second_stage(root: Path, config: RunConfig) -> dict[str, Any]
     candidate_pool = _load_candidate_pool(root, method_cfg["candidate_pool_path"])
     layer_error_map = _load_layer_error_map(root, candidate_pool["source_layer_errors_path"])
     candidate_layers = _candidate_layers_from_pool(candidate_pool)
-    budget_bytes = _resolve_budget_bytes(root, method_cfg["base_run_id"], method_cfg["budget_percent_of_base"])
+    budget_bytes = _resolve_budget_bytes(root, method_cfg)
     prior_bit_actions = _load_prior_selected_bit_actions(root, method_cfg["prior_run_id"])
 
     if base_method == "gptq":
@@ -772,7 +858,7 @@ def execute_hybrid_second_stage(root: Path, config: RunConfig) -> dict[str, Any]
     eval_metrics = evaluate_perplexity(quantized_model, eval_sequences, runtime.device)
 
     print(f"[{config.run_id}] profiling hybrid second-stage model")
-    merged_layer_metrics, final_residual_profiles = _profile_model_pair(
+    merged_layer_metrics, final_residual_profiles, profiling_wall_time_s = _profile_model_pair(
         root=root,
         config=config,
         tokenizer=tokenizer,
@@ -816,6 +902,7 @@ def execute_hybrid_second_stage(root: Path, config: RunConfig) -> dict[str, Any]
         "perplexity": eval_metrics["perplexity"],
         "latency_ms_per_token": eval_metrics["latency_ms_per_token"],
         "evaluated_tokens": eval_metrics["evaluated_tokens"],
+        "profiling_wall_time_s": profiling_wall_time_s,
     }
     _write_outputs(root, config, metrics, merged_layer_metrics, final_residual_profiles)
     _write_actions(root, config, prior_bit_actions + rank_actions, selected_rank_actions, base_actions=prior_bit_actions)
@@ -832,7 +919,8 @@ def _profile_model_pair(
     eval_model,
     layer_stats: dict[str, dict[str, Any]],
     target_layers: list[str] | None = None,
-) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], float]:
+    start_time = time.perf_counter()
     profiling_cfg = config.raw["profiling"]
     layer_summaries = summarize_layer_errors(layer_stats)
 
@@ -868,7 +956,51 @@ def _profile_model_pair(
             candidate_layers,
             profiling_cfg.get("candidate_ranks", [4, 8, 16, 32]),
         )
-    return merged_layer_metrics, residual_profiles
+    return merged_layer_metrics, residual_profiles, time.perf_counter() - start_time
+
+
+def _resolve_selection_layer_error_map(
+    root: Path,
+    config: RunConfig,
+    tokenizer,
+    runtime_device,
+    fp_model,
+    eval_model,
+    layer_stats: dict[str, dict[str, Any]],
+    target_layers: list[str],
+    fallback_source_path: str,
+) -> tuple[dict[str, dict[str, Any]], float]:
+    method_cfg = config.raw.get("method", {})
+    if method_cfg.get("selection_profile_source", "candidate_pool") != "current_base_model":
+        return _load_layer_error_map(root, fallback_source_path), 0.0
+
+    start_time = time.perf_counter()
+    layer_summaries = summarize_layer_errors(layer_stats)
+    activation_errors = {}
+    profiling_cfg = config.raw["profiling"]
+    if profiling_cfg.get("layerwise_activation_error", False):
+        sequential_offload = profiling_cfg.get("sequential_model_offload", False)
+        if sequential_offload:
+            fp_model.to("cpu")
+            eval_model.to("cpu")
+            _clear_cuda_cache()
+        calibration_sequences = _load_profile_sequences(tokenizer, config)
+        activation_errors = measure_activation_error(
+            fp_model,
+            eval_model,
+            calibration_sequences,
+            runtime_device,
+            target_layers=target_layers,
+            sequential_offload=sequential_offload,
+        )
+
+    merged_layer_metrics = merge_layer_metrics(layer_summaries, activation_errors)
+    layer_error_map = {
+        item["layer_name"]: item
+        for item in merged_layer_metrics
+        if item["layer_name"] in set(target_layers)
+    }
+    return layer_error_map, time.perf_counter() - start_time
 
 
 def _should_sequential_offload(config: RunConfig) -> bool:
@@ -908,7 +1040,7 @@ def _build_gptq_base_model(
 ) -> tuple[nn.Module, int, dict[str, dict[str, Any]]]:
     from llm_decomposition.gptq_backend import estimate_gptq_layer_stats, quantize_model_gptq
 
-    quantized_model, base_total_bytes = quantize_model_gptq(
+    quantized_model = quantize_model_gptq(
         source_model,
         config,
         tokenizer,
@@ -922,6 +1054,7 @@ def _build_gptq_base_model(
         group_size=method_cfg.get("group_size", 128),
         symmetric=method_cfg.get("symmetric", True),
     )
+    base_total_bytes = sum(item["total_quantized_bytes"] for item in layer_stats.values())
     return quantized_model, base_total_bytes, layer_stats
 
 
@@ -1057,6 +1190,10 @@ def _load_target_memory_bytes(root: Path, run_id: str) -> int:
         root / f"results/smollm3_3b/{run_id.replace('_S3B', '')}/metrics.json",
         root / f"results/modal/qwen3_1p7b_baselines/{run_id}/metrics.json",
         root / f"results/modal/qwen3_1p7b_transfer/{run_id}/metrics.json",
+        root / f"results/modal/qwen3_8b_gptq_baselines/{run_id}/metrics.json",
+        root / f"results/modal/qwen3_8b_gptq_transfer/{run_id}/metrics.json",
+        root / f"results/modal/qwen3_8b_baselines/{run_id}/metrics.json",
+        root / f"results/modal/qwen3_8b_transfer/{run_id}/metrics.json",
         root / f"results/modal/smollm3_3b_baselines/{run_id}/metrics.json",
         root / f"results/modal/smollm3_3b_transfer/{run_id}/metrics.json",
         root / f"results/modal/phase2/{run_id}/metrics.json",
@@ -1090,7 +1227,12 @@ def _load_target_memory_bytes(root: Path, run_id: str) -> int:
     )
 
 
-def _resolve_budget_bytes(root: Path, base_run_id: str, budget_percent_of_base: float) -> int:
+def _resolve_budget_bytes(root: Path, method_cfg: dict[str, Any]) -> int:
+    explicit_budget = method_cfg.get("budget_bytes")
+    if explicit_budget is not None:
+        return max(int(explicit_budget), 0)
+    base_run_id = method_cfg["base_run_id"]
+    budget_percent_of_base = method_cfg["budget_percent_of_base"]
     base_total_bytes = _load_target_memory_bytes(root, base_run_id)
     return max(int(round(base_total_bytes * (budget_percent_of_base / 100.0))), 0)
 

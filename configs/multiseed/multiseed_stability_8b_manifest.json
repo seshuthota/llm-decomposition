@@ -1,0 +1,12 @@
+{
+  "phase": "multiseed_stability_8b",
+  "description": "Multi-seed stability analysis for Qwen3-8B GPTQ bits vs rank policies",
+  "runs": [
+    "configs/multiseed/G2B02_Q8B_s42.json",
+    "configs/multiseed/G2B02_Q8B_s123.json",
+    "configs/multiseed/G2B02_Q8B_s456.json",
+    "configs/multiseed/G2R02_Q8B_s42.json",
+    "configs/multiseed/G2R02_Q8B_s123.json",
+    "configs/multiseed/G2R02_Q8B_s456.json"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "run_id": "R3_Q17B",
+  "phase": "qwen3_1p7b_gptq_baselines",
+  "description": "GPTQ 4-bit baseline for Qwen/Qwen3-1.7B-Base on Modal.",
+  "model": {
+    "name": "Qwen/Qwen3-1.7B-Base",
+    "tokenizer_name": "Qwen/Qwen3-1.7B-Base",
+    "dtype_preference": [
+      "float16"
+    ]
+  },
+  "method": {
+    "name": "gptq",
+    "implementation": "transformers_gptq_config",
+    "quantizer": "GPTQ",
+    "bit_width": 4,
+    "group_size": 128,
+    "symmetric": true,
+    "damp_percent": 0.1,
+    "desc_act": true,
+    "act_group_aware": false,
+    "true_sequential": true,
+    "batch_size": 1,
+    "validate_outputs": true,
+    "non_finite_check_batches": 1
+  },
+  "calibration": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "train",
+    "num_sequences": 128,
+    "num_text_samples": 128,
+    "sequence_length": 512,
+    "sampling": "seeded_shuffle",
+    "seed": 42
+  },
+  "evaluation": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "test",
+    "sequence_length": 512,
+    "stride": 512,
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token",
+      "memory_total_bytes",
+      "layerwise_weight_error",
+      "layerwise_activation_error"
+    ]
+  },
+  "profiling": {
+    "layerwise_weight_error": true,
+    "layerwise_activation_error": false,
+    "residual_svd_profile": false,
+    "profile_sequence_length": 128,
+    "profile_num_sequences": 8,
+    "residual_top_k_layers": 12,
+    "candidate_ranks": [
+      4,
+      8,
+      16,
+      32
+    ]
+  },
+  "outputs": {
+    "results_dir": "/resultsvol/results/modal_latency/qwen3_1p7b_gptq_baselines/R3_Q17B__bs1",
+    "metrics_file": "metrics.json",
+    "layer_summary_file": "layer_errors.json",
+    "residual_profile_file": "residual_profiles.json"
+  }
+}

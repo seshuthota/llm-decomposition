@@ -1,0 +1,7 @@
+{
+  "stage": "stage_04_before_execute",
+  "timestamp_utc": "2026-03-17T16:12:04.268103+00:00",
+  "run_id": "G2B02_Q8B_s42",
+  "method": "targeted_mixed_precision",
+  "model_name": "Qwen/Qwen3-8B-Base"
+}

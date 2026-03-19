@@ -1,0 +1,17 @@
+{
+  "all_finite": true,
+  "batches": [
+    {
+      "batch_index": 0,
+      "finite_logit_count": 65667072,
+      "finite_logit_max": 40.8125,
+      "finite_logit_min": -42.3125,
+      "logits_all_finite": true,
+      "loss": 2.1750950813293457,
+      "loss_is_finite": true,
+      "sequence_length": 512,
+      "total_logit_count": 65667072
+    }
+  ],
+  "checked_batches": 1
+}

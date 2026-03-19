@@ -1,0 +1,14 @@
+{
+  "job_id": "G2B03_Q17B_bs8",
+  "description": "Item 4 latency benchmark for Qwen3-1.7B GPTQ targeted bits on A10G, batch size 8.",
+  "source_run_id": "G2B03_Q17B",
+  "source_manifest": "configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_transfer_manifest.json",
+  "model_subpath": "qwen3-1.7b-base",
+  "gpu": "A10G",
+  "batch_size": 8,
+  "prompt_length": 512,
+  "decode_length": 128,
+  "warmup_iterations": 3,
+  "timed_iterations": 10,
+  "results_prefix": "results/modal_latency"
+}

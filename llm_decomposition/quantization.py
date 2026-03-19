@@ -201,6 +201,9 @@ def compute_low_rank_repair(
     rank: int,
     factor_dtype_bytes: int,
 ) -> tuple[torch.Tensor, dict[str, Any]]:
+    target_device = _resolve_low_rank_device(fp_weight, quant_weight)
+    fp_weight = fp_weight.to(device=target_device, dtype=torch.float32)
+    quant_weight = quant_weight.to(device=target_device, dtype=torch.float32)
     residual = fp_weight - quant_weight
     max_rank = min(residual.shape)
     effective_rank = min(rank, max_rank)
@@ -233,6 +236,14 @@ def compute_low_rank_repair(
         "post_repair_fro_error": remaining_sq_error ** 0.5,
         "post_repair_relative_fro_error": (remaining_sq_error / max(weight_sq_norm, 1e-12)) ** 0.5,
     }
+
+
+def _resolve_low_rank_device(fp_weight: torch.Tensor, quant_weight: torch.Tensor) -> torch.device:
+    if fp_weight.device.type == "cuda":
+        return fp_weight.device
+    if quant_weight.device.type == "cuda":
+        return quant_weight.device
+    return fp_weight.device
 
 
 def _quant_bounds(bit_width: int, symmetric: bool) -> tuple[int, int]:

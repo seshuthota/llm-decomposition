@@ -1,15 +1,12 @@
 from __future__ import annotations
 
 from contextlib import contextmanager
-from pathlib import Path
-from tempfile import TemporaryDirectory
 from typing import Any
 
 import torch
 import torch.nn as nn
 from accelerate.hooks import AlignDevicesHook
 from transformers import AutoModelForCausalLM, GPTQConfig
-from optimum.gptq import GPTQQuantizer
 
 from llm_decomposition.hf_utils import _hf_token, load_text_split
 from llm_decomposition.quantization import quantize_linear_weight
@@ -62,7 +59,7 @@ def _gptq_common_kwargs(config) -> dict[str, Any]:
     }
 
 
-def quantize_model_gptq(model, config, tokenizer, *, model_name: str | None = None, runtime=None) -> tuple[nn.Module, int]:
+def quantize_model_gptq(model, config, tokenizer, *, model_name: str | None = None, runtime=None) -> nn.Module:
     method_cfg = config.raw["method"]
     implementation = method_cfg.get("implementation", "transformers_gptq_config")
     if implementation == "transformers_gptq_config":
@@ -81,16 +78,59 @@ def quantize_model_gptq(model, config, tokenizer, *, model_name: str | None = No
             config=config,
             tokenizer=tokenizer,
         )
+    elif implementation == "gptqmodel":
+        resolved_model_name = model_name or getattr(getattr(model, "config", None), "_name_or_path", None)
+        if resolved_model_name is None:
+            raise ValueError("GPTQ gptqmodel implementation requires a model_name.")
+        quantized_model = _quantize_model_gptq_model(
+            model_name=resolved_model_name,
+            config=config,
+            tokenizer=tokenizer,
+            runtime=runtime,
+        )
     else:
         raise ValueError(f"Unsupported GPTQ implementation '{implementation}'.")
 
-    with TemporaryDirectory(prefix="llm_decomp_gptq_") as tmp_dir:
-        quantized_model.save_pretrained(tmp_dir, safe_serialization=True)
-        total_bytes = compute_saved_artifact_bytes(Path(tmp_dir))
-    return quantized_model, total_bytes
+    return quantized_model
+
+
+def _quantize_model_gptq_model(model_name: str, config, tokenizer, runtime):
+    from gptqmodel import GPTQModel, QuantizeConfig
+
+    method_cfg = config.raw["method"]
+    calibration_cfg = config.raw["calibration"]
+
+    quantize_config = QuantizeConfig(
+        bits=method_cfg.get("bit_width", 4),
+        group_size=method_cfg.get("group_size", 128),
+        damp_percent=method_cfg.get("damp_percent", 0.1),
+        desc_act=method_cfg.get("desc_act", False),
+        sym=method_cfg.get("symmetric", True),
+        true_sequential=method_cfg.get("true_sequential", True),
+    )
+
+    calibration_dataset = build_gptq_calibration_texts(config)
+
+    # gptqmodel usually expects a list of dicts or a dataset object
+    # but build_gptq_calibration_texts returns list[str].
+    # Let's check what it needs. Usually list[dict[str, str]] with "text" key.
+    formatted_calibration = [{"text": t} for t in calibration_dataset]
+
+    # Load and quantize using GPTQModel
+    model = GPTQModel.from_pretrained(
+        model_name,
+        quantize_config=quantize_config,
+        torch_dtype=runtime.dtype if runtime else torch.float16,
+        device_map="auto" if runtime and runtime.device.type == "cuda" else None,
+    )
+
+    model.quantize(formatted_calibration)
+
+    return model
 
 
 def _quantize_model_gptq_transformers(model_name: str, config, tokenizer, runtime):
+    _prime_transformers_gptq_runtime()
     method_cfg = config.raw["method"]
     quantization_config = build_gptq_config(config, tokenizer)
     kwargs: dict[str, Any] = {
@@ -119,7 +159,28 @@ def _quantize_model_gptq_transformers(model_name: str, config, tokenizer, runtim
     return model
 
 
+def _prime_transformers_gptq_runtime() -> None:
+    """Eagerly import GPTQModel symbols for Optimum's GPTQ bridge.
+
+    On the current Modal image, the Transformers -> Optimum GPTQ path can fail
+    with ``NameError: QuantizeConfig is not defined`` unless ``gptqmodel`` has
+    already been imported in the worker process. Importing it here keeps the
+    known-good ``transformers_gptq_config`` flow stable without changing the
+    configured execution path.
+    """
+
+    try:
+        import gptqmodel  # noqa: F401
+        from gptqmodel import QuantizeConfig  # noqa: F401
+    except Exception:
+        # Leave the original failure mode intact if the dependency is actually
+        # unavailable; dependency checks should normally catch that earlier.
+        return
+
+
 def _quantize_model_gptq_optimum(model, config, tokenizer):
+    from optimum.gptq import GPTQQuantizer
+
     if not hasattr(model, "hf_device_map"):
         try:
             first_param = next(model.parameters())
@@ -139,6 +200,8 @@ def _quantize_model_gptq_optimum(model, config, tokenizer):
 
 @contextmanager
 def _patched_optimum_quantize_model(device_label: str):
+    from optimum.gptq import GPTQQuantizer
+
     original = GPTQQuantizer.quantize_model
 
     def wrapped(self, model, tokenizer):
@@ -238,14 +301,6 @@ def apply_targeted_bit_upgrades(
         layer_stats[layer_name] = upgraded_stats
         upgraded.append(layer_name)
     return upgraded
-
-
-def compute_saved_artifact_bytes(path: Path) -> int:
-    total = 0
-    for child in path.rglob("*"):
-        if child.is_file():
-            total += child.stat().st_size
-    return total
 
 
 def _detect_text_field(column_names: list[str]) -> str:

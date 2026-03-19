@@ -1,0 +1,10 @@
+{
+  "bit_width": null,
+  "dry_run": true,
+  "message": "Dependencies are available and the config is executable. No model run was started because dry-run mode is enabled.",
+  "method": "targeted_mixed_precision",
+  "missing_dependencies": [],
+  "model_name": "Qwen/Qwen3-8B-Base",
+  "run_id": "G2B02_Q8B_s42",
+  "status": "dry_run"
+}

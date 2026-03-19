@@ -1,0 +1,12 @@
+{
+  "stage": "stage_03_prepare_run_done",
+  "timestamp_utc": "2026-03-17T16:12:03.060265+00:00",
+  "run_id": "G2B02_Q8B_s42",
+  "prepared": {
+    "run_id": "G2B02_Q8B_s42",
+    "results_dir": "/resultsvol/results/modal/qwen3_8b_gptq_transfer_s42/G2B02_Q8B_s42",
+    "method": "targeted_mixed_precision",
+    "bit_width": null
+  },
+  "remote_results_dir": "/resultsvol/results/modal/qwen3_8b_gptq_transfer_s42/G2B02_Q8B_s42"
+}

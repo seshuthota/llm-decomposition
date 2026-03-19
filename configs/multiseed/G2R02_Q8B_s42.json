@@ -1,0 +1,78 @@
+{
+  "run_id": "G2R02_Q8B_s42",
+  "phase": "qwen3_8b_gptq_transfer_s42",
+  "description": "Qwen/Qwen3-8B-Base GPTQ-backed targeted-rank allocator using activation-space sensitivity at +1.0% of R3_Q8B memory.",
+  "model": {
+    "name": "Qwen/Qwen3-8B-Base",
+    "tokenizer_name": "Qwen/Qwen3-8B-Base",
+    "dtype_preference": [
+      "float16"
+    ]
+  },
+  "method": {
+    "name": "targeted_svd_rank",
+    "base_run_id": "R3_Q8B",
+    "base_method": "gptq",
+    "implementation": "transformers_gptq_config",
+    "base_bit_width": 4,
+    "group_size": 128,
+    "symmetric": true,
+    "target_granularity": "matrix",
+    "allocator": "greedy_activation",
+    "proxy_family": "activation",
+    "selection_profile_source": "current_base_model",
+    "candidate_pool_path": "configs/scaleup_qwen3_8b_gptq/qwen3_8b_gptq_top12_candidate_pool.json",
+    "budget_percent_of_base": 1.0,
+    "budget_reference_metric": "memory_total_bytes",
+    "candidate_ranks": [
+      4,
+      8,
+      16,
+      32
+    ],
+    "factor_dtype_bytes": 2,
+    "desc_act": true,
+    "act_group_aware": false,
+    "true_sequential": true,
+    "device_map": "single",
+    "batch_size": 1,
+    "validate_outputs": true,
+    "non_finite_check_batches": 1,
+    "budget_bytes": 61039758
+  },
+  "calibration": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "train",
+    "num_sequences": 128,
+    "sequence_length": 512,
+    "sampling": "seeded_shuffle",
+    "seed": 42
+  },
+  "evaluation": {
+    "dataset": "wikitext",
+    "subset": "wikitext-2-raw-v1",
+    "split": "test",
+    "sequence_length": 512,
+    "stride": 512,
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token",
+      "memory_total_bytes",
+      "allocation_actions"
+    ]
+  },
+  "profiling": {
+    "layerwise_weight_error": true,
+    "layerwise_activation_error": false,
+    "residual_svd_profile": false,
+    "profile_sequence_length": 128,
+    "profile_num_sequences": 8
+  },
+  "outputs": {
+    "results_dir": "results/qwen3_8b_gptq/G2R02_s42",
+    "metrics_file": "metrics.json",
+    "layer_summary_file": "layer_errors.json",
+    "residual_profile_file": "residual_profiles.json"
+  }
+}

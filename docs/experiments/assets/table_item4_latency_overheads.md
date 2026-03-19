@@ -1,0 +1,10 @@
+| Model | HW | Batch | Policy | ms/token vs base % | tok/s vs base % | VRAM vs base % |
+| --- | --- | --- | --- | --- | --- | --- |
+| Qwen3-1.7B | A10G | 1 | bits | -15.29 | 17.81 | 224.21 |
+| Qwen3-1.7B | A10G | 1 | rank | -21.64 | 27.33 | 9.82 |
+| Qwen3-1.7B | A10G | 8 | bits | -1.62 | 1.71 | 164.27 |
+| Qwen3-1.7B | A10G | 8 | rank | 16.65 | -13.95 | 7.28 |
+| Qwen3-8B | A100 | 1 | bits | 1.59 | -1.57 | 1.25 |
+| Qwen3-8B | A100 | 1 | rank | 64.42 | -39.18 | 4.32 |
+| Qwen3-8B | A100 | 8 | bits | -38.01 | 61.43 | 225.71 |
+| Qwen3-8B | A100 | 8 | rank | -39.95 | 66.51 | 3.91 |

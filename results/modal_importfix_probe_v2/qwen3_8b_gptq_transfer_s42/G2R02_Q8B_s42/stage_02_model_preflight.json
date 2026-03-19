@@ -1,0 +1,33 @@
+{
+  "stage": "stage_02_model_preflight",
+  "timestamp_utc": "2026-03-18T19:17:14.415333+00:00",
+  "run_id": "G2R02_Q8B_s42",
+  "requested_model": "/vol/models/qwen3-8b-base",
+  "requested_tokenizer": "/vol/models/qwen3-8b-base",
+  "model_subpath": "qwen3-8b-base",
+  "model_preflight": {
+    "requested_model": "Qwen/Qwen3-8B-Base",
+    "requested_tokenizer": "Qwen/Qwen3-8B-Base",
+    "model_subpath": "qwen3-8b-base",
+    "volume_model_dir": "/vol/models/qwen3-8b-base",
+    "volume_model_dir_exists": true,
+    "config_exists": true,
+    "tokenizer_config_exists": true
+  },
+  "gptq_stack_status": {
+    "modal_install_gptqmodel": true,
+    "torch_import_ok": true,
+    "torch_version": "2.10.0+cu128",
+    "transformers_import_ok": true,
+    "transformers_version": "5.3.0",
+    "optimum_import_ok": true,
+    "optimum_version": "unknown",
+    "gptqmodel_import_ok": true,
+    "gptqmodel_version": "5.7.0",
+    "gptqmodel_quantize_config_import_ok": true,
+    "gptqmodel_quantize_config_repr": "<class 'gptqmodel.quantization.config.QuantizeConfig'>",
+    "optimum_gptq_quantizer_import_ok": true,
+    "optimum_quantizer_has_QuantizeConfig": true,
+    "optimum_quantizer_QuantizeConfig_repr": "<class 'gptqmodel.quantization.config.QuantizeConfig'>"
+  }
+}

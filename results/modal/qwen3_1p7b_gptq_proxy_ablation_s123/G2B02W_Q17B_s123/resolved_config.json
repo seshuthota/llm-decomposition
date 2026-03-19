@@ -1,0 +1,69 @@
+{
+  "calibration": {
+    "dataset": "wikitext",
+    "num_sequences": 128,
+    "sampling": "seeded_shuffle",
+    "seed": 123,
+    "sequence_length": 512,
+    "split": "train",
+    "subset": "wikitext-2-raw-v1"
+  },
+  "description": "Qwen/Qwen3-1.7B-Base GPTQ-backed targeted mixed-precision allocator using weight-space sensitivity at +1.0% of R3_Q17B memory.",
+  "evaluation": {
+    "dataset": "wikitext",
+    "metrics": [
+      "perplexity",
+      "latency_ms_per_token",
+      "memory_total_bytes",
+      "allocation_actions"
+    ],
+    "sequence_length": 512,
+    "split": "test",
+    "stride": 512,
+    "subset": "wikitext-2-raw-v1"
+  },
+  "method": {
+    "act_group_aware": false,
+    "allocator": "greedy_activation",
+    "base_bit_width": 4,
+    "base_method": "gptq",
+    "base_run_id": "R3_Q17B",
+    "batch_size": 1,
+    "budget_percent_of_base": 1.0,
+    "budget_reference_metric": "memory_total_bytes",
+    "candidate_pool_path": "configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_top12_candidate_pool.json",
+    "desc_act": true,
+    "group_size": 128,
+    "implementation": "transformers_gptq_config",
+    "name": "targeted_mixed_precision",
+    "non_finite_check_batches": 1,
+    "proxy_family": "weight",
+    "selection_profile_source": "current_base_model",
+    "symmetric": true,
+    "target_granularity": "matrix",
+    "true_sequential": true,
+    "validate_outputs": true
+  },
+  "model": {
+    "dtype_preference": [
+      "float16"
+    ],
+    "name": "/vol/models/qwen3-1.7b-base",
+    "tokenizer_name": "Qwen/Qwen3-1.7B-Base"
+  },
+  "outputs": {
+    "layer_summary_file": "layer_errors.json",
+    "metrics_file": "metrics.json",
+    "residual_profile_file": "residual_profiles.json",
+    "results_dir": "/resultsvol/results/modal/qwen3_1p7b_gptq_proxy_ablation_s123/G2B02W_Q17B_s123"
+  },
+  "phase": "qwen3_1p7b_gptq_proxy_ablation_s123",
+  "profiling": {
+    "layerwise_activation_error": false,
+    "layerwise_weight_error": true,
+    "profile_num_sequences": 8,
+    "profile_sequence_length": 128,
+    "residual_svd_profile": false
+  },
+  "run_id": "G2B02W_Q17B_s123"
+}

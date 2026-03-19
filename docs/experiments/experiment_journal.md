@@ -258,6 +258,56 @@ Result:
 - `arc_challenge acc_norm`: `0.5563`
 - `winogrande acc`: `0.6598`
 - `piqa acc_norm`: `0.7579`
+
+## Paper-Readiness Item 2: Activation-vs-Weight Allocator Ablation
+
+### Qwen3-1.7B GPTQ Proxy Ablation
+
+- Date: 2026-03-16
+- Model: `Qwen/Qwen3-1.7B-Base`
+- Scope: Item 2 paper-readiness ablation
+- Manifest: `configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_proxy_ablation_manifest.json`
+- Report: `docs/experiments/activation_vs_weight_ablation.md`
+
+Completed runs:
+
+- bits, activation proxy: `results/modal/qwen3_1p7b_gptq_proxy_ablation/G2B02A_Q17B`
+- bits, weight proxy: `results/modal/qwen3_1p7b_gptq_proxy_ablation/G2B02W_Q17B`
+- rank, activation proxy: `results/modal/qwen3_1p7b_gptq_proxy_ablation/G2R02A_Q17B`
+- rank, weight proxy: `results/modal/qwen3_1p7b_gptq_proxy_ablation/G2R02W_Q17B`
+
+Observed result:
+
+- bits:
+  - activation proxy: `15.8993`
+  - weight proxy: `15.8993`
+  - conclusion: same final target set and same quality
+- rank:
+  - activation proxy: `15.9224`
+  - weight proxy: `15.8823`
+  - conclusion: weight proxy is clearly better at the same budget
+
+Profiling-cost result:
+
+- bits:
+  - activation profiling + selection time: about `27.6 s`
+  - weight profiling + selection time: about `0.0008 s`
+- rank:
+  - activation profiling + selection time: about `22.6 s`
+  - weight profiling + selection time: about `0.0008 s`
+
+Interpretation:
+
+- the fresh-selection implementation mattered; older candidate-pool-only scoring would have hidden the real difference
+- activation-space profiling is not justified for the paper MVP:
+  - it gives no bits benefit
+  - it hurts targeted-rank allocation
+  - it adds substantial profiling overhead
+
+Decision:
+
+- Item 2 is complete for the current paper scope
+- `8B` weight-proxy follow-up remains optional and is deferred
 - `boolq acc`: `0.7914`
 
 Interpretation:

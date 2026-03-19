@@ -1,0 +1,14 @@
+{
+  "job_id": "G2R02_Q8B_bs1",
+  "description": "Item 4 latency benchmark for Qwen3-8B GPTQ targeted rank on A100, batch size 1.",
+  "source_run_id": "G2R02_Q8B",
+  "source_manifest": "configs/scaleup_qwen3_8b_gptq/qwen3_8b_gptq_transfer_manifest.json",
+  "model_subpath": "qwen3-8b-base",
+  "gpu": "A100",
+  "batch_size": 1,
+  "prompt_length": 512,
+  "decode_length": 128,
+  "warmup_iterations": 3,
+  "timed_iterations": 10,
+  "results_prefix": "results/modal_latency"
+}

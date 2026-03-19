@@ -1,0 +1,264 @@
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:   0%|          | 1/310 [00:00<02:38,  1.95it/s]Loading weights:  75%|#######5  | 234/310 [00:00<00:00, 490.73it/s]Loading weights: 100%|##########| 310/310 [00:00<00:00, 402.00it/s]
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]Generating test split: 100%|##########| 4358/4358 [00:00<00:00, 550499.24 examples/s]
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s]Generating train split: 100%|##########| 36718/36718 [00:00<00:00, 1267835.01 examples/s]
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]Generating validation split: 100%|##########| 3760/3760 [00:00<00:00, 856584.82 examples/s]
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:   0%|          | 1/310 [00:00<02:30,  2.05it/s]Loading weights:  75%|#######5  | 234/310 [00:00<00:00, 527.50it/s]Loading weights: 100%|##########| 310/310 [00:00<00:00, 436.09it/s]
+Quantizing model.layers blocks :   0%|          | 0/28 [00:00<?, ?it/s]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:01<00:06,  1.16s/it][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:04,  1.23it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.43it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.56it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.61it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.63it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.05it/s][A
+                                                                                 [AQuantizing model.layers blocks :   4%|3         | 1/28 [00:05<02:37,  5.83s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.74it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.75it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.74it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.07it/s][A
+                                                                                 [AQuantizing model.layers blocks :   7%|7         | 2/28 [00:11<02:22,  5.49s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.72it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.73it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.74it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.75it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.74it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.07it/s][A
+                                                                                 [AQuantizing model.layers blocks :  11%|#         | 3/28 [00:16<02:14,  5.39s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.72it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.72it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.74it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.75it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.71it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.65it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.05it/s][A
+                                                                                 [AQuantizing model.layers blocks :  14%|#4        | 4/28 [00:21<02:08,  5.37s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.76it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.74it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.75it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.74it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.72it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.71it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.08it/s][A
+                                                                                 [AQuantizing model.layers blocks :  18%|#7        | 5/28 [00:26<02:02,  5.33s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.73it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.75it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.74it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.71it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.72it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.07it/s][A
+                                                                                 [AQuantizing model.layers blocks :  21%|##1       | 6/28 [00:32<01:56,  5.30s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.76it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.74it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.74it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.08it/s][A
+                                                                                 [AQuantizing model.layers blocks :  25%|##5       | 7/28 [00:37<01:50,  5.27s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.75it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.72it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.73it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.75it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.73it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.72it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.07it/s][A
+                                                                                 [AQuantizing model.layers blocks :  29%|##8       | 8/28 [00:42<01:45,  5.27s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.75it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.77it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.77it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.75it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.74it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.07it/s][A
+                                                                                 [AQuantizing model.layers blocks :  32%|###2      | 9/28 [00:47<01:39,  5.26s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.66it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.70it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.69it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.71it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.71it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.69it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.05it/s][A
+                                                                                 [AQuantizing model.layers blocks :  36%|###5      | 10/28 [00:53<01:35,  5.29s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.72it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.70it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.71it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.71it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.71it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.71it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.06it/s][A
+                                                                                 [AQuantizing model.layers blocks :  39%|###9      | 11/28 [00:58<01:30,  5.30s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.74it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.77it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.77it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.75it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.73it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.05it/s][A
+                                                                                 [AQuantizing model.layers blocks :  43%|####2     | 12/28 [01:03<01:24,  5.30s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.76it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.77it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.75it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.73it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.69it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.04it/s][A
+                                                                                 [AQuantizing model.layers blocks :  46%|####6     | 13/28 [01:09<01:19,  5.31s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.70it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.70it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.69it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.72it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.70it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.71it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.06it/s][A
+                                                                                 [AQuantizing model.layers blocks :  50%|#####     | 14/28 [01:14<01:14,  5.31s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.76it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.71it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.70it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.73it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.71it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.70it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.04it/s][A
+                                                                                 [AQuantizing model.layers blocks :  54%|#####3    | 15/28 [01:19<01:09,  5.32s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.71it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.75it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.71it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.71it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.07it/s][A
+                                                                                 [AQuantizing model.layers blocks :  57%|#####7    | 16/28 [01:25<01:03,  5.30s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.78it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.77it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.78it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.78it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.77it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.76it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.08it/s][A
+                                                                                 [AQuantizing model.layers blocks :  61%|######    | 17/28 [01:30<00:57,  5.27s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.75it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.77it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.78it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.79it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.76it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.09it/s][A
+                                                                                 [AQuantizing model.layers blocks :  64%|######4   | 18/28 [01:35<00:52,  5.23s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.73it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.75it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.78it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.75it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.08it/s][A
+                                                                                 [AQuantizing model.layers blocks :  68%|######7   | 19/28 [01:40<00:46,  5.22s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.77it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.78it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.79it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.79it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.77it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.75it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.09it/s][A
+                                                                                 [AQuantizing model.layers blocks :  71%|#######1  | 20/28 [01:45<00:41,  5.20s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.79it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.77it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.78it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.79it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.74it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.08it/s][A
+                                                                                 [AQuantizing model.layers blocks :  75%|#######5  | 21/28 [01:51<00:36,  5.20s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.72it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.77it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.74it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.73it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.08it/s][A
+                                                                                 [AQuantizing model.layers blocks :  79%|#######8  | 22/28 [01:56<00:31,  5.20s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.75it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.76it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.74it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.73it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.05it/s][A
+                                                                                 [AQuantizing model.layers blocks :  82%|########2 | 23/28 [02:01<00:26,  5.23s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.77it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.78it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.74it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.73it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.70it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.04it/s][A
+                                                                                 [AQuantizing model.layers blocks :  86%|########5 | 24/28 [02:06<00:21,  5.26s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.69it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.68it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.70it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.72it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.72it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.71it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.06it/s][A
+                                                                                 [AQuantizing model.layers blocks :  89%|########9 | 25/28 [02:12<00:15,  5.28s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.68it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.67it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.71it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.72it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.70it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.70it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.06it/s][A
+                                                                                 [AQuantizing model.layers blocks :  93%|#########2| 26/28 [02:17<00:10,  5.29s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.72it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.75it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.77it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.78it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.76it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.75it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.08it/s][A
+                                                                                 [AQuantizing model.layers blocks :  96%|#########6| 27/28 [02:22<00:05,  5.26s/it]
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][A
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.70it/s][A
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:02,  1.71it/s][A
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.71it/s][A
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.74it/s][A
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:02<00:01,  1.70it/s][A
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.70it/s][A
+Quantizing layers inside the block: 100%|##########| 7/7 [00:05<00:00,  1.06it/s][A
+                                                                                 [AQuantizing model.layers blocks : 100%|##########| 28/28 [02:28<00:00,  5.28s/it]Quantizing model.layers blocks : 100%|##########| 28/28 [02:28<00:00,  5.29s/it]
+Fetching 0 files: 0it [00:00, ?it/s]Fetching 0 files: 0it [00:00, ?it/s]
+Failed to load CPU gemm_4bit kernel: Cannot install kernel from repo kernels-community/quantization_gptq (revision: main). Use fallback path.                         Please make sure you already `pip install kernels` and the kernels >= 0.11.1
+[32mINFO[0m  Packing Kernel: Auto-selection: adding candidate `TritonV2QuantLinear`   
+[32mINFO[0m  Kernel: selected -> `TritonV2QuantLinear`.                               
+[32mINFO[0m  Optimize: `TritonV2QuantLinear` compilation triggered.                   
+[32mINFO[0m  gc.collect() reclaimed 163 objects in 0.239s                             

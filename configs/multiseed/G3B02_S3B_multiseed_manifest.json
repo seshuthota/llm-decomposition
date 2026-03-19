@@ -1,0 +1,9 @@
+{
+  "phase": "multiseed_G3B02_S3B",
+  "description": "Multi-seed stability analysis for G3B02_S3B",
+  "runs": [
+    "configs/multiseed/G3B02_S3B_s42.json",
+    "configs/multiseed/G3B02_S3B_s123.json",
+    "configs/multiseed/G3B02_S3B_s456.json"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "bit_width": null,
+  "dry_run": false,
+  "message": "Phase-2 targeted SVD rank evaluation completed successfully.",
+  "method": "targeted_svd_rank",
+  "metrics_summary": {
+    "latency_ms_per_token": 0.11857723049673383,
+    "memory_total_bytes": 2000481919,
+    "perplexity": 11.84194453622042
+  },
+  "missing_dependencies": [],
+  "model_name": "HuggingFaceTB/SmolLM3-3B-Base",
+  "run_id": "G3R02_S3B_s456",
+  "status": "completed"
+}

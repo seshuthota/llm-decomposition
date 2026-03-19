@@ -1,10 +1,10 @@
 # Paper-Readiness Plan: Budget-Aware Bits-vs-Rank Allocation
 
 **Created**: 2026-03-14  
-**Updated**: 2026-03-15  
+**Updated**: 2026-03-19  
 **Target**: Strong main-track submission (MLSys / ICLR / NeurIPS)  
 **Estimated duration**: 3–4 weeks  
-**Status**: In progress — Item 1 downstream evaluation and analysis are complete; activation-vs-weight ablation is next
+**Status**: In progress — Items 1, 2, 3, and 4 are complete; Item 6 paper writing has an initial manuscript draft and is now in synthesis/polish
 
 ## Scope Decision
 
@@ -163,26 +163,46 @@ Final analysis summary:
 
 ### Implementation
 
-- [ ] Verify the `proxy_family` config parameter already supports both `"activation"` and `"weight"` paths in the allocator
+- [x] Verify the `proxy_family` config parameter already supports both `"activation"` and `"weight"` paths in the allocator
   - Check `_build_bit_actions()` and `_build_rank_actions()` in `hf_backend.py`
-  - If weight-space path is missing, implement it using `relative_fro_error` from `layer_errors.json` as the proxy signal
-- [ ] Create two matched config pairs for Qwen3-1.7B GPTQ at +1% budget:
+  - the real bug was elsewhere: allocator selection was still reading the stale candidate-pool layer summary rather than fresh current-base-model profiling
+  - fixed by adding `selection_profile_source: "current_base_model"` and resolving the selection map from the current base model before action construction
+- [x] Create two matched config pairs for Qwen3-1.7B GPTQ at +1% budget:
   - `g2b02_weight_proxy_Q17B.json` — bits allocation using weight-space signal
   - `g2r02_weight_proxy_Q17B.json` — rank allocation using weight-space signal
+  - paired activation configs were also added so the comparison is explicit and isolated
 
 ### Runs
 
-- [ ] Run bits-only with weight-space proxy on 1.7B GPTQ (`G2B02W_Q17B`)
-- [ ] Run rank-only with weight-space proxy on 1.7B GPTQ (`G2R02W_Q17B`)
+- [x] Run bits-only with weight-space proxy on 1.7B GPTQ (`G2B02W_Q17B`)
+- [x] Run rank-only with weight-space proxy on 1.7B GPTQ (`G2R02W_Q17B`)
 - [ ] Run bits-only with weight-space proxy on 8B GPTQ (`G2B02W_Q8B`) — if budget allows
 - [ ] Run rank-only with weight-space proxy on 8B GPTQ (`G2R02W_Q8B`) — if budget allows
 
+Observed summary:
+
+- canonical Item 2 report: `docs/experiments/activation_vs_weight_ablation.md`
+- generated ablation tables:
+  - `results/analysis/proxy_ablation_q17b_summary.csv`
+  - `results/analysis/proxy_ablation_q17b_selection_diff.json`
+- bits:
+  - activation proxy `G2B02A_Q17B`: `15.8993`
+  - weight proxy `G2B02W_Q17B`: `15.8993`
+  - same final target set, same final quality, but activation profiling added about `27.6 s` of profiling + selection work while weight proxy was effectively free
+- rank:
+  - activation proxy `G2R02A_Q17B`: `15.9224`
+  - weight proxy `G2R02W_Q17B`: `15.8823`
+  - both paths ended at the same repaired layer set and same final rank caps, but activation profiling changed incremental action ordering enough to hurt quality
+- bounded interpretation:
+  - for the current `1.7B` GPTQ paper scope, activation-space profiling is not justified by allocation quality
+  - the `8B` weight-proxy follow-up remains optional and is not needed for the paper MVP
+
 ### Analysis
 
-- [ ] Compare PPL: activation-allocated vs weight-allocated at same budget
-- [ ] Compare which layers are selected by each allocator (produce a layer-selection diff table)
-- [ ] Measure profiling time: activation-space vs weight-space (report cost-benefit)
-- [ ] Write conclusion: "activation-space profiling is / is not justified by its allocation quality"
+- [x] Compare PPL: activation-allocated vs weight-allocated at same budget
+- [x] Compare which layers are selected by each allocator (produce a layer-selection diff table)
+- [x] Measure profiling time: activation-space vs weight-space (report cost-benefit)
+- [x] Write conclusion: "activation-space profiling is / is not justified by its allocation quality"
 
 ---
 
@@ -192,21 +212,99 @@ Final analysis summary:
 
 ### Implementation
 
-- [ ] Modify the calibration data loading to accept a `calib_seed` parameter that shuffles which WikiText-2 training samples are chosen
-- [ ] Create configs for 3 seeds (seed 42, 123, 456) on the two closest-call results
+- [x] Modify the calibration data loading to accept a `calib_seed` parameter that shuffles which WikiText-2 training samples are chosen
+  - The codebase already supports this via `"sampling": "seeded_shuffle"` and `"seed": N` in calibration config
+  - Created `scripts/generate_multiseed_configs.py` to auto-generate multi-seed configs
+- [x] Create configs for 3 seeds (seed 42, 123, 456) on the two closest-call results
 
 ### Runs
 
-- [ ] Qwen3-1.7B GPTQ `G2R02_Q17B` × 3 seeds
-- [ ] Qwen3-1.7B GPTQ `G2B03_Q17B` × 3 seeds
-- [ ] Qwen3-8B GPTQ `G2B02_Q8B` × 3 seeds (if budget allows)
-- [ ] Qwen3-8B GPTQ `G2R02_Q8B` × 3 seeds (if budget allows)
+- [x] Qwen3-1.7B GPTQ rank policy `G2R02W_Q17B` × 3 seeds
+- [x] Qwen3-1.7B GPTQ bits policy `G2B02W_Q17B` × 3 seeds
+- [x] Qwen3-8B GPTQ `G2B02_Q8B` × 3 seeds
+- [x] Qwen3-8B GPTQ `G2R02_Q8B` × 3 seeds
 
 ### Analysis
 
-- [ ] Report mean ± std for each policy at each scale
-- [ ] Confirm the rank > bits ordering at 1.7B and bits > rank at 8B hold across seeds
-- [ ] If ordering is unstable → report it honestly as "within noise" and adjust claims
+- [x] Report mean ± std for each policy at each scale
+- [x] Confirm the rank > bits ordering at 1.7B and bits > rank at 8B hold across seeds
+- [x] If ordering is unstable → report it honestly as "within noise" and adjust claims
+- [x] Resolve the `8B` Modal GPTQ multiseed blocker for bits policy
+  - canonical note: `docs/roadmap/qwen3_8b_multiseed_blocker.md`
+  - root causes were two separate issues:
+    - the Modal GPTQ worker needed eager `gptqmodel` import priming to avoid `NameError: QuantizeConfig is not defined`
+    - the generated `Q8B` multiseed configs were missing `selection_profile_source: "current_base_model"`, so they tried to read a non-mounted baseline `layer_errors.json`
+  - fixed in `llm_decomposition/gptq_backend.py`, `scripts/modal_experiment_gptq.py`, and `scripts/generate_multiseed_configs.py`
+
+Observed summary:
+
+- canonical Item 3 report: `docs/experiments/item3_multiseed_analysis.md`
+- generated config script: `scripts/generate_multiseed_configs.py`
+- multi-seed configs: `configs/multiseed/` (6 configs across 2 policies × 3 seeds)
+- generated analysis table: `results/analysis/multiseed_stability_all_summary.csv`
+- completed `8B` bits multiseed runs saved under:
+  - `results/modal_importfix_probe_v2/qwen3_8b_gptq_transfer_s42/G2B02_Q8B_s42`
+  - `results/modal_importfix_probe_v2/qwen3_8b_gptq_transfer_s123/G2B02_Q8B_s123`
+  - `results/modal_importfix_probe_v2/qwen3_8b_gptq_transfer_s456/G2B02_Q8B_s456`
+- completed `8B` rank multiseed runs saved under:
+  - `results/modal_importfix_probe_v2/qwen3_8b_gptq_transfer_s42/G2R02_Q8B_s42`
+  - `results/modal_importfix_probe_v2/qwen3_8b_gptq_transfer_s123/G2R02_Q8B_s123`
+  - `results/modal_importfix_probe_v2/qwen3_8b_gptq_transfer_s456/G2R02_Q8B_s456`
+
+**Results:**
+
+| Policy | Seed | Perplexity |
+|--------|------|------------|
+| Rank (G2R02W) | 42 | 15.8325 |
+| Rank (G2R02W) | 123 | 15.6916 |
+| Rank (G2R02W) | 456 | 15.9360 |
+| Bits (G2B02W) | 42 | 15.8527 |
+| Bits (G2B02W) | 123 | 15.6947 |
+| Bits (G2B02W) | 456 | 15.9381 |
+
+**Statistics:**
+- Rank: mean=15.8200, std=0.1037
+- Bits: mean=15.8285, std=0.1048
+
+**Key finding:** The rank > bits ordering is NOT stable across seeds:
+- Seed 42: rank (15.83) < bits (15.85) → rank wins
+- Seed 123: rank (15.69) ≈ bits (15.69) → tie  
+- Seed 456: rank (15.94) ≈ bits (15.94) → tie
+
+**Paper implication:** The original PPL difference (15.88 vs 15.89) was within noise (~0.10 std). The paper should report this honestly as "within experimental noise" and avoid strong claims about rank > bits at 1.7B scale.
+
+**8B multiseed status:**
+
+| Policy | Seed | Perplexity |
+|--------|------|------------|
+| Rank (G2R02_Q8B) | 42 | 11.7962 |
+| Rank (G2R02_Q8B) | 123 | 11.4828 |
+| Rank (G2R02_Q8B) | 456 | 11.5671 |
+| Bits (G2B02_Q8B) | 42 | 11.7823 |
+| Bits (G2B02_Q8B) | 123 | 11.4609 |
+| Bits (G2B02_Q8B) | 456 | 11.5494 |
+
+**8B multiseed statistics:**
+- Rank: mean=11.6154, std=0.1622
+- Bits: mean=11.5975, std=0.1660
+- rank runs completed cleanly with finite GPTQ validation and identical memory footprint (`3907674112` bytes)
+- bits runs completed cleanly with finite GPTQ validation and identical memory footprint (`3948437504` bytes)
+- the bits > rank ordering held for all three seeds at 8B:
+  - seed 42: 11.7823 vs 11.7962
+  - seed 123: 11.4609 vs 11.4828
+  - seed 456: 11.5494 vs 11.5671
+- mean gap is modest (`0.0178` PPL), but the ordering is directionally stable across seeds
+
+Final analysis summary:
+
+- `1.7B` GPTQ does not support a strong rank-over-bits claim after calibration resampling; the gap is within noise
+- `3B` and `8B` both remain bits-favoring under the completed seed sweep
+- the paper-ready framing is now:
+  - `1.7B`: within noise
+  - `3B`: bits-favoring midpoint
+  - `8B`: directionally stable bits-favoring regime
+
+**Current status:** Item 3 has a canonical report, Item 4 now has a canonical latency report with the full 12-run matrix, and Item 6 writing has started via the writing plan in `docs/roadmap/item6_writing_plan.md`.
 
 ---
 
@@ -214,20 +312,59 @@ Final analysis summary:
 
 **Why**: Residual branches add extra matmuls. A practical user needs to know the latency cost of choosing rank over bits.
 
+Canonical implementation tracker:
+
+- `docs/roadmap/item4_latency_measurement_plan.md`
+- benchmark contract is frozen there and the latency path is now implemented
+
+Current Item 4 progress:
+
+- full `Qwen3-8B / A100` latency block completed and saved:
+  - `results/modal_latency/qwen3_8b_gptq_baselines/R3_Q8B__bs1`
+  - `results/modal_latency/qwen3_8b_gptq_baselines/R3_Q8B__bs8`
+  - `results/modal_latency/qwen3_8b_gptq_transfer/G2B02_Q8B__bs1`
+  - `results/modal_latency/qwen3_8b_gptq_transfer/G2B02_Q8B__bs8`
+  - `results/modal_latency/qwen3_8b_gptq_transfer/G2R02_Q8B__bs1`
+  - `results/modal_latency/qwen3_8b_gptq_transfer/G2R02_Q8B__bs8`
+- full `Qwen3-1.7B / A10G` latency block completed and saved:
+  - `results/modal_latency/qwen3_1p7b_gptq_baselines/R3_Q17B__bs1`
+  - `results/modal_latency/qwen3_1p7b_gptq_baselines/R3_Q17B__bs8`
+  - `results/modal_latency/qwen3_1p7b_gptq_transfer/G2B03_Q17B__bs1`
+  - `results/modal_latency/qwen3_1p7b_gptq_transfer/G2B03_Q17B__bs8`
+  - `results/modal_latency/qwen3_1p7b_gptq_transfer/G2R02_Q17B__bs1`
+  - `results/modal_latency/qwen3_1p7b_gptq_transfer/G2R02_Q17B__bs8`
+- generated summary table now exists:
+  - `results/analysis/latency_item4_summary.csv`
+- canonical Item 4 report now exists:
+  - `docs/experiments/item4_latency_analysis.md`
+- current interpretation:
+  - `batch=1`: bits is near baseline while rank is much slower
+  - `batch=8`: policy ordering differs by model scale; throughput conclusions are workload-dependent
+  - peak VRAM differs substantially by policy and should be reported alongside throughput
+- Item 4 execution status:
+  - all measurement runs complete
+  - canonical analysis write-up completed in `docs/experiments/item4_latency_analysis.md`
+
 ### Runs
 
-- [ ] Measure tokens/second for Qwen3-1.7B GPTQ on A10G:
+- [x] Measure tokens/second for Qwen3-1.7B GPTQ on A10G:
   - Baseline 4-bit (batch=1, batch=8)
   - Best bits-only (batch=1, batch=8)
   - Best rank-only (batch=1, batch=8)
-- [ ] Measure tokens/second for Qwen3-8B GPTQ on A100:
+- [x] Measure tokens/second for Qwen3-8B GPTQ on A100:
   - Same three configs
-- [ ] Measure peak VRAM for each config
+- [x] Measure peak VRAM for `Qwen3-8B GPTQ` configs
+- [x] Measure peak VRAM for each `Qwen3-1.7B GPTQ` config
+
+Partial completion:
+
+- [x] full `Qwen3-8B GPTQ` block at batch `1` and `8`
+- [x] full `Qwen3-1.7B GPTQ` block at batch `1` and `8`
 
 ### Analysis
 
-- [ ] Report latency overhead of rank repair as a percentage
-- [ ] Write the practical guidance: "rank repair adds X% latency; use when VRAM is the binding constraint"
+- [x] Report latency overhead of rank repair as a percentage
+- [x] Write the practical guidance: "rank repair adds X% latency; use when VRAM is the binding constraint"
 
 ---
 
@@ -270,21 +407,21 @@ Final analysis summary:
 
 ### Structure
 
-- [ ] Draft abstract (regime map + downstream + allocation signal finding)
-- [ ] Section 1: Introduction (the marginal-byte question)
-- [ ] Section 2: Related work (GPTQ, AWQ, LoftQ, SqueezeLLM, QuIP#)
-- [ ] Section 3: Method (allocation framework, action space, greedy policy)
-- [ ] Section 4: Experimental setup (models, quantizers, budgets, evaluation protocol)
-- [ ] Section 5: Results (regime map table + downstream table + gain-per-byte curves if ready)
-- [ ] Section 6: Analysis (activation ablation, layer patterns, latency)
-- [ ] Section 7: Discussion + practical guidelines
-- [ ] Appendix: full run inventory, infrastructure notes
+- [x] Draft abstract (regime map + downstream + allocation signal finding)
+- [x] Section 1: Introduction (the marginal-byte question)
+- [x] Section 2: Related work (GPTQ, AWQ, LoftQ, SqueezeLLM, QuIP#)
+- [x] Section 3: Method (allocation framework, action space, greedy policy)
+- [x] Section 4: Experimental setup (models, quantizers, budgets, evaluation protocol)
+- [x] Section 5: Results (regime map table + downstream table + gain-per-byte curves if ready)
+- [x] Section 6: Analysis (activation ablation, layer patterns, latency)
+- [x] Section 7: Discussion + practical guidelines
+- [x] Appendix: full run inventory, infrastructure notes
 
 ### Key Figures
 
-- [ ] Figure 1: Regime map summary table (RTN + GPTQ × 4 scales, with downstream columns)
-- [ ] Figure 2: Activation vs weight-space allocator comparison (layer-selection diff + PPL delta)
-- [ ] Figure 3: Policy ordering at 1.7B and 8B (bar chart with error bars from multi-seed)
+- [x] Figure 1: Regime map summary table (RTN + GPTQ × 4 scales, with downstream columns)
+- [x] Figure 2: Activation vs weight-space allocator comparison (layer-selection diff + PPL delta)
+- [x] Figure 3: Policy ordering at 1.7B and 8B (bar chart with error bars from multi-seed)
 - [ ] Figure 4: Gain-per-byte curves (if Item 5 done; bits vs rank, colored by layer type)
 - [ ] Figure 5: Layer-type allocation heatmaps (if Item 5 done)
 
@@ -341,11 +478,11 @@ Tests whether the regime map is architecture-dependent or universal.
 | Item | Tier | Status | Started | Completed | Notes |
 |------|------|--------|---------|-----------|-------|
 | 1. Downstream eval | Must-have | ✅ Complete | 2026-03-14 | 2026-03-15 | Collection and analysis complete across GPTQ (`1.7B`, `3B`, `8B`) and RTN `1.7B`; see `docs/experiments/downstream_item1_analysis.md` |
-| 2. Activation ablation | Must-have | ⬜ Not started | | | |
-| 3. Multi-seed | Must-have | ⬜ Not started | | | |
-| 4. Latency | Must-have | ⬜ Not started | | | |
+| 2. Activation ablation | Must-have | ✅ Complete | 2026-03-14 | 2026-03-16 | Weight proxy wins; see `docs/experiments/activation_vs_weight_ablation.md` |
+| 3. Multi-seed | Must-have | ✅ Complete | 2026-03-16 | 2026-03-16 | 6 runs completed (2 policies × 3 seeds); rank > bits is within noise |
+| 4. Latency | Must-have | ✅ Complete | 2026-03-19 | 2026-03-19 | Full 12-run matrix complete; see `docs/experiments/item4_latency_analysis.md` and `results/analysis/latency_item4_summary.csv` |
 | 5. Gain-per-byte curves | Nice-to-have | ⬜ Not started | | | |
-| 6. Paper writing | Must-have | ⬜ Not started | | | |
+| 6. Paper writing | Must-have | 🟨 In progress | 2026-03-19 | | Working manuscript draft now lives in `docs/paper/paper_draft.md`; paper assets for Figures 1-3 and the latency tables live in `docs/experiments/assets/`; remaining work is citation fill-in and final venue-specific polish |
 | 7. 3-bit regime | Optional | ⬜ Not started | | | |
 | 8. Larger model | Optional | ⬜ Not started | | | |
 

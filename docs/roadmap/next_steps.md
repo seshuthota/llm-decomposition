@@ -159,10 +159,37 @@ Item 1 conclusion:
 
 Priority order now:
 
-1. activation-vs-weight ablation
-2. multi-seed stability
-3. latency
-4. paper writing / figures
+1. multi-seed stability
+2. latency
+3. paper writing / figures
+4. optional paper extensions (`gain curves`, `3-bit`, larger-model transfer) only if needed
+
+## Item 2 Status
+
+Paper-readiness Item 2 is now complete for the paper MVP on `Qwen3-1.7B` GPTQ.
+
+Completed ablation runs:
+
+- `G2B02A_Q17B`
+- `G2B02W_Q17B`
+- `G2R02A_Q17B`
+- `G2R02W_Q17B`
+
+Canonical references:
+
+- report: `docs/experiments/activation_vs_weight_ablation.md`
+- generated tables:
+  - `results/analysis/proxy_ablation_q17b_summary.csv`
+  - `results/analysis/proxy_ablation_q17b_selection_diff.json`
+
+Item 2 conclusion:
+
+- bits allocation is invariant at this `1.7B` `+1.0%` GPTQ setting:
+  - activation and weight proxies choose the same final targets and land on the same perplexity
+- rank allocation is not invariant:
+  - activation profiling changes incremental repair ordering and degrades final perplexity relative to the cheap weight proxy
+- activation profiling is expensive while the weight proxy path is effectively free
+- for the current paper scope, weight-space error is the better default allocator proxy
 
 ## Immediate Resume Plan
 
@@ -184,7 +211,7 @@ When work resumes, do this in order:
    - freeze the trusted GPTQ state in:
      - `docs/experiments/gptq_pre_final_branch_snapshot.md`
    - the remaining GPTQ method work is now synthesis / write-up, not another experiment branch
-   - the active experimental branch is paper-readiness downstream evaluation plus the remaining must-have ablations
+   - the active experimental branch is now paper-readiness multi-seed stability plus latency
 
 Current `8B` GPTQ status:
 

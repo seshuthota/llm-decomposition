@@ -1,0 +1,9 @@
+{
+  "stage": "stage_01_config_loaded",
+  "timestamp_utc": "2026-03-19T10:02:18.276452+00:00",
+  "run_id": "R3_Q17B",
+  "benchmark_run_id": "R3_Q17B__bs1",
+  "manifest": "configs/scaleup_1p7b_gptq/qwen3_1p7b_gptq_baselines_manifest.json",
+  "batch_size": 1,
+  "local_results_dir": "results/modal_latency/qwen3_1p7b_gptq_baselines/R3_Q17B__bs1"
+}

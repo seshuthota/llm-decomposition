@@ -1,0 +1,5 @@
+policy,proxy_family,perplexity,profiling_wall_time_s,selection_profiling_wall_time_s,selected_action_count
+bits,activation,15.8993,12.4897,15.1186,7
+bits,weight,15.8993,0.0004,0.0004,7
+rank,activation,15.9224,10.0752,12.5184,48
+rank,weight,15.8823,0.0004,0.0004,48

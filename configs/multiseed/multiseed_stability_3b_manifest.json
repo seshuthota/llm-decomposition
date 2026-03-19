@@ -1,0 +1,12 @@
+{
+  "phase": "multiseed_stability_3b",
+  "description": "Multi-seed stability analysis for SmolLM3-3B GPTQ bits vs rank policies",
+  "runs": [
+    "configs/multiseed/G3B02_S3B_s42.json",
+    "configs/multiseed/G3B02_S3B_s123.json",
+    "configs/multiseed/G3B02_S3B_s456.json",
+    "configs/multiseed/G3R02_S3B_s42.json",
+    "configs/multiseed/G3R02_S3B_s123.json",
+    "configs/multiseed/G3R02_S3B_s456.json"
+  ]
+}

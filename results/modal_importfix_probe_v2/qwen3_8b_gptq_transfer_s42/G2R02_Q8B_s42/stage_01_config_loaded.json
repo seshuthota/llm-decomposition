@@ -1,0 +1,7 @@
+{
+  "stage": "stage_01_config_loaded",
+  "timestamp_utc": "2026-03-18T19:16:57.588044+00:00",
+  "run_id": "G2R02_Q8B_s42",
+  "manifest": "configs/multiseed/G2R02_Q8B_multiseed_manifest.json",
+  "local_results_dir": "results/modal_importfix_probe_v2/qwen3_8b_gptq_transfer_s42/G2R02_Q8B_s42"
+}

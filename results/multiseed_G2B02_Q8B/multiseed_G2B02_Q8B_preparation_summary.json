@@ -1,0 +1,24 @@
+{
+  "description": "Multi-seed stability analysis for G2B02_Q8B",
+  "phase": "multiseed_G2B02_Q8B",
+  "prepared_runs": [
+    {
+      "bit_width": null,
+      "method": "targeted_mixed_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/qwen3_8b_gptq/G2B02_s42",
+      "run_id": "G2B02_Q8B_s42"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_mixed_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/qwen3_8b_gptq/G2B02_s123",
+      "run_id": "G2B02_Q8B_s123"
+    },
+    {
+      "bit_width": null,
+      "method": "targeted_mixed_precision",
+      "results_dir": "/home/seshu/Documents/Python/llm-decomposition/results/qwen3_8b_gptq/G2B02_s456",
+      "run_id": "G2B02_Q8B_s456"
+    }
+  ]
+}

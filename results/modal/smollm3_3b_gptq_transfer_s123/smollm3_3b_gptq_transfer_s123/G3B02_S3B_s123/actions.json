@@ -1,0 +1,491 @@
+{
+  "actions": [
+    {
+      "action_id": "bit_lm_head_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 131334144,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 131334144,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.0576423464067306e-09,
+      "proxy_family": "activation",
+      "proxy_score": 0.27023869622347946,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "lm_head"
+    },
+    {
+      "action_id": "bit_model_layers_20_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 3.232040658514178e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.16945201327710813,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.20.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_25_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 3.046404951428264e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.15971935591744216,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.25.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_31_self_attn_k_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.9653321386936765e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.15546880563314303,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.31.self_attn.k_proj"
+    },
+    {
+      "action_id": "bit_model_layers_27_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.845376113300481e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.14917965516900825,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.27.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_23_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.8256893459051814e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.14814750157859358,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.23.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_31_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.7895371790105796e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.14625208685090987,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.31.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_0_self_attn_q_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 2097152,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 2097152,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 6.961740041032263e-08,
+      "proxy_family": "activation",
+      "proxy_score": 0.14599827050530892,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.0.self_attn.q_proj"
+    },
+    {
+      "action_id": "bit_model_layers_33_self_attn_k_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.7654622916878397e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.1449898693984434,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.33.self_attn.k_proj"
+    },
+    {
+      "action_id": "bit_model_layers_1_self_attn_k_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.7471940668921623e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.1440320882942758,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.1.self_attn.k_proj"
+    },
+    {
+      "action_id": "bit_model_layers_28_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.7326579622105226e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.14326997776914305,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.28.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_33_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.6654541795777886e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.13974656409024797,
+      "selected": false,
+      "status": "pending",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.33.self_attn.v_proj"
+    }
+  ],
+  "base_actions": [],
+  "run_id": "G3B02_S3B_s123",
+  "selected_actions": [
+    {
+      "action_id": "bit_model_layers_20_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "cumulative_budget_bytes": 524288,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 3.232040658514178e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.16945201327710813,
+      "selected": true,
+      "selection_order": 1,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.20.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_25_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "cumulative_budget_bytes": 1048576,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 3.046404951428264e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.15971935591744216,
+      "selected": true,
+      "selection_order": 2,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.25.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_31_self_attn_k_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "cumulative_budget_bytes": 1572864,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.9653321386936765e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.15546880563314303,
+      "selected": true,
+      "selection_order": 3,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.31.self_attn.k_proj"
+    },
+    {
+      "action_id": "bit_model_layers_27_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "cumulative_budget_bytes": 2097152,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.845376113300481e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.14917965516900825,
+      "selected": true,
+      "selection_order": 4,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.27.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_23_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "cumulative_budget_bytes": 2621440,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.8256893459051814e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.14814750157859358,
+      "selected": true,
+      "selection_order": 5,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.23.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_31_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "cumulative_budget_bytes": 3145728,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.7895371790105796e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.14625208685090987,
+      "selected": true,
+      "selection_order": 6,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.31.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_33_self_attn_k_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "cumulative_budget_bytes": 3670016,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.7654622916878397e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.1449898693984434,
+      "selected": true,
+      "selection_order": 7,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.33.self_attn.k_proj"
+    },
+    {
+      "action_id": "bit_model_layers_1_self_attn_k_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "cumulative_budget_bytes": 4194304,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.7471940668921623e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.1440320882942758,
+      "selected": true,
+      "selection_order": 8,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.1.self_attn.k_proj"
+    },
+    {
+      "action_id": "bit_model_layers_28_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "cumulative_budget_bytes": 4718592,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.7326579622105226e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.14326997776914305,
+      "selected": true,
+      "selection_order": 9,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.28.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_33_self_attn_v_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 524288,
+      "cumulative_budget_bytes": 5242880,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 524288,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 2.6654541795777886e-07,
+      "proxy_family": "activation",
+      "proxy_score": 0.13974656409024797,
+      "selected": true,
+      "selection_order": 10,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.33.self_attn.v_proj"
+    },
+    {
+      "action_id": "bit_model_layers_0_self_attn_q_proj_4to8",
+      "action_type": "bit_upgrade",
+      "bit_from": 4,
+      "bit_to": 8,
+      "byte_cost": 2097152,
+      "cumulative_budget_bytes": 7340032,
+      "metadata": {
+        "group_size": 128,
+        "metadata_byte_delta": 0,
+        "quantized_weight_byte_delta": 2097152,
+        "symmetric": true
+      },
+      "predicted_gain_per_byte": 6.961740041032263e-08,
+      "proxy_family": "activation",
+      "proxy_score": 0.14599827050530892,
+      "selected": true,
+      "selection_order": 11,
+      "status": "selected",
+      "target_granularity": "matrix",
+      "target_name": "model.layers.0.self_attn.q_proj"
+    }
+  ],
+  "status": "completed"
+}

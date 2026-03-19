@@ -1,0 +1,989 @@
+[G3R02_S3B_s123] loading full-precision model
+`torch_dtype` is deprecated! Use `dtype` instead!
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|#####     | 1/2 [00:30<00:30, 30.66s/it]Fetching 2 files: 100%|##########| 2/2 [00:30<00:00, 15.33s/it]
+Loading weights:   0%|          | 0/326 [00:00<?, ?it/s]Loading weights:   0%|          | 1/326 [00:00<02:03,  2.64it/s]Loading weights:  31%|###1      | 102/326 [00:00<00:00, 277.32it/s]Loading weights:  49%|####9     | 161/326 [00:00<00:00, 270.09it/s]Loading weights:  63%|######2   | 205/326 [00:00<00:00, 271.07it/s]Loading weights:  75%|#######4  | 243/326 [00:01<00:00, 262.87it/s]Loading weights:  85%|########4 | 276/326 [00:01<00:00, 255.13it/s]Loading weights:  95%|#########4| 309/326 [00:01<00:00, 245.53it/s]Loading weights: 100%|##########| 326/326 [00:01<00:00, 242.21it/s]
+[G3R02_S3B_s123] GPTQ rank runtime device=cuda dtype=float16
+[G3R02_S3B_s123] building GPTQ base model for targeted rank allocation
+Loading weights:   0%|          | 0/326 [00:00<?, ?it/s]Loading weights:   0%|          | 1/326 [00:00<02:15,  2.39it/s]Loading weights:  34%|###4      | 111/326 [00:00<00:00, 265.92it/s]Loading weights:  50%|#####     | 164/326 [00:00<00:00, 286.83it/s]Loading weights:  64%|######3   | 208/326 [00:00<00:00, 269.60it/s]Loading weights:  75%|#######4  | 244/326 [00:01<00:00, 258.63it/s]Loading weights:  85%|########4 | 276/326 [00:01<00:00, 242.96it/s]Loading weights:  93%|#########3| 304/326 [00:01<00:00, 232.43it/s]Loading weights: 100%|##########| 326/326 [00:01<00:00, 230.08it/s]
+
+[33mWARN[0m  Python GIL is enabled: Multi-gpu quant acceleration for MoE models is sub-optimal and multi-core accelerated cpu packing is also disabled. We recommend Python >= 3.13.3t with Pytorch > 2.8 for mult-gpu quantization and multi-cpu packing with env `PYTHON_GIL=0`.
+[33mWARN[0m  Feature `utils/Perplexity` requires Python < 3.14 and Python GIL enabled and Python >= 3.13.3T (T for Threading-Free edition of Python) plus Torch 2.8. Feature is currently skipped/disabled.
+[32mINFO[0m  ENV: Auto setting PYTORCH_ALLOC_CONF='expandable_segments:True,max_split_size_mb:256,garbage_collection_threshold:0.7' for memory saving.
+[32mINFO[0m  ENV: Auto setting CUDA_DEVICE_ORDER=PCI_BUS_ID for correctness.          
+[32mINFO[0m  
+
+_____/\\\\\\\\\\\\__/\\\\\\\\\\\\\____/\\\\\\\\\\\\\\\______________________/\\\________/\\\\____________/\\\\_______________________/\\\__________________/\\\\\\____
+ ___/\\\//////////__\/\\\/////////\\\_\///////\\\/////____________________/\\\\/\\\\____\/\\\\\\________/\\\\\\______________________\/\\\_________________\////\\\____
+  __/\\\_____________\/\\\_______\/\\\_______\/\\\_______________________/\\\//\////\\\__\/\\\//\\\____/\\\//\\\______________________\/\\\____________________\/\\\____
+   _\/\\\____/\\\\\\\_\/\\\\\\\\\\\\\/________\/\\\________/\\\\\\\\\\\__/\\\______\//\\\_\/\\\\///\\\/\\\/_\/\\\_____/\\\\\___________\/\\\______/\\\\\\\\_____\/\\\____
+    _\/\\\___\/////\\\_\/\\\/////////__________\/\\\_______\///////////__\//\\\______/\\\__\/\\\__\///\\\/___\/\\\___/\\\///\\\____/\\\\\\\\\____/\\\/////\\\____\/\\\____
+     _\/\\\_______\/\\\_\/\\\___________________\/\\\______________________\///\\\\/\\\\/___\/\\\____\///_____\/\\\__/\\\__\//\\\__/\\\////\\\___/\\\\\\\\\\\_____\/\\\____
+      _\/\\\_______\/\\\_\/\\\___________________\/\\\________________________\////\\\//_____\/\\\_____________\/\\\_\//\\\__/\\\__\/\\\__\/\\\__\//\\///////______\/\\\____
+       _\//\\\\\\\\\\\\/__\/\\\___________________\/\\\___________________________\///\\\\\\__\/\\\_____________\/\\\__\///\\\\\/___\//\\\\\\\/\\__\//\\\\\\\\\\__/\\\\\\\\\_
+        __\////////////____\///____________________\///______________________________\//////___\///______________\///_____\/////______\///////\//____\//////////__\/////////__
+
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/wikitext/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/Salesforce/wikitext/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/Salesforce/wikitext/b08601e04326c79dfdd32d625aee71d232d685c3/README.md "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/resolve-cache/datasets/Salesforce/wikitext/b08601e04326c79dfdd32d625aee71d232d685c3/README.md "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext.py "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/Salesforce/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext.py "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/wikitext/wikitext.py "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/datasets/wikitext/revision/b08601e04326c79dfdd32d625aee71d232d685c3 "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/datasets/Salesforce/wikitext/revision/b08601e04326c79dfdd32d625aee71d232d685c3 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/Salesforce/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/.huggingface.yaml "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=wikitext "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/datasets/wikitext/tree/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-103-raw-v1?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/datasets/Salesforce/wikitext/tree/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-103-raw-v1?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/datasets/wikitext/tree/b08601e04326c79dfdd32d625aee71d232d685c3?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/datasets/Salesforce/wikitext/tree/b08601e04326c79dfdd32d625aee71d232d685c3?recursive=false&expand=false "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/Salesforce/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/dataset_infos.json "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/datasets/wikitext/tree/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-2-raw-v1?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/datasets/Salesforce/wikitext/tree/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-2-raw-v1?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-2-raw-v1/test-00000-of-00001.parquet "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/Salesforce/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-2-raw-v1/test-00000-of-00001.parquet "HTTP/1.1 302 Found"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/datasets/Salesforce/wikitext/xet-read-token/b08601e04326c79dfdd32d625aee71d232d685c3 "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-2-raw-v1/train-00000-of-00001.parquet "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/Salesforce/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-2-raw-v1/train-00000-of-00001.parquet "HTTP/1.1 302 Found"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-2-raw-v1/validation-00000-of-00001.parquet "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/Salesforce/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext-2-raw-v1/validation-00000-of-00001.parquet "HTTP/1.1 302 Found"
+Generating test split:   0%|          | 0/4358 [00:00<?, ? examples/s]Generating test split: 100%|##########| 4358/4358 [00:00<00:00, 389398.97 examples/s]
+Generating train split:   0%|          | 0/36718 [00:00<?, ? examples/s]Generating train split: 100%|##########| 36718/36718 [00:00<00:00, 1113342.59 examples/s]
+Generating validation split:   0%|          | 0/3760 [00:00<?, ? examples/s]Generating validation split: 100%|##########| 3760/3760 [00:00<00:00, 695198.72 examples/s]
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolLM3-3B-Base/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolLM3-3B-Base/d78a42f79198603e614095753484a04c10c2b940/config.json "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolLM3-3B-Base/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolLM3-3B-Base/d78a42f79198603e614095753484a04c10c2b940/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/326 [00:00<?, ?it/s]Loading weights:   0%|          | 1/326 [00:00<02:35,  2.09it/s]Loading weights:  29%|##8       | 93/326 [00:00<00:01, 195.10it/s]Loading weights:  40%|####      | 132/326 [00:00<00:00, 203.10it/s]Loading weights:  50%|#####     | 163/326 [00:00<00:00, 215.97it/s]Loading weights:  59%|#####8    | 192/326 [00:01<00:00, 200.87it/s]Loading weights:  67%|######6   | 217/326 [00:01<00:00, 209.30it/s]Loading weights:  74%|#######4  | 242/326 [00:01<00:00, 207.07it/s]Loading weights:  81%|########1 | 265/326 [00:01<00:00, 199.83it/s]Loading weights:  89%|########9 | 291/326 [00:01<00:00, 204.22it/s]Loading weights:  96%|#########6| 313/326 [00:01<00:00, 206.53it/s]Loading weights: 100%|##########| 326/326 [00:01<00:00, 190.89it/s]
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/HuggingFaceTB/SmolLM3-3B-Base/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/HuggingFaceTB/SmolLM3-3B-Base/d78a42f79198603e614095753484a04c10c2b940/generation_config.json "HTTP/1.1 200 OK"
+Quantizing model.layers blocks :   0%|          | 0/36 [00:00<?, ?it/s]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 1/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 1/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:01<00:09,  1.51s/it][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 1/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:02<00:05,  1.06s/it][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 1/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:03,  1.13it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 1/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:03<00:02,  1.24it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 1/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:04<00:01,  1.31it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 1/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.36it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 1/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:08<00:00,  1.68s/it][A
+                                                                                 [AQuantizing model.layers blocks :   3%|2         | 1/36 [00:08<05:06,  8.74s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 2/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 2/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 2/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 2/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 2/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 2/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 2/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 2/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.64s/it][A
+                                                                                 [AQuantizing model.layers blocks :   6%|5         | 2/36 [00:16<04:38,  8.20s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 3/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 3/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 3/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 3/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 3/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 3/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 3/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 3/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.63s/it][A
+                                                                                 [AQuantizing model.layers blocks :   8%|8         | 3/36 [00:24<04:24,  8.02s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 4/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 4/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 4/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 4/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 4/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 4/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 4/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 4/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.62s/it][A
+                                                                                 [AQuantizing model.layers blocks :  11%|#1        | 4/36 [00:32<04:12,  7.89s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 5/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 5/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 5/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 5/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 5/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 5/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 5/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 5/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.63s/it][A
+                                                                                 [AQuantizing model.layers blocks :  14%|#3        | 5/36 [00:39<04:03,  7.85s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 6/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 6/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 6/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 6/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 6/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 6/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 6/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 6/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.64s/it][A
+                                                                                 [AQuantizing model.layers blocks :  17%|#6        | 6/36 [00:47<03:55,  7.86s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 7/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 7/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 7/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 7/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 7/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 7/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 7/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 7/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.62s/it][A
+                                                                                 [AQuantizing model.layers blocks :  19%|#9        | 7/36 [00:55<03:46,  7.81s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 8/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 8/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 8/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 8/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 8/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 8/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 8/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 8/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.64s/it][A
+                                                                                 [AQuantizing model.layers blocks :  22%|##2       | 8/36 [01:03<03:38,  7.79s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 9/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 9/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 9/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 9/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 9/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 9/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 9/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 9/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.63s/it][A
+                                                                                 [AQuantizing model.layers blocks :  25%|##5       | 9/36 [01:10<03:30,  7.79s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 10/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 10/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 10/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 10/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 10/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 10/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 10/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 10/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.64s/it][A
+                                                                                 [AQuantizing model.layers blocks :  28%|##7       | 10/36 [01:18<03:22,  7.80s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 11/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 11/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 11/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 11/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 11/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 11/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 11/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 11/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.66s/it][A
+                                                                                 [AQuantizing model.layers blocks :  31%|###       | 11/36 [01:26<03:15,  7.83s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 12/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 12/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 12/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 12/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 12/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 12/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 12/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 12/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.64s/it][A
+                                                                                 [AQuantizing model.layers blocks :  33%|###3      | 12/36 [01:35<03:13,  8.04s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 13/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 13/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 13/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 13/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 13/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 13/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 13/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 13/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:08<00:00,  1.72s/it][A
+                                                                                 [AQuantizing model.layers blocks :  36%|###6      | 13/36 [01:43<03:05,  8.07s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 14/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 14/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 14/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 14/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.42it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 14/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 14/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 14/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 14/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.65s/it][A
+                                                                                 [AQuantizing model.layers blocks :  39%|###8      | 14/36 [01:51<02:56,  8.03s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 15/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 15/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 15/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 15/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 15/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 15/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 15/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 15/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.64s/it][A
+                                                                                 [AQuantizing model.layers blocks :  42%|####1     | 15/36 [01:59<02:47,  7.98s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 16/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 16/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 16/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.52it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 16/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.53it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 16/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.53it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 16/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 16/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 16/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.64s/it][A
+                                                                                 [AQuantizing model.layers blocks :  44%|####4     | 16/36 [02:06<02:37,  7.90s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 17/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 17/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.41it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 17/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 17/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 17/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 17/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.42it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 17/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.42it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 17/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.69s/it][A
+                                                                                 [AQuantizing model.layers blocks :  47%|####7     | 17/36 [02:14<02:30,  7.95s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 18/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 18/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.37it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 18/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.40it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 18/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.42it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 18/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 18/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.42it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 18/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 18/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.66s/it][A
+                                                                                 [AQuantizing model.layers blocks :  50%|#####     | 18/36 [02:22<02:23,  7.96s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 19/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 19/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.42it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 19/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 19/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 19/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 19/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 19/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 19/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.60s/it][A
+                                                                                 [AQuantizing model.layers blocks :  53%|#####2    | 19/36 [02:30<02:13,  7.88s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 20/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 20/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.53it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 20/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.54it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 20/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.53it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 20/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.53it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 20/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 20/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 20/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.61s/it][A
+                                                                                 [AQuantizing model.layers blocks :  56%|#####5    | 20/36 [02:38<02:04,  7.80s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 21/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 21/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 21/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 21/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 21/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 21/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 21/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 21/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.63s/it][A
+                                                                                 [AQuantizing model.layers blocks :  58%|#####8    | 21/36 [02:45<01:56,  7.79s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 22/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 22/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 22/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 22/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 22/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 22/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 22/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 22/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.63s/it][A
+                                                                                 [AQuantizing model.layers blocks :  61%|######1   | 22/36 [02:53<01:49,  7.79s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 23/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 23/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 23/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 23/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 23/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 23/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 23/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 23/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.64s/it][A
+                                                                                 [AQuantizing model.layers blocks :  64%|######3   | 23/36 [03:01<01:41,  7.81s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 24/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 24/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 24/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.52it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 24/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 24/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.52it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 24/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 24/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 24/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.62s/it][A
+                                                                                 [AQuantizing model.layers blocks :  67%|######6   | 24/36 [03:09<01:33,  7.77s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 25/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 25/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 25/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 25/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 25/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 25/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 25/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 25/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.64s/it][A
+                                                                                 [AQuantizing model.layers blocks :  69%|######9   | 25/36 [03:17<01:25,  7.78s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 26/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 26/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 26/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 26/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 26/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 26/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 26/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 26/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.64s/it][A
+                                                                                 [AQuantizing model.layers blocks :  72%|#######2  | 26/36 [03:24<01:18,  7.80s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 27/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 27/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 27/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 27/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 27/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 27/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.44it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 27/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 27/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.65s/it][A
+                                                                                 [AQuantizing model.layers blocks :  75%|#######5  | 27/36 [03:32<01:10,  7.83s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 28/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 28/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.52it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 28/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.53it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 28/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.54it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 28/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.54it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 28/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 28/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 28/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.61s/it][A
+                                                                                 [AQuantizing model.layers blocks :  78%|#######7  | 28/36 [03:40<01:02,  7.77s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 29/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 29/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 29/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 29/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 29/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 29/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 29/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 29/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.63s/it][A
+                                                                                 [AQuantizing model.layers blocks :  81%|########  | 29/36 [03:48<00:54,  7.77s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 30/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 30/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 30/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 30/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 30/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 30/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 30/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 30/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.63s/it][A
+                                                                                 [AQuantizing model.layers blocks :  83%|########3 | 30/36 [03:55<00:46,  7.76s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 31/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 31/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 31/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 31/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 31/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 31/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 31/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 31/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.64s/it][A
+                                                                                 [AQuantizing model.layers blocks :  86%|########6 | 31/36 [04:03<00:38,  7.79s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 32/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 32/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:03,  1.53it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 32/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.54it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 32/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.55it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 32/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.54it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 32/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.52it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 32/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 32/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.61s/it][A
+                                                                                 [AQuantizing model.layers blocks :  89%|########8 | 32/36 [04:11<00:30,  7.73s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 33/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 33/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 33/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 33/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.49it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 33/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 33/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 33/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 33/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.62s/it][A
+                                                                                 [AQuantizing model.layers blocks :  92%|#########1| 33/36 [04:19<00:23,  7.73s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 34/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 34/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 34/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.46it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 34/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 34/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.48it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 34/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.43it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 34/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.42it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 34/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.65s/it][A
+                                                                                 [AQuantizing model.layers blocks :  94%|#########4| 34/36 [04:27<00:15,  7.78s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 35/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 35/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 35/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 35/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 35/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:02,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 35/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.47it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 35/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:04<00:00,  1.45it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 35/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.62s/it][A
+                                                                                 [AQuantizing model.layers blocks :  97%|#########7| 35/36 [04:34<00:07,  7.78s/it]INFO:optimum.gptq.quantizer:Start quantizing block model.layers 36/36
+INFO:optimum.gptq.quantizer:Module to quantize [['self_attn.q_proj'], ['self_attn.k_proj'], ['self_attn.v_proj'], ['self_attn.o_proj'], ['mlp.gate_proj'], ['mlp.up_proj'], ['mlp.down_proj']]
+
+Quantizing layers inside the block:   0%|          | 0/7 [00:00<?, ?it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.q_proj in block 36/36...
+
+Quantizing layers inside the block:  14%|#4        | 1/7 [00:00<00:04,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.k_proj in block 36/36...
+
+Quantizing layers inside the block:  29%|##8       | 2/7 [00:01<00:03,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.v_proj in block 36/36...
+
+Quantizing layers inside the block:  43%|####2     | 3/7 [00:01<00:02,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing self_attn.o_proj in block 36/36...
+
+Quantizing layers inside the block:  57%|#####7    | 4/7 [00:02<00:01,  1.51it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.gate_proj in block 36/36...
+
+Quantizing layers inside the block:  71%|#######1  | 5/7 [00:03<00:01,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.up_proj in block 36/36...
+
+Quantizing layers inside the block:  86%|########5 | 6/7 [00:03<00:00,  1.50it/s][AINFO:optimum.gptq.quantizer:Quantizing mlp.down_proj in block 36/36...
+
+Quantizing layers inside the block: 100%|##########| 7/7 [00:07<00:00,  1.62s/it][A
+                                                                                 [AQuantizing model.layers blocks : 100%|##########| 36/36 [04:42<00:00,  7.75s/it]Quantizing model.layers blocks : 100%|##########| 36/36 [04:42<00:00,  7.85s/it]
+INFO:optimum.gptq.quantizer:Packing model...
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/kernels-community/quantization_gptq/revision/main "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: GET https://huggingface.co/api/models/kernels-community/quantization-gptq/revision/main "HTTP/1.1 200 OK"
+Fetching 0 files: 0it [00:00, ?it/s]Fetching 0 files: 0it [00:00, ?it/s]
+Failed to load CPU gemm_4bit kernel: Cannot install kernel from repo kernels-community/quantization_gptq (revision: main). Use fallback path.                         Please make sure you already `pip install kernels` and the kernels >= 0.11.1
+[32mINFO[0m  Packing Kernel: Auto-selection: adding candidate `TritonV2QuantLinear`   
+[32mINFO[0m  Kernel: selected -> `TritonV2QuantLinear`.                               
+`loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+INFO:optimum.gptq.quantizer:model.layers.0.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.0.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.0.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.0.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.0.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.0.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.0.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.1.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.1.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.1.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.1.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.1.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.1.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.1.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.2.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.2.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.2.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.2.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.2.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.2.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.2.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.3.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.3.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.3.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.3.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.3.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.3.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.3.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.4.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.4.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.4.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.4.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.4.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.4.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.4.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.5.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.5.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.5.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.5.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.5.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.5.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.5.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.6.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.6.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.6.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.6.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.6.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.6.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.6.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.7.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.7.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.7.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.7.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.7.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.7.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.7.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.8.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.8.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.8.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.8.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.8.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.8.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.8.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.9.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.9.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.9.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.9.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.9.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.9.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.9.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.10.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.10.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.10.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.10.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.10.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.10.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.10.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.11.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.11.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.11.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.11.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.11.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.11.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.11.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.12.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.12.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.12.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.12.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.12.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.12.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.12.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.13.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.13.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.13.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.13.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.13.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.13.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.13.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.14.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.14.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.14.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.14.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.14.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.14.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.14.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.15.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.15.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.15.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.15.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.15.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.15.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.15.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.16.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.16.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.16.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.16.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.16.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.16.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.16.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.17.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.17.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.17.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.17.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.17.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.17.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.17.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.18.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.18.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.18.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.18.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.18.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.18.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.18.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.19.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.19.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.19.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.19.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.19.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.19.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.19.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.20.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.20.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.20.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.20.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.20.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.20.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.20.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.21.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.21.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.21.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.21.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.21.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.21.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.21.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.22.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.22.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.22.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.22.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.22.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.22.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.22.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.23.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.23.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.23.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.23.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.23.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.23.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.23.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.24.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.24.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.24.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.24.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.24.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.24.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.24.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.25.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.25.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.25.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.25.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.25.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.25.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.25.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.26.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.26.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.26.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.26.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.26.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.26.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.26.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.27.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.27.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.27.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.27.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.27.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.27.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.27.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.28.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.28.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.28.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.28.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.28.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.28.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.28.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.29.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.29.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.29.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.29.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.29.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.29.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.29.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.30.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.30.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.30.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.30.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.30.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.30.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.30.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.31.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.31.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.31.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.31.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.31.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.31.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.31.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.32.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.32.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.32.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.32.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.32.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.32.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.32.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.33.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.33.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.33.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.33.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.33.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.33.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.33.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.34.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.34.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.34.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.34.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.34.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.34.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.34.mlp.up_proj
+INFO:optimum.gptq.quantizer:model.layers.35.self_attn.k_proj
+INFO:optimum.gptq.quantizer:model.layers.35.self_attn.o_proj
+INFO:optimum.gptq.quantizer:model.layers.35.self_attn.q_proj
+INFO:optimum.gptq.quantizer:model.layers.35.self_attn.v_proj
+INFO:optimum.gptq.quantizer:model.layers.35.mlp.down_proj
+INFO:optimum.gptq.quantizer:model.layers.35.mlp.gate_proj
+INFO:optimum.gptq.quantizer:model.layers.35.mlp.up_proj
+INFO:optimum.gptq.quantizer:Model packed.
+[32mINFO[0m  Optimize: `TritonV2QuantLinear` compilation triggered.                   
+[32mINFO[0m  gc.collect() reclaimed 33 objects in 0.241s                              
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|##########| 1/1 [00:05<00:00,  5.75s/it]Writing model shards: 100%|##########| 1/1 [00:05<00:00,  5.75s/it]
+[G3R02_S3B_s123] applying 12 targeted rank repairs with total selected rank bytes 10240000
+[G3R02_S3B_s123] loading evaluation split
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/wikitext/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/Salesforce/wikitext/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/Salesforce/wikitext/b08601e04326c79dfdd32d625aee71d232d685c3/README.md "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext.py "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/Salesforce/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/wikitext.py "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/wikitext/wikitext.py "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/Salesforce/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/.huggingface.yaml "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=wikitext "HTTP/1.1 404 Not Found"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+INFO:httpx:HTTP Request: HEAD https://huggingface.co/datasets/Salesforce/wikitext/resolve/b08601e04326c79dfdd32d625aee71d232d685c3/dataset_infos.json "HTTP/1.1 404 Not Found"
+[G3R02_S3B_s123] evaluating targeted rank model on 569 sequences
+[G3R02_S3B_s123] profiling targeted rank model

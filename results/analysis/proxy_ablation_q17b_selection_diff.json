@@ -1,0 +1,110 @@
+{
+  "bits": {
+    "activation_targets": [
+      "model.layers.19.self_attn.v_proj",
+      "model.layers.20.self_attn.v_proj",
+      "model.layers.21.self_attn.v_proj",
+      "model.layers.22.self_attn.v_proj",
+      "model.layers.23.self_attn.v_proj",
+      "model.layers.8.self_attn.k_proj",
+      "model.layers.9.self_attn.k_proj"
+    ],
+    "weight_targets": [
+      "model.layers.19.self_attn.v_proj",
+      "model.layers.20.self_attn.v_proj",
+      "model.layers.21.self_attn.v_proj",
+      "model.layers.22.self_attn.v_proj",
+      "model.layers.23.self_attn.v_proj",
+      "model.layers.8.self_attn.k_proj",
+      "model.layers.9.self_attn.k_proj"
+    ],
+    "shared_targets": [
+      "model.layers.19.self_attn.v_proj",
+      "model.layers.20.self_attn.v_proj",
+      "model.layers.21.self_attn.v_proj",
+      "model.layers.22.self_attn.v_proj",
+      "model.layers.23.self_attn.v_proj",
+      "model.layers.8.self_attn.k_proj",
+      "model.layers.9.self_attn.k_proj"
+    ],
+    "activation_only_targets": [],
+    "weight_only_targets": [],
+    "same_perplexity": true,
+    "same_memory_total_bytes": true
+  },
+  "rank": {
+    "activation_final_layer_ranks": {
+      "model.layers.1.mlp.down_proj": 32,
+      "model.layers.10.mlp.down_proj": 32,
+      "model.layers.16.mlp.down_proj": 32,
+      "model.layers.19.mlp.down_proj": 32,
+      "model.layers.19.mlp.gate_proj": 32,
+      "model.layers.19.self_attn.v_proj": 32,
+      "model.layers.20.self_attn.v_proj": 32,
+      "model.layers.21.self_attn.v_proj": 32,
+      "model.layers.22.self_attn.v_proj": 32,
+      "model.layers.23.self_attn.v_proj": 32,
+      "model.layers.8.self_attn.k_proj": 32,
+      "model.layers.9.self_attn.k_proj": 32
+    },
+    "weight_final_layer_ranks": {
+      "model.layers.1.mlp.down_proj": 32,
+      "model.layers.10.mlp.down_proj": 32,
+      "model.layers.16.mlp.down_proj": 32,
+      "model.layers.19.mlp.down_proj": 32,
+      "model.layers.19.mlp.gate_proj": 32,
+      "model.layers.19.self_attn.v_proj": 32,
+      "model.layers.20.self_attn.v_proj": 32,
+      "model.layers.21.self_attn.v_proj": 32,
+      "model.layers.22.self_attn.v_proj": 32,
+      "model.layers.23.self_attn.v_proj": 32,
+      "model.layers.8.self_attn.k_proj": 32,
+      "model.layers.9.self_attn.k_proj": 32
+    },
+    "shared_selected_layers": [
+      "model.layers.1.mlp.down_proj",
+      "model.layers.10.mlp.down_proj",
+      "model.layers.16.mlp.down_proj",
+      "model.layers.19.mlp.down_proj",
+      "model.layers.19.mlp.gate_proj",
+      "model.layers.19.self_attn.v_proj",
+      "model.layers.20.self_attn.v_proj",
+      "model.layers.21.self_attn.v_proj",
+      "model.layers.22.self_attn.v_proj",
+      "model.layers.23.self_attn.v_proj",
+      "model.layers.8.self_attn.k_proj",
+      "model.layers.9.self_attn.k_proj"
+    ],
+    "activation_only_selected_layers": [],
+    "weight_only_selected_layers": [],
+    "same_final_layer_ranks": true,
+    "activation_first_12_actions": [
+      "model.layers.8.self_attn.k_proj->4",
+      "model.layers.9.self_attn.k_proj->4",
+      "model.layers.9.self_attn.k_proj->8",
+      "model.layers.8.self_attn.k_proj->8",
+      "model.layers.21.self_attn.v_proj->4",
+      "model.layers.23.self_attn.v_proj->4",
+      "model.layers.22.self_attn.v_proj->4",
+      "model.layers.8.self_attn.k_proj->16",
+      "model.layers.21.self_attn.v_proj->8",
+      "model.layers.9.self_attn.k_proj->16",
+      "model.layers.21.self_attn.v_proj->16",
+      "model.layers.19.self_attn.v_proj->4"
+    ],
+    "weight_first_12_actions": [
+      "model.layers.9.self_attn.k_proj->4",
+      "model.layers.8.self_attn.k_proj->4",
+      "model.layers.9.self_attn.k_proj->8",
+      "model.layers.8.self_attn.k_proj->8",
+      "model.layers.9.self_attn.k_proj->16",
+      "model.layers.8.self_attn.k_proj->16",
+      "model.layers.23.self_attn.v_proj->4",
+      "model.layers.21.self_attn.v_proj->4",
+      "model.layers.22.self_attn.v_proj->4",
+      "model.layers.21.self_attn.v_proj->8",
+      "model.layers.8.self_attn.k_proj->32",
+      "model.layers.19.self_attn.v_proj->4"
+    ]
+  }
+}

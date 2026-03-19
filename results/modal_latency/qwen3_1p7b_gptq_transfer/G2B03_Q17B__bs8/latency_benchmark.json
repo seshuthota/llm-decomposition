@@ -1,0 +1,175 @@
+{
+  "benchmark_spec": {
+    "batch_size": 8,
+    "decode_length": 128,
+    "prompt_length": 512,
+    "prompt_template": "Summarize the key engineering tradeoffs of deploying a quantized language model under a fixed GPU memory budget. Focus on accuracy, memory footprint, and inference latency, and explain why a practitioner might choose extra bits or low-rank repair for a single-device deployment setting.",
+    "timed_iterations": 10,
+    "warmup_iterations": 3
+  },
+  "device": "cuda",
+  "dtype": "float16",
+  "method": "targeted_mixed_precision",
+  "model_name": "Qwen/Qwen3-1.7B-Base",
+  "policy_metadata": {
+    "memory_total_bytes": 900739072,
+    "policy_type": "bits",
+    "reconstruction": "targeted_mixed_precision_gptq",
+    "selected_action_count": 8,
+    "selection_profiling_wall_time_s": 0.0005447229999617775,
+    "upgraded_layers": [
+      "model.layers.16.mlp.down_proj",
+      "model.layers.19.self_attn.v_proj",
+      "model.layers.20.self_attn.v_proj",
+      "model.layers.21.self_attn.v_proj",
+      "model.layers.22.self_attn.v_proj",
+      "model.layers.23.self_attn.v_proj",
+      "model.layers.8.self_attn.k_proj",
+      "model.layers.9.self_attn.k_proj"
+    ]
+  },
+  "prompt_template": "Summarize the key engineering tradeoffs of deploying a quantized language model under a fixed GPU memory budget. Focus on accuracy, memory footprint, and inference latency, and explain why a practitioner might choose extra bits or low-rank repair for a single-device deployment setting.",
+  "repetitions": [
+    {
+      "decode_elapsed_s": 6.845302623999942,
+      "decode_ms_per_token": 6.737502582677108,
+      "decode_tokens_per_sec": 148.4229486710869,
+      "end_to_end_elapsed_s": 7.135963748999984,
+      "end_to_end_tokens_per_sec": 143.4984868222601,
+      "first_token_latency_ms": 290.6611250000424,
+      "generated_tokens": 1024.0,
+      "peak_vram_mb": 5366.26611328125
+    },
+    {
+      "decode_elapsed_s": 7.426356208000016,
+      "decode_ms_per_token": 7.309405716535449,
+      "decode_tokens_per_sec": 136.81002789840832,
+      "end_to_end_elapsed_s": 7.706838473000005,
+      "end_to_end_tokens_per_sec": 132.86901024167855,
+      "first_token_latency_ms": 280.4822649999892,
+      "generated_tokens": 1024.0,
+      "peak_vram_mb": 5366.26611328125
+    },
+    {
+      "decode_elapsed_s": 7.2958628159999535,
+      "decode_ms_per_token": 7.180967338582632,
+      "decode_tokens_per_sec": 139.257004363061,
+      "end_to_end_elapsed_s": 7.577466516999948,
+      "end_to_end_tokens_per_sec": 135.1375156462479,
+      "first_token_latency_ms": 281.60370099999454,
+      "generated_tokens": 1024.0,
+      "peak_vram_mb": 5366.26611328125
+    },
+    {
+      "decode_elapsed_s": 7.44106470600002,
+      "decode_ms_per_token": 7.3238825846456885,
+      "decode_tokens_per_sec": 136.53960019736957,
+      "end_to_end_elapsed_s": 7.722831014000008,
+      "end_to_end_tokens_per_sec": 132.59386333116507,
+      "first_token_latency_ms": 281.7663079999875,
+      "generated_tokens": 1024.0,
+      "peak_vram_mb": 5366.26611328125
+    },
+    {
+      "decode_elapsed_s": 7.363268836999964,
+      "decode_ms_per_token": 7.24731184744091,
+      "decode_tokens_per_sec": 137.98219547474127,
+      "end_to_end_elapsed_s": 7.645968150999977,
+      "end_to_end_tokens_per_sec": 133.9267938051869,
+      "first_token_latency_ms": 282.6993140000127,
+      "generated_tokens": 1024.0,
+      "peak_vram_mb": 5366.26611328125
+    },
+    {
+      "decode_elapsed_s": 7.1808723749999785,
+      "decode_ms_per_token": 7.067787770669271,
+      "decode_tokens_per_sec": 141.48698750547047,
+      "end_to_end_elapsed_s": 7.462827446000006,
+      "end_to_end_tokens_per_sec": 137.21340971763362,
+      "first_token_latency_ms": 281.95507100002715,
+      "generated_tokens": 1024.0,
+      "peak_vram_mb": 5366.26611328125
+    },
+    {
+      "decode_elapsed_s": 7.252211043000045,
+      "decode_ms_per_token": 7.138002995078784,
+      "decode_tokens_per_sec": 140.0952059966126,
+      "end_to_end_elapsed_s": 7.535219016000042,
+      "end_to_end_tokens_per_sec": 135.89518736292487,
+      "first_token_latency_ms": 283.0079729999966,
+      "generated_tokens": 1024.0,
+      "peak_vram_mb": 5366.26611328125
+    },
+    {
+      "decode_elapsed_s": 7.042265727999961,
+      "decode_ms_per_token": 6.931363905511772,
+      "decode_tokens_per_sec": 144.271749922812,
+      "end_to_end_elapsed_s": 7.3238284389999535,
+      "end_to_end_tokens_per_sec": 139.8175842769774,
+      "first_token_latency_ms": 281.5627109999923,
+      "generated_tokens": 1024.0,
+      "peak_vram_mb": 5366.26611328125
+    },
+    {
+      "decode_elapsed_s": 7.21898391000002,
+      "decode_ms_per_token": 7.105299124015768,
+      "decode_tokens_per_sec": 140.74002832900027,
+      "end_to_end_elapsed_s": 7.503275232000021,
+      "end_to_end_tokens_per_sec": 136.4737355805419,
+      "first_token_latency_ms": 284.2913220000014,
+      "generated_tokens": 1024.0,
+      "peak_vram_mb": 5366.26611328125
+    },
+    {
+      "decode_elapsed_s": 7.344929395999998,
+      "decode_ms_per_token": 7.229261216535431,
+      "decode_tokens_per_sec": 138.32672109187425,
+      "end_to_end_elapsed_s": 7.627035508000006,
+      "end_to_end_tokens_per_sec": 134.2592412118608,
+      "first_token_latency_ms": 282.1061120000081,
+      "generated_tokens": 1024.0,
+      "peak_vram_mb": 5366.26611328125
+    }
+  ],
+  "run_id": "G2B03_Q17B",
+  "status": "completed",
+  "summary": {
+    "decode_ms_per_token": {
+      "max": 7.3238825846456885,
+      "mean": 7.127078508169282,
+      "min": 6.737502582677108,
+      "std": 0.18072665307683908
+    },
+    "decode_tokens_per_sec": {
+      "max": 148.4229486710869,
+      "mean": 140.39324694504367,
+      "min": 136.53960019736957,
+      "std": 3.6513170652353213
+    },
+    "end_to_end_tokens_per_sec": {
+      "max": 143.4984868222601,
+      "mean": 136.1684827996477,
+      "min": 132.59386333116507,
+      "std": 3.3615858071308193
+    },
+    "first_token_latency_ms": {
+      "max": 290.6611250000424,
+      "mean": 283.0135902000052,
+      "min": 280.4822649999892,
+      "std": 2.871629926202672
+    },
+    "generated_tokens": {
+      "max": 1024.0,
+      "mean": 1024.0,
+      "min": 1024.0,
+      "std": 0.0
+    },
+    "peak_vram_mb": {
+      "max": 5366.26611328125,
+      "mean": 5366.26611328125,
+      "min": 5366.26611328125,
+      "std": 0.0
+    }
+  },
+  "tokenizer_name": "Qwen/Qwen3-1.7B-Base"
+}

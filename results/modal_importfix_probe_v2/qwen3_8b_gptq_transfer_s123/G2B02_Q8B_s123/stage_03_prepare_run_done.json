@@ -1,0 +1,12 @@
+{
+  "stage": "stage_03_prepare_run_done",
+  "timestamp_utc": "2026-03-18T17:57:41.309156+00:00",
+  "run_id": "G2B02_Q8B_s123",
+  "prepared": {
+    "run_id": "G2B02_Q8B_s123",
+    "results_dir": "/resultsvol/results/modal_importfix_probe_v2/qwen3_8b_gptq_transfer_s123/G2B02_Q8B_s123",
+    "method": "targeted_mixed_precision",
+    "bit_width": null
+  },
+  "remote_results_dir": "/resultsvol/results/modal_importfix_probe_v2/qwen3_8b_gptq_transfer_s123/G2B02_Q8B_s123"
+}

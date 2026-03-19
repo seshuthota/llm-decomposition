@@ -1,0 +1,10 @@
+{
+  "phase": "qwen3_1p7b_gptq_proxy_ablation",
+  "description": "Matched activation-vs-weight proxy ablation runs for Qwen/Qwen3-1.7B-Base under GPTQ.",
+  "runs": [
+    "configs/scaleup_1p7b_gptq/g2b02a_qwen3_1p7b_gptq_bits_activation_1p0pct.json",
+    "configs/scaleup_1p7b_gptq/g2b02w_qwen3_1p7b_gptq_bits_weight_1p0pct.json",
+    "configs/scaleup_1p7b_gptq/g2r02a_qwen3_1p7b_gptq_rank_activation_1p0pct.json",
+    "configs/scaleup_1p7b_gptq/g2r02w_qwen3_1p7b_gptq_rank_weight_1p0pct.json"
+  ]
+}

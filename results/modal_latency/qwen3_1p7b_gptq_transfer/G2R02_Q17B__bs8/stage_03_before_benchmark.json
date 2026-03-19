@@ -1,0 +1,16 @@
+{
+  "stage": "stage_03_before_benchmark",
+  "timestamp_utc": "2026-03-19T13:50:07.267932+00:00",
+  "run_id": "G2R02_Q17B",
+  "benchmark_run_id": "G2R02_Q17B__bs8",
+  "benchmark_spec": {
+    "batch_size": 8,
+    "prompt_length": 512,
+    "decode_length": 128,
+    "warmup_iterations": 3,
+    "timed_iterations": 10,
+    "prompt_template": "Summarize the key engineering tradeoffs of deploying a quantized language model under a fixed GPU memory budget. Focus on accuracy, memory footprint, and inference latency, and explain why a practitioner might choose extra bits or low-rank repair for a single-device deployment setting."
+  },
+  "model_name": "Qwen/Qwen3-1.7B-Base",
+  "method": "targeted_svd_rank"
+}

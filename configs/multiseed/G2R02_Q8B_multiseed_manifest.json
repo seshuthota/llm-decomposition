@@ -1,0 +1,9 @@
+{
+  "phase": "multiseed_G2R02_Q8B",
+  "description": "Multi-seed stability analysis for G2R02_Q8B",
+  "runs": [
+    "configs/multiseed/G2R02_Q8B_s42.json",
+    "configs/multiseed/G2R02_Q8B_s123.json",
+    "configs/multiseed/G2R02_Q8B_s456.json"
+  ]
+}

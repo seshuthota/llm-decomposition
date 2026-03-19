@@ -1,0 +1,18 @@
+{
+  "phase": "item4_latency",
+  "description": "Latency benchmark job matrix for Item 4 paper-readiness measurement.",
+  "runs": [
+    "configs/latency/qwen3_8b_gptq/r3_q8b_bs1.json",
+    "configs/latency/qwen3_8b_gptq/r3_q8b_bs8.json",
+    "configs/latency/qwen3_8b_gptq/g2b02_q8b_bs1.json",
+    "configs/latency/qwen3_8b_gptq/g2b02_q8b_bs8.json",
+    "configs/latency/qwen3_8b_gptq/g2r02_q8b_bs1.json",
+    "configs/latency/qwen3_8b_gptq/g2r02_q8b_bs8.json",
+    "configs/latency/qwen3_1p7b_gptq/r3_q17b_bs1.json",
+    "configs/latency/qwen3_1p7b_gptq/r3_q17b_bs8.json",
+    "configs/latency/qwen3_1p7b_gptq/g2b03_q17b_bs1.json",
+    "configs/latency/qwen3_1p7b_gptq/g2b03_q17b_bs8.json",
+    "configs/latency/qwen3_1p7b_gptq/g2r02_q17b_bs1.json",
+    "configs/latency/qwen3_1p7b_gptq/g2r02_q17b_bs8.json"
+  ]
+}

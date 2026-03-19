@@ -144,6 +144,9 @@ def profile_residual_svd(
         quant_weight = extract_aligned_module_weight(quant_module, fp_weight)
         if quant_weight is None:
             continue
+        target_device = _resolve_residual_device(fp_weight, quant_weight)
+        fp_weight = fp_weight.to(target_device)
+        quant_weight = quant_weight.to(target_device)
         residual = fp_weight - quant_weight
         singular_values = torch.linalg.svdvals(residual)
         energy = singular_values.pow(2)
@@ -163,6 +166,14 @@ def profile_residual_svd(
             }
         )
     return profiles
+
+
+def _resolve_residual_device(fp_weight: torch.Tensor, quant_weight: torch.Tensor) -> torch.device:
+    if fp_weight.device.type == "cuda":
+        return fp_weight.device
+    if quant_weight.device.type == "cuda":
+        return quant_weight.device
+    return fp_weight.device
 
 
 def _capture_output_hook(store: dict[str, torch.Tensor], name: str):

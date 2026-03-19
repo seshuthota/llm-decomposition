@@ -8,6 +8,9 @@ Canonical experiment reports live here. Use this folder for human-written experi
 - [quantization_vs_svd_detailed_report.md](quantization_vs_svd_detailed_report.md): full phase-by-phase report with tables, equations, and plots
 - [phase1_to_now_report.md](phase1_to_now_report.md): consolidated report from Phase 1 through the current GPTQ and RTN results
 - [downstream_item1_analysis.md](downstream_item1_analysis.md): completed Item 1 downstream evaluation analysis for paper readiness
+- [activation_vs_weight_ablation.md](activation_vs_weight_ablation.md): completed Item 2 allocator-proxy ablation for paper readiness
+- [item3_multiseed_analysis.md](item3_multiseed_analysis.md): completed Item 3 multi-seed stability analysis for paper readiness
+- [item4_latency_analysis.md](item4_latency_analysis.md): completed Item 4 latency and peak-VRAM analysis for paper readiness
 - [experiment_journal.md](experiment_journal.md): detailed chronological run journal
 - [gptq_pre_final_branch_snapshot.md](gptq_pre_final_branch_snapshot.md): frozen GPTQ frontier snapshot before the final bounded branch stop
 
@@ -26,3 +29,4 @@ Canonical experiment reports live here. Use this folder for human-written experi
 ## Generated Summaries
 
 - [../../results/phase1/phase1_summary.md](../../results/phase1/phase1_summary.md): generated Phase 1 summary from run metrics
+- [assets/README.md](assets/README.md): paper-facing table and figure inputs generated from the completed analyses

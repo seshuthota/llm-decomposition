@@ -30,7 +30,7 @@ class ExperimentExecutor:
 
     def execute(self, config: RunConfig, dry_run: bool = False) -> ExecutionResult:
         spec = method_spec(config.method_name)
-        missing = missing_modules(spec.required_modules)
+        missing = missing_modules(_required_modules_for_config(config, spec.required_modules))
         run_dir = self.root / config.results_dir
         execution_path = run_dir / "execution_status.json"
 
@@ -203,3 +203,12 @@ def _result_payload(
             "latency_ms_per_token": metrics.get("latency_ms_per_token"),
         }
     return payload
+
+
+def _required_modules_for_config(config: RunConfig, modules: tuple[str, ...]) -> tuple[str, ...]:
+    if config.method_name != "gptq":
+        return modules
+    implementation = config.raw.get("method", {}).get("implementation", "transformers_gptq_config")
+    if implementation == "gptqmodel":
+        return modules
+    return tuple(module for module in modules if module != "gptqmodel")

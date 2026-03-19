@@ -1,0 +1,10 @@
+{
+  "bit_width": null,
+  "latency_ms_per_token": null,
+  "memory_total_bytes": null,
+  "method": "targeted_svd_rank",
+  "model_name": "Qwen/Qwen3-8B-Base",
+  "perplexity": null,
+  "run_id": "G2R02_Q8B_s42",
+  "status": "pending"
+}
